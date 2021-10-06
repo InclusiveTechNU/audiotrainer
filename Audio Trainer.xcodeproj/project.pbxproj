@@ -27,7 +27,27 @@
 		0D4BD934270B9DF40066BC44 /* ATApplicationElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D4BD933270B9DF40066BC44 /* ATApplicationElement.m */; };
 		0D4BD938270B9E4B0066BC44 /* ATWindowElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D4BD937270B9E4B0066BC44 /* ATWindowElement.m */; };
 		0D4BD93B270B9F1B0066BC44 /* ATApplicationUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D4BD93A270B9F1B0066BC44 /* ATApplicationUtilities.m */; };
+		0DD3CF27270E256D00B166EC /* Audio_Trainer_UI_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DD3CF26270E256D00B166EC /* Audio_Trainer_UI_Tests.m */; };
+		0DD3CF29270E256D00B166EC /* Audio_Trainer_UI_TestsLaunchTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DD3CF28270E256D00B166EC /* Audio_Trainer_UI_TestsLaunchTests.m */; };
+		0DD3CF3C270E258C00B166EC /* Audio_Trainer_Unit_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DD3CF35270E258800B166EC /* Audio_Trainer_Unit_Tests.m */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		0DD3CF2A270E256D00B166EC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0D0045682703B13F00C2BB3A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0D00456F2703B13F00C2BB3A;
+			remoteInfo = "Audio Trainer";
+		};
+		0DD3CF37270E258800B166EC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0D0045682703B13F00C2BB3A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0D00456F2703B13F00C2BB3A;
+			remoteInfo = "Audio Trainer";
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		0D0045702703B13F00C2BB3A /* Audio Trainer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Audio Trainer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -70,10 +90,29 @@
 		0D4BD939270B9F1B0066BC44 /* ATApplicationUtilities.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATApplicationUtilities.h; sourceTree = "<group>"; };
 		0D4BD93A270B9F1B0066BC44 /* ATApplicationUtilities.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ATApplicationUtilities.m; sourceTree = "<group>"; };
 		0D4BD93C270BA08C0066BC44 /* ATElement_Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATElement_Private.h; sourceTree = "<group>"; };
+		0DD3CF24270E256D00B166EC /* Audio Trainer UI Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Audio Trainer UI Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0DD3CF26270E256D00B166EC /* Audio_Trainer_UI_Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Audio_Trainer_UI_Tests.m; sourceTree = "<group>"; };
+		0DD3CF28270E256D00B166EC /* Audio_Trainer_UI_TestsLaunchTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Audio_Trainer_UI_TestsLaunchTests.m; sourceTree = "<group>"; };
+		0DD3CF33270E258800B166EC /* Audio Trainer Unit Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Audio Trainer Unit Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0DD3CF35270E258800B166EC /* Audio_Trainer_Unit_Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Audio_Trainer_Unit_Tests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		0D00456D2703B13F00C2BB3A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0DD3CF21270E256D00B166EC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0DD3CF30270E258800B166EC /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -97,6 +136,8 @@
 			isa = PBXGroup;
 			children = (
 				0D0045702703B13F00C2BB3A /* Audio Trainer.app */,
+				0DD3CF24270E256D00B166EC /* Audio Trainer UI Tests.xctest */,
+				0DD3CF33270E258800B166EC /* Audio Trainer Unit Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -148,6 +189,9 @@
 		0D0045942703BEF600C2BB3A /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				0DD3CF35270E258800B166EC /* Audio_Trainer_Unit_Tests.m */,
+				0DD3CF26270E256D00B166EC /* Audio_Trainer_UI_Tests.m */,
+				0DD3CF28270E256D00B166EC /* Audio_Trainer_UI_TestsLaunchTests.m */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -229,6 +273,42 @@
 			productReference = 0D0045702703B13F00C2BB3A /* Audio Trainer.app */;
 			productType = "com.apple.product-type.application";
 		};
+		0DD3CF23270E256D00B166EC /* Audio Trainer UI Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0DD3CF2E270E256D00B166EC /* Build configuration list for PBXNativeTarget "Audio Trainer UI Tests" */;
+			buildPhases = (
+				0DD3CF20270E256D00B166EC /* Sources */,
+				0DD3CF21270E256D00B166EC /* Frameworks */,
+				0DD3CF22270E256D00B166EC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				0DD3CF2B270E256D00B166EC /* PBXTargetDependency */,
+			);
+			name = "Audio Trainer UI Tests";
+			productName = "Audio Trainer UI Tests";
+			productReference = 0DD3CF24270E256D00B166EC /* Audio Trainer UI Tests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		0DD3CF32270E258800B166EC /* Audio Trainer Unit Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0DD3CF39270E258800B166EC /* Build configuration list for PBXNativeTarget "Audio Trainer Unit Tests" */;
+			buildPhases = (
+				0DD3CF2F270E258800B166EC /* Sources */,
+				0DD3CF30270E258800B166EC /* Frameworks */,
+				0DD3CF31270E258800B166EC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				0DD3CF38270E258800B166EC /* PBXTargetDependency */,
+			);
+			name = "Audio Trainer Unit Tests";
+			productName = "Audio Trainer Unit Tests";
+			productReference = 0DD3CF33270E258800B166EC /* Audio Trainer Unit Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -240,6 +320,14 @@
 				TargetAttributes = {
 					0D00456F2703B13F00C2BB3A = {
 						CreatedOnToolsVersion = 13.0;
+					};
+					0DD3CF23270E256D00B166EC = {
+						CreatedOnToolsVersion = 13.0;
+						TestTargetID = 0D00456F2703B13F00C2BB3A;
+					};
+					0DD3CF32270E258800B166EC = {
+						CreatedOnToolsVersion = 13.0;
+						TestTargetID = 0D00456F2703B13F00C2BB3A;
 					};
 				};
 			};
@@ -257,6 +345,8 @@
 			projectRoot = "";
 			targets = (
 				0D00456F2703B13F00C2BB3A /* Audio Trainer */,
+				0DD3CF23270E256D00B166EC /* Audio Trainer UI Tests */,
+				0DD3CF32270E258800B166EC /* Audio Trainer Unit Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -268,6 +358,20 @@
 			files = (
 				0D00457A2703B14100C2BB3A /* Assets.xcassets in Resources */,
 				0D00457D2703B14100C2BB3A /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0DD3CF22270E256D00B166EC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0DD3CF31270E258800B166EC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -299,7 +403,37 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		0DD3CF20270E256D00B166EC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0DD3CF27270E256D00B166EC /* Audio_Trainer_UI_Tests.m in Sources */,
+				0DD3CF3C270E258C00B166EC /* Audio_Trainer_Unit_Tests.m in Sources */,
+				0DD3CF29270E256D00B166EC /* Audio_Trainer_UI_TestsLaunchTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0DD3CF2F270E258800B166EC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		0DD3CF2B270E256D00B166EC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0D00456F2703B13F00C2BB3A /* Audio Trainer */;
+			targetProxy = 0DD3CF2A270E256D00B166EC /* PBXContainerItemProxy */;
+		};
+		0DD3CF38270E258800B166EC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0D00456F2703B13F00C2BB3A /* Audio Trainer */;
+			targetProxy = 0DD3CF37270E258800B166EC /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		0D00457B2703B14100C2BB3A /* Main.storyboard */ = {
@@ -474,6 +608,88 @@
 			};
 			name = Release;
 		};
+		0DD3CF2C270E256D00B166EC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.tommymchugh.Audio-Trainer-UI-Tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				TEST_TARGET_NAME = "Audio Trainer";
+			};
+			name = Debug;
+		};
+		0DD3CF2D270E256D00B166EC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.tommymchugh.Audio-Trainer-UI-Tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				TEST_TARGET_NAME = "Audio Trainer";
+			};
+			name = Release;
+		};
+		0DD3CF3A270E258800B166EC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.tommymchugh.Audio-Trainer-Unit-Tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Audio Trainer.app/Contents/MacOS/Audio Trainer";
+			};
+			name = Debug;
+		};
+		0DD3CF3B270E258800B166EC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.tommymchugh.Audio-Trainer-Unit-Tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Audio Trainer.app/Contents/MacOS/Audio Trainer";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -491,6 +707,24 @@
 			buildConfigurations = (
 				0D0045832703B14100C2BB3A /* Debug */,
 				0D0045842703B14100C2BB3A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0DD3CF2E270E256D00B166EC /* Build configuration list for PBXNativeTarget "Audio Trainer UI Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0DD3CF2C270E256D00B166EC /* Debug */,
+				0DD3CF2D270E256D00B166EC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0DD3CF39270E258800B166EC /* Build configuration list for PBXNativeTarget "Audio Trainer Unit Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0DD3CF3A270E258800B166EC /* Debug */,
+				0DD3CF3B270E258800B166EC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
