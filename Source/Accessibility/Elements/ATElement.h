@@ -10,6 +10,17 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+extern NSString * const kATElementLabelValueKey;
+extern NSString * const kATElementRoleValueKey;
+extern NSString * const kATElementTitleValueKey;
+extern NSString * const kATElementValueValueKey;
+extern NSString * const kATElementTypeValueKey;
+extern NSString * const kATElementClassValueKey;
+extern NSString * const kATElementChildrenValueKey;
+extern NSString * const kATElementFrameValueKey;
+extern NSString * const kATElementParentValueKey;
+extern NSString * const kATElementVisibleChildrenKey;
+
 @class ATApplicationElement;
 
 @interface ATElement : NSObject
@@ -24,12 +35,17 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSString * _Nullable)role;
 - (NSString * _Nullable)title;
 - (CGRect)frame;
+- (ATElement * _Nullable)parent;
+
 - (long)childrenCount;
-- (NSArray<ATElement *> *)childrenAtIndex:(NSUInteger)index maxValues:(NSUInteger)maxValues;
 - (NSArray<ATElement *> *)children;
+- (NSArray<ATElement *> *)childrenAtIndex:(NSUInteger)index maxValues:(NSUInteger)maxValues;
+
 - (long)visibileChildrenCount;
 - (NSArray<ATElement *> *)visibileChildren;
-- (ATElement * _Nullable)parent;
+- (NSArray<ATElement *> *)visibileChildrenAtIndex:(NSUInteger)index maxValues:(NSUInteger)maxValues;
+
+- (NSDictionary *)valuesForAttributes:(NSArray<NSString *> *)attributes;
 
 @end
 

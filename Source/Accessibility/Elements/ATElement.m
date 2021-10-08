@@ -9,12 +9,16 @@
 #import "ATElement_Private.h"
 #import "ATApplicationElement.h"
 
-static NSString *kATElementLabelValueKey = @"AXDescription";
-static NSString *kATElementRoleValueKey = @"AXRole";
-static NSString *kATElementTitleValueKey = @"AXTitle";
-static NSString *kATElementChildrenValueKey = @"AXChildren";
-static NSString *kATElementFrameValueKey = @"AXFrame";
-static NSString *kATElementVisibleChildrenKey = @"AXVisibleChildren";
+NSString * const kATElementLabelValueKey = @"AXDescription";
+NSString * const kATElementRoleValueKey = @"AXRole";
+NSString * const kATElementTitleValueKey = @"AXTitle";
+NSString * const kATElementChildrenValueKey = @"AXChildren";
+NSString * const kATElementFrameValueKey = @"AXFrame";
+NSString * const kATElementParentValueKey = @"AXParent";
+NSString * const kATElementVisibleChildrenKey = @"AXVisibleChildren";
+NSString * const kATElementValueValueKey = @"AXValue";
+NSString * const kATElementTypeValueKey = @"AXType";
+NSString * const kATElementClassValueKey = @"AXClassName";
 
 @implementation ATElement
 
@@ -80,7 +84,11 @@ static NSString *kATElementVisibleChildrenKey = @"AXVisibleChildren";
 - (NSArray * _Nullable)_attributeArrayValueSubsetForKey:(NSString *)key index:(NSUInteger)index maxValues:(NSUInteger)maxValues
 {
     CFArrayRef valuesRef = nil;
-    AXError error = AXUIElementCopyAttributeValues(self.element, (__bridge CFStringRef) key, index, maxValues, &valuesRef);
+    AXError error = AXUIElementCopyAttributeValues(self.element,
+                                                   (__bridge CFStringRef) key,
+                                                   index,
+                                                   maxValues,
+                                                   &valuesRef);
     if (error != kAXErrorSuccess)
     {
         return nil;
@@ -105,9 +113,21 @@ static NSString *kATElementVisibleChildrenKey = @"AXVisibleChildren";
 
 - (CGRect)frame
 {
+    AXValueRef frameValue = (__bridge_retained AXValueRef) [self _attributeValueForKey:kATElementFrameValueKey];
     CGRect frame;
-    AXValueGetValue((__bridge_retained AXValueRef) [self _attributeValueForKey:kATElementFrameValueKey], kAXValueCGRectType, &frame);
+    AXValueGetValue(frameValue, kAXValueCGRectType, &frame);
+    CFRelease(frameValue);
     return frame;
+}
+
+- (ATElement * _Nullable)parent
+{
+    AXUIElementRef rawElement = (__bridge_retained AXUIElementRef) [self _attributeValueForKey:kATElementParentValueKey];
+    if (rawElement == nil)
+    {
+        return nil;
+    }
+    return [[ATElement alloc] initWithElement:rawElement];
 }
 
 - (long)childrenCount
@@ -115,15 +135,17 @@ static NSString *kATElementVisibleChildrenKey = @"AXVisibleChildren";
     return [self _attributeValueCountForkey:kATElementChildrenValueKey];
 }
 
-- (NSArray<ATElement *> *)childrenAtIndex:(NSUInteger)index maxValues:(NSUInteger)maxValues
-{
-    NSArray * _Nullable childrenRefs = [self _attributeArrayValueSubsetForKey:kATElementChildrenValueKey index:index maxValues:maxValues];
-    return [ATElement elementArrayWithElementRefs:childrenRefs];
-}
-
 - (NSArray<ATElement *> *)children
 {
     NSArray * _Nullable childrenRefs = [self _attributeValueForKey:kATElementChildrenValueKey];
+    return [ATElement elementArrayWithElementRefs:childrenRefs];
+}
+
+- (NSArray<ATElement *> *)childrenAtIndex:(NSUInteger)index maxValues:(NSUInteger)maxValues
+{
+    NSArray * _Nullable childrenRefs = [self _attributeArrayValueSubsetForKey:kATElementChildrenValueKey
+                                                                        index:index
+                                                                    maxValues:maxValues];
     return [ATElement elementArrayWithElementRefs:childrenRefs];
 }
 
@@ -138,14 +160,33 @@ static NSString *kATElementVisibleChildrenKey = @"AXVisibleChildren";
     return [ATElement elementArrayWithElementRefs:childrenRefs];
 }
 
-- (ATElement * _Nullable)parent
+- (NSArray<ATElement *> *)visibileChildrenAtIndex:(NSUInteger)index maxValues:(NSUInteger)maxValues
 {
-    AXUIElementRef rawElement = (__bridge_retained AXUIElementRef) [self _attributeValueForKey:@"AXParent"];
-    if (rawElement == nil)
+    NSArray * _Nullable childrenRefs = [self _attributeArrayValueSubsetForKey:kATElementVisibleChildrenKey
+                                                                        index:index
+                                                                    maxValues:maxValues];
+    return [ATElement elementArrayWithElementRefs:childrenRefs];
+}
+
+- (NSDictionary *)valuesForAttributes:(NSArray<NSString *> *)attributes
+{
+    CFArrayRef _Nullable values;
+    AXError error = AXUIElementCopyMultipleAttributeValues(self.element,
+                                                           (__bridge CFArrayRef) attributes,
+                                                           0,
+                                                           &values);
+    if (error != kAXErrorSuccess || values == nil)
     {
-        return nil;
+        return @{};
     }
-    return [[ATElement alloc] initWithElement:rawElement];
+    NSArray *attributeValues = (__bridge_transfer NSArray *)values;
+    NSMutableDictionary *attributeDictionary = [[NSMutableDictionary alloc] initWithCapacity:attributes.count];
+    for (NSUInteger i = 0; i < attributes.count; i++)
+    {
+        [attributeDictionary setObject:[attributeValues objectAtIndex:i]
+                                forKey:[attributes objectAtIndex:i]];
+    }
+    return attributeDictionary;
 }
 
 @end

@@ -19,10 +19,18 @@
 		0D00459C2703C15F00C2BB3A /* ATUnimplementedError.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D00459B2703C15F00C2BB3A /* ATUnimplementedError.m */; };
 		0D00459F2703C90600C2BB3A /* ATApplicationRecorderUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D00459E2703C90600C2BB3A /* ATApplicationRecorderUtilities.m */; };
 		0D0045A32703CA8400C2BB3A /* ATApplicationPopUpButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D0045A22703CA8400C2BB3A /* ATApplicationPopUpButton.m */; };
+		0D0224C7270F802B0029A7DA /* ATCachedElementTreeNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D0224C6270F802B0029A7DA /* ATCachedElementTreeNode.m */; };
+		0D0224CE270F89840029A7DA /* ATApplicationScraper.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D0224CD270F89840029A7DA /* ATApplicationScraper.m */; };
+		0D0224D2270F9EC30029A7DA /* ATRecordingMarker.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D0224D1270F9EC30029A7DA /* ATRecordingMarker.m */; };
+		0D0224D7270F9EFB0029A7DA /* ATScreenRecordingMarker.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D0224D6270F9EFB0029A7DA /* ATScreenRecordingMarker.m */; };
+		0D0224DA270F9F0F0029A7DA /* ATVoiceOverRecordingMarker.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D0224D9270F9F0F0029A7DA /* ATVoiceOverRecordingMarker.m */; };
+		0D0224DD270F9F180029A7DA /* ATKeyboardRecordingMarker.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D0224DC270F9F180029A7DA /* ATKeyboardRecordingMarker.m */; };
+		0D0224E0270FD5120029A7DA /* ATPriorityOperationQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D0224DF270FD5120029A7DA /* ATPriorityOperationQueue.m */; };
+		0D0224E3270FD6600029A7DA /* ATPriorityOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D0224E2270FD6600029A7DA /* ATPriorityOperation.m */; };
+		0D0224E727108DA80029A7DA /* ATCachedElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D0224E627108DA80029A7DA /* ATCachedElement.m */; };
 		0D197400270DE21F00CF6813 /* ATRecorderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D1973FF270DE21F00CF6813 /* ATRecorderViewController.m */; };
 		0D197408270DE24800CF6813 /* ATPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D197407270DE24800CF6813 /* ATPlayerViewController.m */; };
-		0D4BD92B270B7E2F0066BC44 /* ATElementTree.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D4BD92A270B7E2F0066BC44 /* ATElementTree.m */; };
-		0D4BD92E270B7E560066BC44 /* ATElementTreeDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D4BD92D270B7E560066BC44 /* ATElementTreeDelegate.m */; };
+		0D4BD92B270B7E2F0066BC44 /* ATCachedElementTree.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D4BD92A270B7E2F0066BC44 /* ATCachedElementTree.m */; };
 		0D4BD931270B7E7C0066BC44 /* ATElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D4BD930270B7E7C0066BC44 /* ATElement.m */; };
 		0D4BD934270B9DF40066BC44 /* ATApplicationElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D4BD933270B9DF40066BC44 /* ATApplicationElement.m */; };
 		0D4BD938270B9E4B0066BC44 /* ATWindowElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D4BD937270B9E4B0066BC44 /* ATWindowElement.m */; };
@@ -73,14 +81,34 @@
 		0D00459E2703C90600C2BB3A /* ATApplicationRecorderUtilities.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ATApplicationRecorderUtilities.m; sourceTree = "<group>"; };
 		0D0045A12703CA8400C2BB3A /* ATApplicationPopUpButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATApplicationPopUpButton.h; sourceTree = "<group>"; };
 		0D0045A22703CA8400C2BB3A /* ATApplicationPopUpButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ATApplicationPopUpButton.m; sourceTree = "<group>"; };
+		0D0224C5270F802B0029A7DA /* ATCachedElementTreeNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATCachedElementTreeNode.h; sourceTree = "<group>"; };
+		0D0224C6270F802B0029A7DA /* ATCachedElementTreeNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ATCachedElementTreeNode.m; sourceTree = "<group>"; };
+		0D0224CC270F89840029A7DA /* ATApplicationScraper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATApplicationScraper.h; sourceTree = "<group>"; };
+		0D0224CD270F89840029A7DA /* ATApplicationScraper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ATApplicationScraper.m; sourceTree = "<group>"; };
+		0D0224CF270F8BA90029A7DA /* ATApplicationScraperDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATApplicationScraperDelegate.h; sourceTree = "<group>"; };
+		0D0224D0270F9EC30029A7DA /* ATRecordingMarker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATRecordingMarker.h; sourceTree = "<group>"; };
+		0D0224D1270F9EC30029A7DA /* ATRecordingMarker.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ATRecordingMarker.m; sourceTree = "<group>"; };
+		0D0224D3270F9ECD0029A7DA /* ATRecordingMarkerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATRecordingMarkerDelegate.h; sourceTree = "<group>"; };
+		0D0224D5270F9EFB0029A7DA /* ATScreenRecordingMarker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATScreenRecordingMarker.h; sourceTree = "<group>"; };
+		0D0224D6270F9EFB0029A7DA /* ATScreenRecordingMarker.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ATScreenRecordingMarker.m; sourceTree = "<group>"; };
+		0D0224D8270F9F0F0029A7DA /* ATVoiceOverRecordingMarker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATVoiceOverRecordingMarker.h; sourceTree = "<group>"; };
+		0D0224D9270F9F0F0029A7DA /* ATVoiceOverRecordingMarker.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ATVoiceOverRecordingMarker.m; sourceTree = "<group>"; };
+		0D0224DB270F9F180029A7DA /* ATKeyboardRecordingMarker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATKeyboardRecordingMarker.h; sourceTree = "<group>"; };
+		0D0224DC270F9F180029A7DA /* ATKeyboardRecordingMarker.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ATKeyboardRecordingMarker.m; sourceTree = "<group>"; };
+		0D0224DE270FD5120029A7DA /* ATPriorityOperationQueue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATPriorityOperationQueue.h; sourceTree = "<group>"; };
+		0D0224DF270FD5120029A7DA /* ATPriorityOperationQueue.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ATPriorityOperationQueue.m; sourceTree = "<group>"; };
+		0D0224E1270FD6600029A7DA /* ATPriorityOperation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATPriorityOperation.h; sourceTree = "<group>"; };
+		0D0224E2270FD6600029A7DA /* ATPriorityOperation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ATPriorityOperation.m; sourceTree = "<group>"; };
+		0D0224E4270FDEC30029A7DA /* ATPriorityOperationDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATPriorityOperationDelegate.h; sourceTree = "<group>"; };
+		0D0224E527108DA80029A7DA /* ATCachedElement.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATCachedElement.h; sourceTree = "<group>"; };
+		0D0224E627108DA80029A7DA /* ATCachedElement.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ATCachedElement.m; sourceTree = "<group>"; };
 		0D1973FE270DE21F00CF6813 /* ATRecorderViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ATRecorderViewController.h; path = Source/ATRecorderViewController.h; sourceTree = SOURCE_ROOT; };
 		0D1973FF270DE21F00CF6813 /* ATRecorderViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ATRecorderViewController.m; path = Source/ATRecorderViewController.m; sourceTree = SOURCE_ROOT; };
 		0D197406270DE24800CF6813 /* ATPlayerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATPlayerViewController.h; sourceTree = "<group>"; };
 		0D197407270DE24800CF6813 /* ATPlayerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ATPlayerViewController.m; sourceTree = "<group>"; };
-		0D4BD929270B7E2F0066BC44 /* ATElementTree.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATElementTree.h; sourceTree = "<group>"; };
-		0D4BD92A270B7E2F0066BC44 /* ATElementTree.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ATElementTree.m; sourceTree = "<group>"; };
-		0D4BD92C270B7E560066BC44 /* ATElementTreeDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATElementTreeDelegate.h; sourceTree = "<group>"; };
-		0D4BD92D270B7E560066BC44 /* ATElementTreeDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ATElementTreeDelegate.m; sourceTree = "<group>"; };
+		0D4BD929270B7E2F0066BC44 /* ATCachedElementTree.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATCachedElementTree.h; sourceTree = "<group>"; };
+		0D4BD92A270B7E2F0066BC44 /* ATCachedElementTree.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ATCachedElementTree.m; sourceTree = "<group>"; };
+		0D4BD92C270B7E560066BC44 /* ATCachedElementTreeDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATCachedElementTreeDelegate.h; sourceTree = "<group>"; };
 		0D4BD92F270B7E7C0066BC44 /* ATElement.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATElement.h; sourceTree = "<group>"; };
 		0D4BD930270B7E7C0066BC44 /* ATElement.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ATElement.m; sourceTree = "<group>"; };
 		0D4BD932270B9DF40066BC44 /* ATApplicationElement.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATApplicationElement.h; sourceTree = "<group>"; };
@@ -145,6 +173,8 @@
 		0D0045882703BDB900C2BB3A /* Recorder */ = {
 			isa = PBXGroup;
 			children = (
+				0D0045962703C03400C2BB3A /* Recording */,
+				0D0224D4270F9EE40029A7DA /* Markers */,
 				0D0045852703BDB600C2BB3A /* ATApplicationRecorder.h */,
 				0D0045892703BE9200C2BB3A /* ATApplicationRecorderBase.h */,
 				0D00458A2703BE9200C2BB3A /* ATApplicationRecorderBase.m */,
@@ -161,7 +191,6 @@
 			children = (
 				0D0045A02703CA6400C2BB3A /* Views */,
 				0D4BD928270B7E070066BC44 /* Accessibility */,
-				0D0045962703C03400C2BB3A /* Recording */,
 				0D0045882703BDB900C2BB3A /* Recorder */,
 				0D0045952703BFAE00C2BB3A /* Utilities */,
 				0D0045732703B13F00C2BB3A /* ATAppDelegate.h */,
@@ -205,6 +234,11 @@
 				0D00459E2703C90600C2BB3A /* ATApplicationRecorderUtilities.m */,
 				0D4BD939270B9F1B0066BC44 /* ATApplicationUtilities.h */,
 				0D4BD93A270B9F1B0066BC44 /* ATApplicationUtilities.m */,
+				0D0224DE270FD5120029A7DA /* ATPriorityOperationQueue.h */,
+				0D0224DF270FD5120029A7DA /* ATPriorityOperationQueue.m */,
+				0D0224E1270FD6600029A7DA /* ATPriorityOperation.h */,
+				0D0224E2270FD6600029A7DA /* ATPriorityOperation.m */,
+				0D0224E4270FDEC30029A7DA /* ATPriorityOperationDelegate.h */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -227,14 +261,52 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		0D0224CB270F890A0029A7DA /* Scraper */ = {
+			isa = PBXGroup;
+			children = (
+				0D0224CC270F89840029A7DA /* ATApplicationScraper.h */,
+				0D0224CD270F89840029A7DA /* ATApplicationScraper.m */,
+				0D0224CF270F8BA90029A7DA /* ATApplicationScraperDelegate.h */,
+			);
+			path = Scraper;
+			sourceTree = "<group>";
+		};
+		0D0224D4270F9EE40029A7DA /* Markers */ = {
+			isa = PBXGroup;
+			children = (
+				0D0224D0270F9EC30029A7DA /* ATRecordingMarker.h */,
+				0D0224D1270F9EC30029A7DA /* ATRecordingMarker.m */,
+				0D0224D3270F9ECD0029A7DA /* ATRecordingMarkerDelegate.h */,
+				0D0224D5270F9EFB0029A7DA /* ATScreenRecordingMarker.h */,
+				0D0224D6270F9EFB0029A7DA /* ATScreenRecordingMarker.m */,
+				0D0224D8270F9F0F0029A7DA /* ATVoiceOverRecordingMarker.h */,
+				0D0224D9270F9F0F0029A7DA /* ATVoiceOverRecordingMarker.m */,
+				0D0224DB270F9F180029A7DA /* ATKeyboardRecordingMarker.h */,
+				0D0224DC270F9F180029A7DA /* ATKeyboardRecordingMarker.m */,
+			);
+			path = Markers;
+			sourceTree = "<group>";
+		};
+		0D0224E82710A8500029A7DA /* Cache */ = {
+			isa = PBXGroup;
+			children = (
+				0D4BD929270B7E2F0066BC44 /* ATCachedElementTree.h */,
+				0D4BD92A270B7E2F0066BC44 /* ATCachedElementTree.m */,
+				0D0224C5270F802B0029A7DA /* ATCachedElementTreeNode.h */,
+				0D0224C6270F802B0029A7DA /* ATCachedElementTreeNode.m */,
+				0D4BD92C270B7E560066BC44 /* ATCachedElementTreeDelegate.h */,
+				0D0224E527108DA80029A7DA /* ATCachedElement.h */,
+				0D0224E627108DA80029A7DA /* ATCachedElement.m */,
+			);
+			path = Cache;
+			sourceTree = "<group>";
+		};
 		0D4BD928270B7E070066BC44 /* Accessibility */ = {
 			isa = PBXGroup;
 			children = (
+				0D0224E82710A8500029A7DA /* Cache */,
+				0D0224CB270F890A0029A7DA /* Scraper */,
 				0D4BD935270B9DF90066BC44 /* Elements */,
-				0D4BD929270B7E2F0066BC44 /* ATElementTree.h */,
-				0D4BD92A270B7E2F0066BC44 /* ATElementTree.m */,
-				0D4BD92C270B7E560066BC44 /* ATElementTreeDelegate.h */,
-				0D4BD92D270B7E560066BC44 /* ATElementTreeDelegate.m */,
 			);
 			path = Accessibility;
 			sourceTree = "<group>";
@@ -382,22 +454,30 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0D0224DD270F9F180029A7DA /* ATKeyboardRecordingMarker.m in Sources */,
 				0D0045782703B13F00C2BB3A /* ATViewController.m in Sources */,
-				0D4BD92B270B7E2F0066BC44 /* ATElementTree.m in Sources */,
+				0D0224E0270FD5120029A7DA /* ATPriorityOperationQueue.m in Sources */,
+				0D0224CE270F89840029A7DA /* ATApplicationScraper.m in Sources */,
+				0D4BD92B270B7E2F0066BC44 /* ATCachedElementTree.m in Sources */,
 				0D197400270DE21F00CF6813 /* ATRecorderViewController.m in Sources */,
 				0D00457F2703B14100C2BB3A /* main.m in Sources */,
 				0D197408270DE24800CF6813 /* ATPlayerViewController.m in Sources */,
 				0D0045992703C04000C2BB3A /* ATRecording.m in Sources */,
 				0D4BD934270B9DF40066BC44 /* ATApplicationElement.m in Sources */,
+				0D0224C7270F802B0029A7DA /* ATCachedElementTreeNode.m in Sources */,
+				0D0224E727108DA80029A7DA /* ATCachedElement.m in Sources */,
 				0D0045752703B13F00C2BB3A /* ATAppDelegate.m in Sources */,
+				0D0224D2270F9EC30029A7DA /* ATRecordingMarker.m in Sources */,
 				0D4BD931270B7E7C0066BC44 /* ATElement.m in Sources */,
 				0D00459F2703C90600C2BB3A /* ATApplicationRecorderUtilities.m in Sources */,
 				0D4BD93B270B9F1B0066BC44 /* ATApplicationUtilities.m in Sources */,
+				0D0224E3270FD6600029A7DA /* ATPriorityOperation.m in Sources */,
 				0D4BD938270B9E4B0066BC44 /* ATWindowElement.m in Sources */,
 				0D00458B2703BE9200C2BB3A /* ATApplicationRecorderBase.m in Sources */,
 				0D0045A32703CA8400C2BB3A /* ATApplicationPopUpButton.m in Sources */,
-				0D4BD92E270B7E560066BC44 /* ATElementTreeDelegate.m in Sources */,
+				0D0224DA270F9F0F0029A7DA /* ATVoiceOverRecordingMarker.m in Sources */,
 				0D0045912703BEA900C2BB3A /* ATGarageBandRecorder.m in Sources */,
+				0D0224D7270F9EFB0029A7DA /* ATScreenRecordingMarker.m in Sources */,
 				0D00458E2703BE9F00C2BB3A /* ATLogicRecorder.m in Sources */,
 				0D00459C2703C15F00C2BB3A /* ATUnimplementedError.m in Sources */,
 			);
