@@ -170,6 +170,36 @@ const ATOperationPriority kATApplicationScraperUpdatePriority = kATOperationPrio
     
 }
 
+- (void)blockLabel:(NSString *)label
+{
+    [self.blockedLabels addObject:label];
+}
+
+- (void)blockClass:(NSString *)className
+{
+    [self.blockedClasses addObject:className];
+}
+
+- (void)unblockLabel:(NSString *)label
+{
+    [self.blockedLabels removeObject:label];
+}
+
+- (void)unblockClass:(NSString *)className
+{
+    [self.blockedClasses removeObject:className];
+}
+
++ (void)_setupUpdateWithQueue:(ATPriorityOperationQueue *)queue
+                   onObject:(__unsafe_unretained ATApplicationScraper *)weakSelf
+{
+    if (!weakSelf.hasScraped)
+    {
+        return;
+    }
+    [queue cancelOperationsLessThanAndEqualToPriority:kATApplicationScraperUpdatePriority];
+}
+
 + (void)_scrapeElementChildren:(ATElement *)element
                        forTree:(ATCachedElementTree *)tree
                       onObject:(__unsafe_unretained ATApplicationScraper *)weakSelf
@@ -214,36 +244,6 @@ const ATOperationPriority kATApplicationScraperUpdatePriority = kATOperationPrio
         [ATApplicationScraper _scrapeElementChildren:child forTree:tree onObject:weakSelf];
         tree.cursor = currentCursor;
     }
-}
-
-- (void)blockLabel:(NSString *)label
-{
-    [self.blockedLabels addObject:label];
-}
-
-- (void)blockClass:(NSString *)className
-{
-    [self.blockedClasses addObject:className];
-}
-
-- (void)unblockLabel:(NSString *)label
-{
-    [self.blockedLabels removeObject:label];
-}
-
-- (void)unblockClass:(NSString *)className
-{
-    [self.blockedClasses removeObject:className];
-}
-
-+ (void)_setupUpdateWithQueue:(ATPriorityOperationQueue *)queue
-                   onObject:(__unsafe_unretained ATApplicationScraper *)weakSelf
-{
-    if (!weakSelf.hasScraped)
-    {
-        return;
-    }
-    [queue cancelOperationsLessThanAndEqualToPriority:kATApplicationScraperUpdatePriority];
 }
 
 + (void)_updateWindowAtIndex:(NSUInteger)windowIndex onObject:(__unsafe_unretained ATApplicationScraper *)weakSelf
