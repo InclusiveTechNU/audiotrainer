@@ -83,52 +83,6 @@ const ATOperationPriority kATApplicationScraperUpdatePriority = kATOperationPrio
     }];
 }
 
-+ (void)_scrapeElementChildren:(ATElement *)element
-                       forTree:(ATCachedElementTree *)tree
-                      onObject:(__unsafe_unretained ATApplicationScraper *)weakSelf
-{
-    if (tree.cursor == nil)
-    {
-        return;
-    }
-
-    NSArray<ATElement *> *children;
-    NSUInteger visibileChildrenCount = element.visibileChildrenCount;
-    if (weakSelf->_preferVisibleChildren && visibileChildrenCount > 0)
-    {
-        if (weakSelf.limitChildrenScraped && visibileChildrenCount > weakSelf.maxScrapedChildElements)
-        {
-            children = [element visibileChildrenAtIndex:0 maxValues:weakSelf.maxScrapedChildElements];
-        }
-        else
-        {
-            children = element.visibileChildren;
-        }
-    }
-    else
-    {
-        if (weakSelf.limitChildrenScraped && element.childrenCount > weakSelf.maxScrapedChildElements)
-        {
-            children = [element childrenAtIndex:0 maxValues:weakSelf.maxScrapedChildElements];
-        }
-        else
-        {
-            children = element.children;
-        }
-    }
-    
-    for (ATElement *child in children)
-    {
-        __weak ATCachedElementTreeNode *currentCursor = tree.cursor;
-        ATCachedElement *cachedElement = [ATCachedElement cacheElement:child];
-        ATCachedElementTreeNode *childNode = [[ATCachedElementTreeNode alloc] initWithElement:cachedElement];
-        [tree.cursor addChild:childNode];
-        [tree moveCursorToChildWithIndex:tree.cursor.children.count - 1];
-        [ATApplicationScraper _scrapeElementChildren:child forTree:tree onObject:weakSelf];
-        tree.cursor = currentCursor;
-    }
-}
-
 - (void)generateTimelineWithHandler
 {
     
@@ -154,7 +108,7 @@ const ATOperationPriority kATApplicationScraperUpdatePriority = kATOperationPrio
         {
             return;
         }
-        [ATApplicationScraper _setupUpdateOnQueue:weakSelf->_applicationQueue onObject:weakSelf];
+        [ATApplicationScraper _setupUpdateWithQueue:weakSelf->_applicationQueue onObject:weakSelf];
         [weakSelf->_applicationQueue addOperationWithPriority:kATApplicationScraperUpdatePriority withBlock:^{
             NSString *applicationName = weakSelf.application.title;
             if (applicationName == nil)
@@ -211,6 +165,87 @@ const ATOperationPriority kATApplicationScraperUpdatePriority = kATOperationPrio
     });
 }
 
+- (void)updateElement:(ATCachedElementTreeNode *)node
+{
+    
+}
+
++ (void)_scrapeElementChildren:(ATElement *)element
+                       forTree:(ATCachedElementTree *)tree
+                      onObject:(__unsafe_unretained ATApplicationScraper *)weakSelf
+{
+    if (tree.cursor == nil)
+    {
+        return;
+    }
+
+    NSArray<ATElement *> *children;
+    NSUInteger visibileChildrenCount = element.visibileChildrenCount;
+    if (weakSelf->_preferVisibleChildren && visibileChildrenCount > 0)
+    {
+        if (weakSelf.limitChildrenScraped && visibileChildrenCount > weakSelf.maxScrapedChildElements)
+        {
+            children = [element visibileChildrenAtIndex:0 maxValues:weakSelf.maxScrapedChildElements];
+        }
+        else
+        {
+            children = element.visibileChildren;
+        }
+    }
+    else
+    {
+        if (weakSelf.limitChildrenScraped && element.childrenCount > weakSelf.maxScrapedChildElements)
+        {
+            children = [element childrenAtIndex:0 maxValues:weakSelf.maxScrapedChildElements];
+        }
+        else
+        {
+            children = element.children;
+        }
+    }
+    
+    for (ATElement *child in children)
+    {
+        __weak ATCachedElementTreeNode *currentCursor = tree.cursor;
+        ATCachedElement *cachedElement = [ATCachedElement cacheElement:child];
+        ATCachedElementTreeNode *childNode = [[ATCachedElementTreeNode alloc] initWithElement:cachedElement];
+        [tree.cursor addChild:childNode];
+        [tree moveCursorToChildWithIndex:tree.cursor.children.count - 1];
+        [ATApplicationScraper _scrapeElementChildren:child forTree:tree onObject:weakSelf];
+        tree.cursor = currentCursor;
+    }
+}
+
+- (void)blockLabel:(NSString *)label
+{
+    [self.blockedLabels addObject:label];
+}
+
+- (void)blockClass:(NSString *)className
+{
+    [self.blockedClasses addObject:className];
+}
+
+- (void)unblockLabel:(NSString *)label
+{
+    [self.blockedLabels removeObject:label];
+}
+
+- (void)unblockClass:(NSString *)className
+{
+    [self.blockedClasses removeObject:className];
+}
+
++ (void)_setupUpdateWithQueue:(ATPriorityOperationQueue *)queue
+                   onObject:(__unsafe_unretained ATApplicationScraper *)weakSelf
+{
+    if (!weakSelf.hasScraped)
+    {
+        return;
+    }
+    [queue cancelOperationsLessThanAndEqualToPriority:kATApplicationScraperUpdatePriority];
+}
+
 + (void)_updateWindowAtIndex:(NSUInteger)windowIndex onObject:(__unsafe_unretained ATApplicationScraper *)weakSelf
 {
     if (windowIndex < 0)
@@ -218,7 +253,7 @@ const ATOperationPriority kATApplicationScraperUpdatePriority = kATOperationPrio
         return;
     }
     ATPriorityOperationQueue *queue = [weakSelf->_windowQueues objectAtIndex:windowIndex];
-    [ATApplicationScraper _setupUpdateOnQueue:queue onObject:weakSelf];
+    [ATApplicationScraper _setupUpdateWithQueue:queue onObject:weakSelf];
     [queue addOperationWithPriority:kATApplicationScraperUpdatePriority withBlock:^{
         if (weakSelf.application.windows.count < windowIndex)
         {
@@ -234,11 +269,6 @@ const ATOperationPriority kATApplicationScraperUpdatePriority = kATOperationPrio
             [ATApplicationScraper _updateTree:windowTree withElement:windowElement onObject:weakSelf];
         }
     }];
-}
-
-- (void)updateElement:(ATCachedElementTreeNode *)node
-{
-    
 }
 
 + (void)_updateTree:(ATCachedElementTree *)tree
@@ -288,36 +318,6 @@ const ATOperationPriority kATApplicationScraperUpdatePriority = kATOperationPrio
         [ATApplicationScraper _updateTree:tree withElement:[elementChildren objectAtIndex:i] onObject:weakSelf];
         tree.cursor = cursorNode;
     }
-}
-
-+ (void)_setupUpdateOnQueue:(ATPriorityOperationQueue *)queue
-                   onObject:(__unsafe_unretained ATApplicationScraper *)weakSelf
-{
-    if (!weakSelf.hasScraped)
-    {
-        return;
-    }
-    [queue cancelOperationsLessThanAndEqualToPriority:kATApplicationScraperUpdatePriority];
-}
-
-- (void)blockLabel:(NSString *)label
-{
-    [self.blockedLabels addObject:label];
-}
-
-- (void)blockClass:(NSString *)className
-{
-    [self.blockedClasses addObject:className];
-}
-
-- (void)unblockLabel:(NSString *)label
-{
-    [self.blockedLabels removeObject:label];
-}
-
-- (void)unblockClass:(NSString *)className
-{
-    [self.blockedClasses removeObject:className];
 }
 
 @end
