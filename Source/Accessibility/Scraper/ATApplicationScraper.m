@@ -12,8 +12,6 @@
 #import "ATCachedElement.h"
 #import "NSError+ApplicationScraper.h"
 
-static NSString *const kATApplicationScraperDomainError = @"edu.uci.ics.accessibility.AudioTrainer.ATApplicationScraper";
-
 const NSUInteger kATApplicationScraperMaxChildElements = 500;
 const ATOperationPriority kATApplicationScraperInitialScrapePriority = kATOperationPriorityHigh;
 const ATOperationPriority kATApplicationScraperUpdatePriority = kATOperationPriorityMedium;
@@ -169,6 +167,7 @@ const ATOperationPriority kATApplicationScraperUpdatePriority = kATOperationPrio
                     }
                 }
             }
+
             if (allTrue && handler != nil)
             {
                 NSError *error = [NSError errorFromCombinedErrors:errors];
@@ -254,9 +253,17 @@ const ATOperationPriority kATApplicationScraperUpdatePriority = kATOperationPrio
             }
             return;
         }
+        
         for (NSUInteger i = 0; i < weakSelf.windows.count; i++)
         {
-            [ATApplicationScraper _updateWindowAtIndex:i onObject:weakSelf];
+            __block BOOL completed = NO;
+            [ATApplicationScraper _updateWindowAtIndex:i
+                                              onObject:weakSelf
+                                           withHandler:^(NSError * _Nullable error,
+                                                         ATApplicationTimeline * _Nullable __weak timeline) {
+                completed = YES;
+            }];
+            while (!completed) {}
         }
         if (handler != nil)
         {
@@ -293,11 +300,14 @@ const ATOperationPriority kATApplicationScraperUpdatePriority = kATOperationPrio
         {
             return;
         }
-        [ATApplicationScraper _updateWindowAtIndex:windowIndex onObject:weakSelf];
-        if (handler != nil)
-        {
-            handler(nil, weakSelf.timeline);
-        }
+        [ATApplicationScraper _updateWindowAtIndex:windowIndex
+                                          onObject:weakSelf
+                                       withHandler:^(NSError * _Nullable error,ATApplicationTimeline * _Nullable __weak timeline) {
+            if (handler != nil)
+            {
+                handler(error, timeline);
+            }
+        }];
     });
 }
 
@@ -327,6 +337,56 @@ const ATOperationPriority kATApplicationScraperUpdatePriority = kATOperationPrio
 - (void)unblockClass:(NSString *)className
 {
     [self.blockedClasses removeObject:className];
+}
+
++ (void)_updateWindowAtIndex:(NSUInteger)windowIndex
+                    onObject:(__weak ATApplicationScraper *)weakSelf
+                 withHandler:(ATApplicationScrapeHandler _Nullable)handler;
+{
+    ATApplicationScraper *strongSelf = weakSelf;
+    if (strongSelf == nil)
+    {
+        if (handler != nil)
+        {
+            // TODO: Set error code & message
+            NSError *responseError = [NSError scrapeErrorWithCode:kATApplicationScraperUnknownErrorCode
+                                                          message:kATApplicationScraperUnknownErrorMessage];
+            handler(responseError, weakSelf.timeline);
+        }
+        return;
+    }
+    if (windowIndex < 0)
+    {
+        if (handler != nil)
+        {
+            // TODO: Set error code & message
+            NSError *responseError = [NSError scrapeErrorWithCode:kATApplicationScraperUnknownErrorCode
+                                                          message:kATApplicationScraperUnknownErrorMessage];
+            handler(responseError, weakSelf.timeline);
+        }
+        return;
+    }
+    ATPriorityOperationQueue *queue = [strongSelf->_windowQueues objectAtIndex:windowIndex];
+    [ATApplicationScraper _setupUpdateWithQueue:queue onObject:weakSelf];
+    [queue addOperationWithPriority:kATApplicationScraperUpdatePriority withBlock:^{
+        if (weakSelf.application.windows.count < windowIndex)
+        {
+            // Window was deleted. Remove priority queue and add removal to the timeline.
+            // TODO: Add removal to the timeline
+            [strongSelf->_windows removeObjectAtIndex:windowIndex];
+            [strongSelf->_windowQueues removeObjectAtIndex:windowIndex];
+        }
+        else
+        {
+            ATElement *windowElement = [weakSelf.application.windows objectAtIndex:windowIndex];
+            ATCachedElementTree *windowTree = [[weakSelf windows] objectAtIndex:windowIndex];
+            [ATApplicationScraper _updateTree:windowTree withElement:windowElement onObject:weakSelf];
+        }
+        if (handler != nil)
+        {
+            handler(nil, weakSelf.timeline);
+        }
+    }];
 }
 
 + (void)_setupUpdateWithQueue:(ATPriorityOperationQueue *)queue
@@ -390,42 +450,17 @@ const ATOperationPriority kATApplicationScraperUpdatePriority = kATOperationPrio
     }
 }
 
-+ (void)_updateWindowAtIndex:(NSUInteger)windowIndex onObject:(__weak ATApplicationScraper *)weakSelf
-{
-    ATApplicationScraper *strongSelf = weakSelf;
-    if (strongSelf == nil)
-    {
-        return;
-    }
-    if (windowIndex < 0)
-    {
-        return;
-    }
-    ATPriorityOperationQueue *queue = [strongSelf->_windowQueues objectAtIndex:windowIndex];
-    [ATApplicationScraper _setupUpdateWithQueue:queue onObject:weakSelf];
-    [queue addOperationWithPriority:kATApplicationScraperUpdatePriority withBlock:^{
-        if (weakSelf.application.windows.count < windowIndex)
-        {
-            // Window was deleted. Remove priority queue and add removal to the timeline.
-            // TODO: Add removal to the timeline
-            [strongSelf->_windows removeObjectAtIndex:windowIndex];
-            [strongSelf->_windowQueues removeObjectAtIndex:windowIndex];
-        }
-        else
-        {
-            ATElement *windowElement = [weakSelf.application.windows objectAtIndex:windowIndex];
-            ATCachedElementTree *windowTree = [[weakSelf windows] objectAtIndex:windowIndex];
-            [ATApplicationScraper _updateTree:windowTree withElement:windowElement onObject:weakSelf];
-        }
-    }];
-}
-
 + (void)_updateTree:(ATCachedElementTree *)tree
         withElement:(ATElement *)element
            onObject:(__weak ATApplicationScraper *)weakSelf
 {
     ATCachedElement *cachedElement = [ATCachedElement cacheElement:element];
     NSUInteger elementChildrenCount = element.childrenCount;
+    if (weakSelf.limitChildrenScraped && elementChildrenCount > weakSelf.maxScrapedChildElements)
+    {
+        elementChildrenCount = weakSelf.maxScrapedChildElements;
+    }
+    
     if (![tree.cursor.element isEqual:cachedElement])
     {
         // TODO: Add changes to timeline

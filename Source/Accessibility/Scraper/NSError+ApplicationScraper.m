@@ -7,7 +7,7 @@
 
 #import "NSError+ApplicationScraper.h"
 
-static NSErrorDomain const kATApplicationScraperErrorDomain = @"";
+static NSErrorDomain const kATApplicationScraperErrorDomain = @"edu.uci.ics.accessibility.AudioTrainer.ATApplicationScraper";
 
 NSString * const kATApplicationScraperUnknownErrorMessage = @"";
 
