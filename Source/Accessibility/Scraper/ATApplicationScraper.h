@@ -10,12 +10,13 @@
 #import "ATApplicationElement.h"
 #import "ATApplicationScraperDelegate.h"
 #import "ATPriorityOperationQueue.h"
+#import "ATApplicationTimeline.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 extern const NSUInteger kATApplicationScraperMaxChildElements;
 
-typedef void (^ATApplicationScrapeHandler)(void);
+typedef void (^ATApplicationScrapeHandler)(NSError * _Nullable error, __weak ATApplicationTimeline * _Nullable timeline);
 
 @interface ATApplicationScraper : NSObject {
     ATPriorityOperationQueue *_applicationQueue;
@@ -29,6 +30,7 @@ typedef void (^ATApplicationScrapeHandler)(void);
 @property (nonatomic, strong, readonly) ATApplicationElement *application;
 @property (nonatomic, strong, readonly, nullable) ATCachedElementTree *menuBar;
 @property (nonatomic, strong, readonly) NSArray<ATCachedElementTree *> *windows;
+@property (nonatomic, strong, readonly, nullable) ATApplicationTimeline *timeline;
 @property (nonatomic, strong) NSMutableSet<NSString *> *blockedLabels;
 @property (nonatomic, strong) NSMutableSet<NSString *> *blockedClasses;
 @property (nonatomic, weak) id<ATApplicationScraperDelegate> delegate;
@@ -40,14 +42,14 @@ typedef void (^ATApplicationScrapeHandler)(void);
 
 - (instancetype)init NS_UNAVAILABLE;
 
-- (void)scrapeWithHandler:(ATApplicationScrapeHandler)handler;
+- (void)scrapeWithHandler:(ATApplicationScrapeHandler _Nullable)handler;
 - (void)generateTimelineWithHandler;
 
-- (void)update;
-- (void)updateMenuBar;
-- (void)updateApplication;
-- (void)updateWindow:(ATCachedElementTree *)window;
-- (void)updateElement:(ATCachedElementTreeNode *)node;
+- (void)updateWithHandler:(ATApplicationScrapeHandler _Nullable)handler;
+- (void)updateMenuBarWithHandler:(ATApplicationScrapeHandler _Nullable)handler;
+- (void)updateApplicationWithHandler:(ATApplicationScrapeHandler _Nullable)handler;
+- (void)updateWindow:(ATCachedElementTree *)window withHandler:(ATApplicationScrapeHandler _Nullable)handler;
+- (void)updateElement:(ATCachedElementTreeNode *)node withHandler:(ATApplicationScrapeHandler _Nullable)handler;
 
 - (void)blockLabel:(NSString *)label;
 - (void)blockClass:(NSString *)className;

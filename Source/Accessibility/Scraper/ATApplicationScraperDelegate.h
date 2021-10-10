@@ -6,6 +6,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ATApplicationTimeline.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -16,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 @optional
 
 // TODO: This should have the output item from the handler
-- (void)applicationScraper:(ATApplicationScraper *)scraper didCompleteInitialScrape:(NSString *)scrape;
+- (void)applicationScraper:(ATApplicationScraper *)scraper didCompleteInitialScrape:(ATApplicationTimeline *)timeline;
 
 @end
 

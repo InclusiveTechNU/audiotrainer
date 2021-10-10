@@ -28,6 +28,9 @@
 		0D0224E0270FD5120029A7DA /* ATPriorityOperationQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D0224DF270FD5120029A7DA /* ATPriorityOperationQueue.m */; };
 		0D0224E3270FD6600029A7DA /* ATPriorityOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D0224E2270FD6600029A7DA /* ATPriorityOperation.m */; };
 		0D0224E727108DA80029A7DA /* ATCachedElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D0224E627108DA80029A7DA /* ATCachedElement.m */; };
+		0D0224EE27121DA50029A7DA /* ATApplicationTimeline.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D0224ED27121DA50029A7DA /* ATApplicationTimeline.m */; };
+		0D0224F127121DB30029A7DA /* ATApplicationEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D0224F027121DB30029A7DA /* ATApplicationEvent.m */; };
+		0D0224F7271308C70029A7DA /* NSError+ApplicationScraper.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D0224F6271308C70029A7DA /* NSError+ApplicationScraper.m */; };
 		0D197400270DE21F00CF6813 /* ATRecorderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D1973FF270DE21F00CF6813 /* ATRecorderViewController.m */; };
 		0D197408270DE24800CF6813 /* ATPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D197407270DE24800CF6813 /* ATPlayerViewController.m */; };
 		0D4BD92B270B7E2F0066BC44 /* ATCachedElementTree.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D4BD92A270B7E2F0066BC44 /* ATCachedElementTree.m */; };
@@ -102,6 +105,12 @@
 		0D0224E4270FDEC30029A7DA /* ATPriorityOperationDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATPriorityOperationDelegate.h; sourceTree = "<group>"; };
 		0D0224E527108DA80029A7DA /* ATCachedElement.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATCachedElement.h; sourceTree = "<group>"; };
 		0D0224E627108DA80029A7DA /* ATCachedElement.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ATCachedElement.m; sourceTree = "<group>"; };
+		0D0224EC27121DA50029A7DA /* ATApplicationTimeline.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATApplicationTimeline.h; sourceTree = "<group>"; };
+		0D0224ED27121DA50029A7DA /* ATApplicationTimeline.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ATApplicationTimeline.m; sourceTree = "<group>"; };
+		0D0224EF27121DB30029A7DA /* ATApplicationEvent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATApplicationEvent.h; sourceTree = "<group>"; };
+		0D0224F027121DB30029A7DA /* ATApplicationEvent.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ATApplicationEvent.m; sourceTree = "<group>"; };
+		0D0224F5271308C70029A7DA /* NSError+ApplicationScraper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSError+ApplicationScraper.h"; sourceTree = "<group>"; };
+		0D0224F6271308C70029A7DA /* NSError+ApplicationScraper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSError+ApplicationScraper.m"; sourceTree = "<group>"; };
 		0D1973FE270DE21F00CF6813 /* ATRecorderViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ATRecorderViewController.h; path = Source/ATRecorderViewController.h; sourceTree = SOURCE_ROOT; };
 		0D1973FF270DE21F00CF6813 /* ATRecorderViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ATRecorderViewController.m; path = Source/ATRecorderViewController.m; sourceTree = SOURCE_ROOT; };
 		0D197406270DE24800CF6813 /* ATPlayerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATPlayerViewController.h; sourceTree = "<group>"; };
@@ -267,6 +276,12 @@
 				0D0224CC270F89840029A7DA /* ATApplicationScraper.h */,
 				0D0224CD270F89840029A7DA /* ATApplicationScraper.m */,
 				0D0224CF270F8BA90029A7DA /* ATApplicationScraperDelegate.h */,
+				0D0224EC27121DA50029A7DA /* ATApplicationTimeline.h */,
+				0D0224ED27121DA50029A7DA /* ATApplicationTimeline.m */,
+				0D0224EF27121DB30029A7DA /* ATApplicationEvent.h */,
+				0D0224F027121DB30029A7DA /* ATApplicationEvent.m */,
+				0D0224F5271308C70029A7DA /* NSError+ApplicationScraper.h */,
+				0D0224F6271308C70029A7DA /* NSError+ApplicationScraper.m */,
 			);
 			path = Scraper;
 			sourceTree = "<group>";
@@ -462,8 +477,10 @@
 				0D197400270DE21F00CF6813 /* ATRecorderViewController.m in Sources */,
 				0D00457F2703B14100C2BB3A /* main.m in Sources */,
 				0D197408270DE24800CF6813 /* ATPlayerViewController.m in Sources */,
+				0D0224F7271308C70029A7DA /* NSError+ApplicationScraper.m in Sources */,
 				0D0045992703C04000C2BB3A /* ATRecording.m in Sources */,
 				0D4BD934270B9DF40066BC44 /* ATApplicationElement.m in Sources */,
+				0D0224F127121DB30029A7DA /* ATApplicationEvent.m in Sources */,
 				0D0224C7270F802B0029A7DA /* ATCachedElementTreeNode.m in Sources */,
 				0D0224E727108DA80029A7DA /* ATCachedElement.m in Sources */,
 				0D0045752703B13F00C2BB3A /* ATAppDelegate.m in Sources */,
@@ -480,6 +497,7 @@
 				0D0224D7270F9EFB0029A7DA /* ATScreenRecordingMarker.m in Sources */,
 				0D00458E2703BE9F00C2BB3A /* ATLogicRecorder.m in Sources */,
 				0D00459C2703C15F00C2BB3A /* ATUnimplementedError.m in Sources */,
+				0D0224EE27121DA50029A7DA /* ATApplicationTimeline.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

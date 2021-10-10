@@ -39,7 +39,9 @@
     {
         if (_activeRecorder.isRecording)
         {
-            [scraper update];
+            [scraper updateWithHandler:^(NSError * _Nullable error, ATApplicationTimeline * _Nullable __weak timeline) {
+                NSLog(@"%@", error);
+            }];
             [_activeRecorder stopRecording:^(ATRecording * _Nullable recording) {
                 NSLog(@"Finished recording!");
                 self->_activeRecorder = nil;
@@ -49,7 +51,7 @@
     else if (self.applicationPickerButton.selectedRecorder != nil)
     {
         CFAbsoluteTime time = CFAbsoluteTimeGetCurrent();
-        [scraper scrapeWithHandler:^{
+        [scraper scrapeWithHandler:^(NSError * _Nullable error, ATApplicationTimeline * _Nullable __weak timeline) {
             NSLog(@"%f", CFAbsoluteTimeGetCurrent() - time);
         }];
         _activeRecorder = self.applicationPickerButton.selectedRecorder;
