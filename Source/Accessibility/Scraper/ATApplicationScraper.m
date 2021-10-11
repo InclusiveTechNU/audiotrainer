@@ -131,7 +131,8 @@ const ATOperationPriority kATApplicationScraperUpdatePriority = kATOperationPrio
     __block BOOL updatedMenuBar = NO;
     NSMutableArray<NSError *> *errors = [[NSMutableArray alloc] init];
     
-    ATApplicationScrapeHandler _Nullable (^completionHandler)(NSUInteger, ...) = ^ ATApplicationScrapeHandler _Nullable (NSUInteger count, ...) {
+    ATApplicationScrapeHandler _Nullable (^completionHandler)(NSUInteger, ...) = ^ATApplicationScrapeHandler _Nullable (NSUInteger count, ...)
+    {
         NSMutableData *checkerListData = [NSMutableData dataWithLength:sizeof(BOOL *) * count];
         BOOL **checkerList = [checkerListData mutableBytes];
         va_list argumentList;
@@ -143,7 +144,8 @@ const ATOperationPriority kATApplicationScraperUpdatePriority = kATOperationPrio
         }
         va_end(argumentList);
 
-        return ^(NSError * _Nullable error, ATApplicationTimeline * _Nullable __weak timeline) {
+        return ^(NSError * _Nullable error, ATApplicationTimeline * _Nullable __weak timeline)
+        {
             BOOL **checkerList = [checkerListData mutableBytes];
             if (error != nil)
             {

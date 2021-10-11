@@ -7,10 +7,11 @@
 
 #import <Foundation/Foundation.h>
 #import "ATCachedElement.h"
+#import "ATTreeNode.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ATCachedElementTreeNode : NSObject
+@interface ATCachedElementTreeNode : NSObject <ATTreeNode>
 
 @property (nonatomic, strong) ATCachedElement *element;
 @property (nonatomic, strong, readonly) NSMutableArray<ATCachedElementTreeNode *> *children;

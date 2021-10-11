@@ -111,6 +111,7 @@
 		0D0224F027121DB30029A7DA /* ATApplicationEvent.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ATApplicationEvent.m; sourceTree = "<group>"; };
 		0D0224F5271308C70029A7DA /* NSError+ApplicationScraper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSError+ApplicationScraper.h"; sourceTree = "<group>"; };
 		0D0224F6271308C70029A7DA /* NSError+ApplicationScraper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSError+ApplicationScraper.m"; sourceTree = "<group>"; };
+		0D0224F8271331DB0029A7DA /* ATTreeNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATTreeNode.h; sourceTree = "<group>"; };
 		0D1973FE270DE21F00CF6813 /* ATRecorderViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ATRecorderViewController.h; path = Source/ATRecorderViewController.h; sourceTree = SOURCE_ROOT; };
 		0D1973FF270DE21F00CF6813 /* ATRecorderViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ATRecorderViewController.m; path = Source/ATRecorderViewController.m; sourceTree = SOURCE_ROOT; };
 		0D197406270DE24800CF6813 /* ATPlayerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATPlayerViewController.h; sourceTree = "<group>"; };
@@ -248,6 +249,7 @@
 				0D0224E1270FD6600029A7DA /* ATPriorityOperation.h */,
 				0D0224E2270FD6600029A7DA /* ATPriorityOperation.m */,
 				0D0224E4270FDEC30029A7DA /* ATPriorityOperationDelegate.h */,
+				0D0224F8271331DB0029A7DA /* ATTreeNode.h */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
