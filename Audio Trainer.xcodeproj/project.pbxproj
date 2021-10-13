@@ -21,7 +21,6 @@
 		0D0045A32703CA8400C2BB3A /* ATApplicationPopUpButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D0045A22703CA8400C2BB3A /* ATApplicationPopUpButton.m */; };
 		0D0224C7270F802B0029A7DA /* ATCachedElementTreeNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D0224C6270F802B0029A7DA /* ATCachedElementTreeNode.m */; };
 		0D0224CE270F89840029A7DA /* ATApplicationScraper.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D0224CD270F89840029A7DA /* ATApplicationScraper.m */; };
-		0D0224D2270F9EC30029A7DA /* ATRecordingMarker.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D0224D1270F9EC30029A7DA /* ATRecordingMarker.m */; };
 		0D0224D7270F9EFB0029A7DA /* ATScreenRecordingMarker.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D0224D6270F9EFB0029A7DA /* ATScreenRecordingMarker.m */; };
 		0D0224DA270F9F0F0029A7DA /* ATVoiceOverRecordingMarker.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D0224D9270F9F0F0029A7DA /* ATVoiceOverRecordingMarker.m */; };
 		0D0224DD270F9F180029A7DA /* ATKeyboardRecordingMarker.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D0224DC270F9F180029A7DA /* ATKeyboardRecordingMarker.m */; };
@@ -90,7 +89,6 @@
 		0D0224CD270F89840029A7DA /* ATApplicationScraper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ATApplicationScraper.m; sourceTree = "<group>"; };
 		0D0224CF270F8BA90029A7DA /* ATApplicationScraperDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATApplicationScraperDelegate.h; sourceTree = "<group>"; };
 		0D0224D0270F9EC30029A7DA /* ATRecordingMarker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATRecordingMarker.h; sourceTree = "<group>"; };
-		0D0224D1270F9EC30029A7DA /* ATRecordingMarker.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ATRecordingMarker.m; sourceTree = "<group>"; };
 		0D0224D3270F9ECD0029A7DA /* ATRecordingMarkerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATRecordingMarkerDelegate.h; sourceTree = "<group>"; };
 		0D0224D5270F9EFB0029A7DA /* ATScreenRecordingMarker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATScreenRecordingMarker.h; sourceTree = "<group>"; };
 		0D0224D6270F9EFB0029A7DA /* ATScreenRecordingMarker.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ATScreenRecordingMarker.m; sourceTree = "<group>"; };
@@ -292,7 +290,6 @@
 			isa = PBXGroup;
 			children = (
 				0D0224D0270F9EC30029A7DA /* ATRecordingMarker.h */,
-				0D0224D1270F9EC30029A7DA /* ATRecordingMarker.m */,
 				0D0224D3270F9ECD0029A7DA /* ATRecordingMarkerDelegate.h */,
 				0D0224D5270F9EFB0029A7DA /* ATScreenRecordingMarker.h */,
 				0D0224D6270F9EFB0029A7DA /* ATScreenRecordingMarker.m */,
@@ -486,7 +483,6 @@
 				0D0224C7270F802B0029A7DA /* ATCachedElementTreeNode.m in Sources */,
 				0D0224E727108DA80029A7DA /* ATCachedElement.m in Sources */,
 				0D0045752703B13F00C2BB3A /* ATAppDelegate.m in Sources */,
-				0D0224D2270F9EC30029A7DA /* ATRecordingMarker.m in Sources */,
 				0D4BD931270B7E7C0066BC44 /* ATElement.m in Sources */,
 				0D00459F2703C90600C2BB3A /* ATApplicationRecorderUtilities.m in Sources */,
 				0D4BD93B270B9F1B0066BC44 /* ATApplicationUtilities.m in Sources */,

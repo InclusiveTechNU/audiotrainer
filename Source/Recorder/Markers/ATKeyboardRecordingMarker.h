@@ -6,10 +6,15 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ATRecordingMarker.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ATKeyboardRecordingMarker : NSObject
+@interface ATKeyboardRecordingMarker : NSObject <ATRecordingMarker> {
+    
+}
+
+@property (nonatomic, weak, nullable) id<ATRecordingMarkerDelegate> delegate;
 
 @end
 

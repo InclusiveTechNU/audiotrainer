@@ -5,8 +5,12 @@
 //  Created by Tommy McHugh on 10/7/21.
 //
 
-#ifndef ATRecordingMarkerDelegate_h
-#define ATRecordingMarkerDelegate_h
+#import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
 
-#endif /* ATRecordingMarkerDelegate_h */
+@protocol ATRecordingMarkerDelegate <NSObject>
+
+@end
+
+NS_ASSUME_NONNULL_END

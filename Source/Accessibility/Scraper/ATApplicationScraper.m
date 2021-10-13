@@ -446,9 +446,12 @@ const ATOperationPriority kATApplicationScraperUpdatePriority = kATOperationPrio
         ATCachedElement *cachedElement = [ATCachedElement cacheElement:child];
         ATCachedElementTreeNode *childNode = [[ATCachedElementTreeNode alloc] initWithElement:cachedElement];
         [tree.cursor addChild:childNode];
-        [tree moveCursorToChildWithIndex:tree.cursor.children.count - 1];
-        [ATApplicationScraper _scrapeElementChildren:child forTree:tree onObject:weakSelf];
-        tree.cursor = currentCursor;
+        if (![weakSelf.blockedLabels containsObject:cachedElement.label])
+        {
+            [tree moveCursorToChildWithIndex:tree.cursor.children.count - 1];
+            [ATApplicationScraper _scrapeElementChildren:child forTree:tree onObject:weakSelf];
+            tree.cursor = currentCursor;
+        }
     }
 }
 

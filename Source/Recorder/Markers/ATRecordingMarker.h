@@ -6,10 +6,15 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ATRecordingMarkerDelegate.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ATRecordingMarker : NSObject
+@protocol ATRecordingMarker <NSObject>
+
+@property (nonatomic, weak, nullable) id<ATRecordingMarkerDelegate> delegate;
+
+- (void)fire;
 
 @end
 
