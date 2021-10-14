@@ -20,6 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (ATWindowElement * _Nullable)mainWindow;
 - (ATWindowElement * _Nullable)focusedWindow;
 - (BOOL)accessibilityEnabled;
+- (pid_t)processIdentifier;
 
 @end
 

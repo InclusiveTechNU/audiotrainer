@@ -32,6 +32,7 @@
 		0D0224F7271308C70029A7DA /* NSError+ApplicationScraper.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D0224F6271308C70029A7DA /* NSError+ApplicationScraper.m */; };
 		0D197400270DE21F00CF6813 /* ATRecorderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D1973FF270DE21F00CF6813 /* ATRecorderViewController.m */; };
 		0D197408270DE24800CF6813 /* ATPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D197407270DE24800CF6813 /* ATPlayerViewController.m */; };
+		0D24229227178ECD0054E448 /* ATKeyboardBaseRecordingMarker.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D24229127178ECD0054E448 /* ATKeyboardBaseRecordingMarker.m */; };
 		0D4BD92B270B7E2F0066BC44 /* ATCachedElementTree.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D4BD92A270B7E2F0066BC44 /* ATCachedElementTree.m */; };
 		0D4BD931270B7E7C0066BC44 /* ATElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D4BD930270B7E7C0066BC44 /* ATElement.m */; };
 		0D4BD934270B9DF40066BC44 /* ATApplicationElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D4BD933270B9DF40066BC44 /* ATApplicationElement.m */; };
@@ -114,6 +115,8 @@
 		0D1973FF270DE21F00CF6813 /* ATRecorderViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ATRecorderViewController.m; path = Source/ATRecorderViewController.m; sourceTree = SOURCE_ROOT; };
 		0D197406270DE24800CF6813 /* ATPlayerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATPlayerViewController.h; sourceTree = "<group>"; };
 		0D197407270DE24800CF6813 /* ATPlayerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ATPlayerViewController.m; sourceTree = "<group>"; };
+		0D24229027178ECD0054E448 /* ATKeyboardBaseRecordingMarker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATKeyboardBaseRecordingMarker.h; sourceTree = "<group>"; };
+		0D24229127178ECD0054E448 /* ATKeyboardBaseRecordingMarker.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ATKeyboardBaseRecordingMarker.m; sourceTree = "<group>"; };
 		0D4BD929270B7E2F0066BC44 /* ATCachedElementTree.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATCachedElementTree.h; sourceTree = "<group>"; };
 		0D4BD92A270B7E2F0066BC44 /* ATCachedElementTree.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ATCachedElementTree.m; sourceTree = "<group>"; };
 		0D4BD92C270B7E560066BC44 /* ATCachedElementTreeDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATCachedElementTreeDelegate.h; sourceTree = "<group>"; };
@@ -293,6 +296,8 @@
 				0D0224D3270F9ECD0029A7DA /* ATRecordingMarkerDelegate.h */,
 				0D0224D5270F9EFB0029A7DA /* ATScreenRecordingMarker.h */,
 				0D0224D6270F9EFB0029A7DA /* ATScreenRecordingMarker.m */,
+				0D24229027178ECD0054E448 /* ATKeyboardBaseRecordingMarker.h */,
+				0D24229127178ECD0054E448 /* ATKeyboardBaseRecordingMarker.m */,
 				0D0224D8270F9F0F0029A7DA /* ATVoiceOverRecordingMarker.h */,
 				0D0224D9270F9F0F0029A7DA /* ATVoiceOverRecordingMarker.m */,
 				0D0224DB270F9F180029A7DA /* ATKeyboardRecordingMarker.h */,
@@ -490,6 +495,7 @@
 				0D4BD938270B9E4B0066BC44 /* ATWindowElement.m in Sources */,
 				0D00458B2703BE9200C2BB3A /* ATApplicationRecorderBase.m in Sources */,
 				0D0045A32703CA8400C2BB3A /* ATApplicationPopUpButton.m in Sources */,
+				0D24229227178ECD0054E448 /* ATKeyboardBaseRecordingMarker.m in Sources */,
 				0D0224DA270F9F0F0029A7DA /* ATVoiceOverRecordingMarker.m in Sources */,
 				0D0045912703BEA900C2BB3A /* ATGarageBandRecorder.m in Sources */,
 				0D0224D7270F9EFB0029A7DA /* ATScreenRecordingMarker.m in Sources */,
@@ -665,6 +671,8 @@
 				ENABLE_APP_SANDBOX = NO;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = NSAppleEventsUsageDescription;
+				INFOPLIST_KEY_NSAppleEventsUsageDescription = "We use apple events to record GarageBand & Logic Pro tutorials. ";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_NSMainStoryboardFile = Main;
 				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
@@ -690,6 +698,8 @@
 				ENABLE_APP_SANDBOX = NO;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = NSAppleEventsUsageDescription;
+				INFOPLIST_KEY_NSAppleEventsUsageDescription = "We use apple events to record GarageBand & Logic Pro tutorials. ";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_NSMainStoryboardFile = Main;
 				INFOPLIST_KEY_NSPrincipalClass = NSApplication;

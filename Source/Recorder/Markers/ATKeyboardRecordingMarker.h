@@ -7,14 +7,22 @@
 
 #import <Foundation/Foundation.h>
 #import "ATRecordingMarker.h"
+#import "ATApplicationElement.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef enum {
+    kATKeyboardKeyDownEvent,
+    kATKeyboardKeyUpEvent,
+    kATKeyboardAllKeyEvents
+} ATKeyboardEventType;
+
 @interface ATKeyboardRecordingMarker : NSObject <ATRecordingMarker> {
-    
+    CFMachPortRef _eventListenerPort;
 }
 
-@property (nonatomic, weak, nullable) id<ATRecordingMarkerDelegate> delegate;
++ (instancetype)globalMarkerWithEventType:(ATKeyboardEventType)type;
++ (instancetype)markerForApplication:(ATApplicationElement *)application withEventType:(ATKeyboardEventType)type;
 
 @end
 

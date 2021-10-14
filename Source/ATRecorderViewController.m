@@ -11,26 +11,6 @@
 #import "ATApplicationRecorderUtilities.h"
 #import "ATApplicationElement.h"
 
-CGEventRef eventTapFunction(CGEventTapProxy proxy, CGEventType type, CGEventRef event, void *refcon)
-{
-    NSLog(@"Pressed");
-    CGEventFlags flags = CGEventGetFlags(event);
-    BOOL didPressVOModifier = (flags & (kCGEventFlagMaskControl | kCGEventFlagMaskAlternate)) == (kCGEventFlagMaskControl | kCGEventFlagMaskAlternate);
-    if (didPressVOModifier)
-    {
-        [NSTimer scheduledTimerWithTimeInterval:0.1 repeats:NO block:^(NSTimer * _Nonnull timer) {
-            [(__bridge ATApplicationScraper *) refcon updateWithHandler:^(NSError * _Nullable error, ATApplicationTimeline * _Nullable __weak timeline) {
-            }];
-        }];
-    }
-    else
-    {
-        [(__bridge ATApplicationScraper *) refcon updateWithHandler:^(NSError * _Nullable error, ATApplicationTimeline * _Nullable __weak timeline) {
-        }];
-    }
-    return event;
-}
-
 @interface ATRecorderViewController ()
 
 @end
@@ -61,9 +41,6 @@ CGEventRef eventTapFunction(CGEventTapProxy proxy, CGEventType type, CGEventRef 
     {
         if (_activeRecorder.isRecording)
         {
-            [scraper updateWithHandler:^(NSError * _Nullable error, ATApplicationTimeline * _Nullable __weak timeline) {
-                NSLog(@"%@", error);
-            }];
             [_activeRecorder stopRecording:^(ATRecording * _Nullable recording) {
                 NSLog(@"Finished recording!");
                 self->_activeRecorder = nil;
@@ -72,21 +49,6 @@ CGEventRef eventTapFunction(CGEventTapProxy proxy, CGEventType type, CGEventRef 
     }
     else if (self.applicationPickerButton.selectedRecorder != nil)
     {
-        CFAbsoluteTime time = CFAbsoluteTimeGetCurrent();
-        [scraper scrapeWithHandler:^(NSError * _Nullable error, ATApplicationTimeline * _Nullable __weak timeline) {
-            NSLog(@"%f", CFAbsoluteTimeGetCurrent() - time);
-            CGEventMask keyboardMask = CGEventMaskBit(kCGEventKeyDown);
-            CFMachPortRef mMachPortRef =  CGEventTapCreate(kCGAnnotatedSessionEventTap,
-                                                           kCGHeadInsertEventTap,
-                                                           kCGEventTapOptionListenOnly,
-                                                           keyboardMask,
-                                                           (CGEventTapCallBack) eventTapFunction,
-                                                           (__bridge void * _Nullable)(self->scraper) );
-            CFRunLoopSourceRef mKeyboardEventSrc = CFMachPortCreateRunLoopSource(kCFAllocatorDefault, mMachPortRef, 0);
-            CFRunLoopRef runLoop = CFRunLoopGetMain();
-            CFRunLoopAddSource(runLoop,  mKeyboardEventSrc, kCFRunLoopDefaultMode);
-            CGEventTapEnable(mMachPortRef, true);
-        }];
         _activeRecorder = self.applicationPickerButton.selectedRecorder;
         if (!_activeRecorder.isRecording)
         {

@@ -9,7 +9,14 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@protocol ATRecordingMarker;
+
+typedef NSString *ATRecordingMarkerUserInfoKey;
+typedef NSDictionary<ATRecordingMarkerUserInfoKey, id> *ATRecordingMarkerUserInfo;
+
 @protocol ATRecordingMarkerDelegate <NSObject>
+
+- (void)marker:(id<ATRecordingMarker>)marker didFireWithUserInfo:(ATRecordingMarkerUserInfo)userInfo;
 
 @end
 

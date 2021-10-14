@@ -21,6 +21,7 @@ const ATOperationPriority kATApplicationScraperUpdatePriority = kATOperationPrio
 @synthesize windows = _windows;
 @synthesize hasScraped = _hasScraped;
 
+// TODO: Determine whether this should be an Application Element not a name
 + (ATApplicationScraper * _Nullable)scraperForApplication:(NSString *)applicationName
 {
     ATApplicationElement * _Nullable application = [ATApplicationElement applicationWithName:applicationName];

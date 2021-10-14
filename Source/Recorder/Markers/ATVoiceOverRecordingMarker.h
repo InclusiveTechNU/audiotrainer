@@ -6,10 +6,21 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ATRecordingMarker.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ATVoiceOverRecordingMarker : NSObject
+typedef enum {
+    kATVoiceOverKeyDownEvent,
+    kATVoiceOverKeyUpEvent,
+    kATVoiceOverAllKeyEvents
+} ATVoiceOverEventType;
+
+@interface ATVoiceOverRecordingMarker : NSObject <ATRecordingMarker> {
+    CFMachPortRef _eventListenerPort;
+}
+
++ (instancetype)markerWithEventType:(ATVoiceOverEventType)type;
 
 @end
 

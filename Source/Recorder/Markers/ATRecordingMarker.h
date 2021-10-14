@@ -14,7 +14,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, weak, nullable) id<ATRecordingMarkerDelegate> delegate;
 
-- (void)fire;
+- (void)enable;
+- (void)disable;
+- (BOOL)isEnabled;
 
 @end
 

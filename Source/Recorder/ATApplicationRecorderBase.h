@@ -7,11 +7,16 @@
 
 #import <Foundation/Foundation.h>
 #import "ATApplicationRecorder.h"
+#import "ATApplicationScraper.h"
+#import "ATRecordingMarker.h"
+#import "ATRecordingMarkerDelegate.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ATApplicationRecorderBase : NSObject <ATApplicationRecorder>
+@interface ATApplicationRecorderBase : NSObject <ATApplicationRecorder, ATRecordingMarkerDelegate>
 {
+    NSMutableArray<id<ATRecordingMarker>> *_markers;
+    ATApplicationScraper *_scraper;
     BOOL _recording;
 }
 

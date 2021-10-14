@@ -27,12 +27,28 @@
 + (NSArray<NSNumber *> *)_locationForNode:(id<ATTreeNode>)node
 {
     NSMutableArray<NSNumber *> *location = [[NSMutableArray alloc] init];
-    if (node.parent == nil)
+    void (^addLocation)(id<ATTreeNode>,
+                        NSMutableArray<NSNumber *> *) = ^(id<ATTreeNode> nodeRef,
+                                                          NSMutableArray<NSNumber *> *locationRef)
     {
-        [location addObject:[NSNumber numberWithInt:0]];
-    }
-    
-    return @[];
+        NSUInteger nodeRefIndex = 0;
+        if (nodeRef.parent != nil)
+        {
+            for (NSUInteger i = 0; i < nodeRef.parent.children.count; i++)
+            {
+                id<ATTreeNode> childRef = [nodeRef.parent.children objectAtIndex:i];
+                if (childRef == nodeRef)
+                {
+                    nodeRefIndex = i;
+                    break;
+                }
+            }
+            
+        }
+        [locationRef addObject:[NSNumber numberWithLong:nodeRefIndex]];
+    };
+    addLocation(node, location);
+    return location;
 }
 
 - (instancetype)initWithType:(ATApplicationEventType)type
