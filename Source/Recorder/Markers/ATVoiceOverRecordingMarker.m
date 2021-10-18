@@ -18,8 +18,8 @@ static CGEventRef ATVoiceOverRecordingMarkerEventCallback(CGEventTapProxy proxy,
     {
         // TODO: Check for a better way that event follows responder chain to application
         [NSTimer scheduledTimerWithTimeInterval:0.1 repeats:NO block:^(NSTimer * _Nonnull timer) {
-            ATVoiceOverRecordingMarker *marker = (__bridge ATVoiceOverRecordingMarker *) refcon;
             // TODO: Fill this in with keyboard info
+            ATVoiceOverRecordingMarker *marker = (__bridge ATVoiceOverRecordingMarker *) refcon;
             [marker.delegate marker:marker didFireWithUserInfo:@{}];
         }];
     }
@@ -77,7 +77,7 @@ static CGEventRef ATVoiceOverRecordingMarkerEventCallback(CGEventTapProxy proxy,
     CGEventTapPlacement placement = kCGHeadInsertEventTap; // TODO: Look into this
     CGEventTapOptions options = kCGEventTapOptionListenOnly;
     CGEventTapCallBack callback = ATVoiceOverRecordingMarkerEventCallback;
-    void * _Nullable userInfo = (__bridge void*) self;
+    void * _Nullable userInfo = (__bridge_retained void*) self;
     _eventListenerPort = CGEventTapCreate(location, placement, options, mask, callback, userInfo);
     CFRunLoopSourceRef eventListenerLoop = CFMachPortCreateRunLoopSource(kCFAllocatorDefault, _eventListenerPort, 0);
     CFRunLoopAddSource(CFRunLoopGetMain(), eventListenerLoop, kCFRunLoopDefaultMode);

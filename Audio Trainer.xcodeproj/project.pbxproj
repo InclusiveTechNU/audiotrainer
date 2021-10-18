@@ -38,6 +38,11 @@
 		0D4BD934270B9DF40066BC44 /* ATApplicationElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D4BD933270B9DF40066BC44 /* ATApplicationElement.m */; };
 		0D4BD938270B9E4B0066BC44 /* ATWindowElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D4BD937270B9E4B0066BC44 /* ATWindowElement.m */; };
 		0D4BD93B270B9F1B0066BC44 /* ATApplicationUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D4BD93A270B9F1B0066BC44 /* ATApplicationUtilities.m */; };
+		0DC778AC2719EEF900784E39 /* ATAudioRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DC778AB2719EEF900784E39 /* ATAudioRecorder.m */; };
+		0DC778AF2719EF6800784E39 /* ATSpeechRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DC778AE2719EF6800784E39 /* ATSpeechRecognizer.m */; };
+		0DC778B4271A01B600784E39 /* ATSpeechRecording.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DC778B3271A01B600784E39 /* ATSpeechRecording.m */; };
+		0DC778B7271A02DC00784E39 /* ATSpeechBreak.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DC778B6271A02DC00784E39 /* ATSpeechBreak.m */; };
+		0DC778BA271A0BBF00784E39 /* AVAudioPCMBuffer+Append.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DC778B9271A0BBF00784E39 /* AVAudioPCMBuffer+Append.m */; };
 		0DD3CF27270E256D00B166EC /* Audio_Trainer_UI_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DD3CF26270E256D00B166EC /* Audio_Trainer_UI_Tests.m */; };
 		0DD3CF29270E256D00B166EC /* Audio_Trainer_UI_TestsLaunchTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DD3CF28270E256D00B166EC /* Audio_Trainer_UI_TestsLaunchTests.m */; };
 		0DD3CF3C270E258C00B166EC /* Audio_Trainer_Unit_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DD3CF35270E258800B166EC /* Audio_Trainer_Unit_Tests.m */; };
@@ -129,6 +134,19 @@
 		0D4BD939270B9F1B0066BC44 /* ATApplicationUtilities.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATApplicationUtilities.h; sourceTree = "<group>"; };
 		0D4BD93A270B9F1B0066BC44 /* ATApplicationUtilities.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ATApplicationUtilities.m; sourceTree = "<group>"; };
 		0D4BD93C270BA08C0066BC44 /* ATElement_Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATElement_Private.h; sourceTree = "<group>"; };
+		0DC778A427189E6700784E39 /* Audio-Trainer-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Audio-Trainer-Info.plist"; sourceTree = "<group>"; };
+		0DC778AA2719EEF900784E39 /* ATAudioRecorder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATAudioRecorder.h; sourceTree = "<group>"; };
+		0DC778AB2719EEF900784E39 /* ATAudioRecorder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ATAudioRecorder.m; sourceTree = "<group>"; };
+		0DC778AD2719EF6800784E39 /* ATSpeechRecognizer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATSpeechRecognizer.h; sourceTree = "<group>"; };
+		0DC778AE2719EF6800784E39 /* ATSpeechRecognizer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ATSpeechRecognizer.m; sourceTree = "<group>"; };
+		0DC778B02719EF7700784E39 /* ATAudioRecorderDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATAudioRecorderDelegate.h; sourceTree = "<group>"; };
+		0DC778B12719EF8000784E39 /* ATSpeechRecognizerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATSpeechRecognizerDelegate.h; sourceTree = "<group>"; };
+		0DC778B2271A01B600784E39 /* ATSpeechRecording.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATSpeechRecording.h; sourceTree = "<group>"; };
+		0DC778B3271A01B600784E39 /* ATSpeechRecording.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ATSpeechRecording.m; sourceTree = "<group>"; };
+		0DC778B5271A02DC00784E39 /* ATSpeechBreak.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATSpeechBreak.h; sourceTree = "<group>"; };
+		0DC778B6271A02DC00784E39 /* ATSpeechBreak.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ATSpeechBreak.m; sourceTree = "<group>"; };
+		0DC778B8271A0BBF00784E39 /* AVAudioPCMBuffer+Append.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AVAudioPCMBuffer+Append.h"; sourceTree = "<group>"; };
+		0DC778B9271A0BBF00784E39 /* AVAudioPCMBuffer+Append.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "AVAudioPCMBuffer+Append.m"; sourceTree = "<group>"; };
 		0DD3CF24270E256D00B166EC /* Audio Trainer UI Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Audio Trainer UI Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0DD3CF26270E256D00B166EC /* Audio_Trainer_UI_Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Audio_Trainer_UI_Tests.m; sourceTree = "<group>"; };
 		0DD3CF28270E256D00B166EC /* Audio_Trainer_UI_TestsLaunchTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Audio_Trainer_UI_TestsLaunchTests.m; sourceTree = "<group>"; };
@@ -164,6 +182,7 @@
 		0D0045672703B13F00C2BB3A = {
 			isa = PBXGroup;
 			children = (
+				0DC778A427189E6700784E39 /* Audio-Trainer-Info.plist */,
 				0D0045922703BEE900C2BB3A /* Source */,
 				0D0045942703BEF600C2BB3A /* Tests */,
 				0D0045932703BEED00C2BB3A /* Resources */,
@@ -201,6 +220,7 @@
 			isa = PBXGroup;
 			children = (
 				0D0045A02703CA6400C2BB3A /* Views */,
+				0DC778A92719EE3800784E39 /* Audio */,
 				0D4BD928270B7E070066BC44 /* Accessibility */,
 				0D0045882703BDB900C2BB3A /* Recorder */,
 				0D0045952703BFAE00C2BB3A /* Utilities */,
@@ -344,6 +364,25 @@
 			path = Elements;
 			sourceTree = "<group>";
 		};
+		0DC778A92719EE3800784E39 /* Audio */ = {
+			isa = PBXGroup;
+			children = (
+				0DC778B02719EF7700784E39 /* ATAudioRecorderDelegate.h */,
+				0DC778AA2719EEF900784E39 /* ATAudioRecorder.h */,
+				0DC778AB2719EEF900784E39 /* ATAudioRecorder.m */,
+				0DC778B12719EF8000784E39 /* ATSpeechRecognizerDelegate.h */,
+				0DC778AD2719EF6800784E39 /* ATSpeechRecognizer.h */,
+				0DC778AE2719EF6800784E39 /* ATSpeechRecognizer.m */,
+				0DC778B2271A01B600784E39 /* ATSpeechRecording.h */,
+				0DC778B3271A01B600784E39 /* ATSpeechRecording.m */,
+				0DC778B5271A02DC00784E39 /* ATSpeechBreak.h */,
+				0DC778B6271A02DC00784E39 /* ATSpeechBreak.m */,
+				0DC778B8271A0BBF00784E39 /* AVAudioPCMBuffer+Append.h */,
+				0DC778B9271A0BBF00784E39 /* AVAudioPCMBuffer+Append.m */,
+			);
+			path = Audio;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -479,18 +518,23 @@
 				0D0224CE270F89840029A7DA /* ATApplicationScraper.m in Sources */,
 				0D4BD92B270B7E2F0066BC44 /* ATCachedElementTree.m in Sources */,
 				0D197400270DE21F00CF6813 /* ATRecorderViewController.m in Sources */,
+				0DC778AC2719EEF900784E39 /* ATAudioRecorder.m in Sources */,
 				0D00457F2703B14100C2BB3A /* main.m in Sources */,
 				0D197408270DE24800CF6813 /* ATPlayerViewController.m in Sources */,
 				0D0224F7271308C70029A7DA /* NSError+ApplicationScraper.m in Sources */,
+				0DC778BA271A0BBF00784E39 /* AVAudioPCMBuffer+Append.m in Sources */,
 				0D0045992703C04000C2BB3A /* ATRecording.m in Sources */,
 				0D4BD934270B9DF40066BC44 /* ATApplicationElement.m in Sources */,
 				0D0224F127121DB30029A7DA /* ATApplicationEvent.m in Sources */,
+				0DC778B4271A01B600784E39 /* ATSpeechRecording.m in Sources */,
 				0D0224C7270F802B0029A7DA /* ATCachedElementTreeNode.m in Sources */,
+				0DC778B7271A02DC00784E39 /* ATSpeechBreak.m in Sources */,
 				0D0224E727108DA80029A7DA /* ATCachedElement.m in Sources */,
 				0D0045752703B13F00C2BB3A /* ATAppDelegate.m in Sources */,
 				0D4BD931270B7E7C0066BC44 /* ATElement.m in Sources */,
 				0D00459F2703C90600C2BB3A /* ATApplicationRecorderUtilities.m in Sources */,
 				0D4BD93B270B9F1B0066BC44 /* ATApplicationUtilities.m in Sources */,
+				0DC778AF2719EF6800784E39 /* ATSpeechRecognizer.m in Sources */,
 				0D0224E3270FD6600029A7DA /* ATPriorityOperation.m in Sources */,
 				0D4BD938270B9E4B0066BC44 /* ATWindowElement.m in Sources */,
 				0D00458B2703BE9200C2BB3A /* ATApplicationRecorderBase.m in Sources */,
@@ -671,11 +715,14 @@
 				ENABLE_APP_SANDBOX = NO;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Audio-Trainer-Info.plist";
 				INFOPLIST_KEY_LSApplicationCategoryType = NSAppleEventsUsageDescription;
 				INFOPLIST_KEY_NSAppleEventsUsageDescription = "We use apple events to record GarageBand & Logic Pro tutorials. ";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_NSMainStoryboardFile = Main;
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "We use the microphone to record voice overs of your tutorials.";
 				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "We use speech recognition to process the tutorials you create.";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -698,11 +745,14 @@
 				ENABLE_APP_SANDBOX = NO;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Audio-Trainer-Info.plist";
 				INFOPLIST_KEY_LSApplicationCategoryType = NSAppleEventsUsageDescription;
 				INFOPLIST_KEY_NSAppleEventsUsageDescription = "We use apple events to record GarageBand & Logic Pro tutorials. ";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_NSMainStoryboardFile = Main;
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "We use the microphone to record voice overs of your tutorials.";
 				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "We use speech recognition to process the tutorials you create.";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",

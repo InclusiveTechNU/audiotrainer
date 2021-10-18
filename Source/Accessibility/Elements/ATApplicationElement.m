@@ -82,4 +82,9 @@ static NSString *kATApplicationElementEnhancedInterfaceValueKey = @"AXEnhancedUs
     return NO;
 }
 
+- (pid_t)processIdentifier
+{
+    return -1;
+}
+
 @end

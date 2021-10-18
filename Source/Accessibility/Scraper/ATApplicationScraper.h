@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 extern const NSUInteger kATApplicationScraperMaxChildElements;
 
-typedef void (^ATApplicationScrapeHandler)(NSError * _Nullable error, __weak ATApplicationTimeline * _Nullable timeline);
+typedef void (^ATApplicationScrapeHandler)(NSError * _Nullable error, ATApplicationTimeline * _Nullable timeline);
 
 @interface ATApplicationScraper : NSObject {
     ATPriorityOperationQueue *_applicationQueue;
@@ -49,6 +49,7 @@ typedef void (^ATApplicationScrapeHandler)(NSError * _Nullable error, __weak ATA
 - (void)updateMenuBarWithHandler:(ATApplicationScrapeHandler _Nullable)handler;
 - (void)updateApplicationWithHandler:(ATApplicationScrapeHandler _Nullable)handler;
 - (void)updateWindow:(ATCachedElementTree *)window withHandler:(ATApplicationScrapeHandler _Nullable)handler;
+- (void)updateWindowsWithHandler:(ATApplicationScrapeHandler _Nullable)handler;
 - (void)updateElement:(ATCachedElementTreeNode *)node withHandler:(ATApplicationScrapeHandler _Nullable)handler;
 
 - (void)blockLabel:(NSString *)label;

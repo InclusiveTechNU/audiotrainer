@@ -42,8 +42,10 @@
         if (_activeRecorder.isRecording)
         {
             [_activeRecorder stopRecording:^(ATRecording * _Nullable recording) {
-                NSLog(@"Finished recording!");
                 self->_activeRecorder = nil;
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self.recordingButton setTitle:@"Record"];
+                });
             }];
         }
     }
@@ -52,6 +54,7 @@
         _activeRecorder = self.applicationPickerButton.selectedRecorder;
         if (!_activeRecorder.isRecording)
         {
+            [self.recordingButton setTitle:@"Stop Recording"];
             [_activeRecorder startRecording];
         }
     }

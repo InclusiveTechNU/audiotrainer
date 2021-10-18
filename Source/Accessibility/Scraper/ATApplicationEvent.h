@@ -12,9 +12,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 typedef NSString *ATApplicationEventInfoKey;
 
-static const ATApplicationEventInfoKey kATApplicationEventAdditionsKey;
-static const ATApplicationEventInfoKey kATApplicationDeletionsKey;
-static const ATApplicationEventInfoKey kATApplicationChangeKey;
+extern const ATApplicationEventInfoKey kATApplicationAdditionsKey;
+extern const ATApplicationEventInfoKey kATApplicationDeletionsKey;
+extern const ATApplicationEventInfoKey kATApplicationChangesKey;
 
 typedef enum {
     kATApplicationEventAdditionEvent,
@@ -22,7 +22,9 @@ typedef enum {
     kATApplicationEventChangeEvent
 } ATApplicationEventType;
 
-@interface ATApplicationEvent : NSObject
+@interface ATApplicationEvent : NSObject {
+    CFAbsoluteTime _startTime;
+}
 
 @property (nonatomic, assign, readonly) ATApplicationEventType type;
 @property (nonatomic, assign, readonly) NSUInteger level;

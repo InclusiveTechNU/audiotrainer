@@ -18,6 +18,7 @@
     if (self != nil)
     {
         _scraper = [ATApplicationScraper scraperForApplication:self.applicationName];
+        _recognizer = [[ATSpeechRecognizer alloc] init];
     }
     return self;
 }
@@ -38,14 +39,22 @@
     {
         return;
     }
+
+    [ATAudioRecorder requestPermissionWithCompletionHandler:^(ATAudioRecorderPermissionStatus status) {
+        [ATSpeechRecognizer requestPermissionWithCompletionHandler:^(ATSpeechRecognizerPermissionStatus status) {
+            [_recognizer startRecording];
+        }];
+    }];
+    
     _recording = YES;
     [_scraper scrapeWithHandler:^(NSError * _Nullable error,
-                                  ATApplicationTimeline * _Nullable __weak timeline) {
+                                  ATApplicationTimeline * _Nullable timeline) {
         __weak ATApplicationRecorderBase *weakSelf = self;
         ATApplicationRecorderBase *strongSelf = weakSelf;
         if (strongSelf != nil)
         {
             // TODO: Check event types
+            // TODO: Figure out where to release these objects
             ATVoiceOverRecordingMarker *voiceoverMarker = [ATVoiceOverRecordingMarker markerWithEventType:kATVoiceOverKeyDownEvent];
             ATKeyboardRecordingMarker *keyboardMarker = [ATKeyboardRecordingMarker globalMarkerWithEventType:kATKeyboardKeyDownEvent];
             voiceoverMarker.delegate = strongSelf;
@@ -54,10 +63,6 @@
             [strongSelf->_markers addObject:keyboardMarker];
         }
     }];
-    // Capture the entire accessibility tree
-    // Register focus, value, destruction based observers
-    // Register keyboard calls to update
-    
 }
 
 - (void)stopRecording:(nonnull void (^)(ATRecording * _Nullable))handler
@@ -68,8 +73,18 @@
         return;
     }
 
-    _recording = NO;
-    handler(nil);
+    [_recognizer stopRecording];
+
+    [_scraper updateWithHandler:^(NSError * _Nullable error, ATApplicationTimeline * _Nullable timeline) {
+        self->_recording = NO;
+        for (id <ATRecordingMarker> marker in self->_markers)
+        {
+            [marker disable];
+        }
+        
+        //ATRecording *recording = [ATRecording recordingWithTimeline:timeline instructions:nil];
+        handler(nil);
+    }];
 }
 
 - (void)marker:(nonnull id<ATRecordingMarker>)marker didFireWithUserInfo:(nonnull ATRecordingMarkerUserInfo)userInfo {
@@ -77,9 +92,7 @@
     {
         return;
     }
-    NSLog(@"Fire");
-    // TODO: Determine whether mainWindow is fine.
-    [_scraper updateWithHandler:nil];
+    [_scraper updateWindowsWithHandler:nil];
 }
 
 @end

@@ -10,6 +10,7 @@
 #import "ATApplicationScraper.h"
 #import "ATRecordingMarker.h"
 #import "ATRecordingMarkerDelegate.h"
+#import "ATSpeechRecognizer.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -17,6 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 {
     NSMutableArray<id<ATRecordingMarker>> *_markers;
     ATApplicationScraper *_scraper;
+    ATSpeechRecognizer *_recognizer;
     BOOL _recording;
 }
 

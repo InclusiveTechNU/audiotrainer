@@ -127,6 +127,7 @@ const ATOperationPriority kATApplicationScraperUpdatePriority = kATOperationPrio
 
 - (void)updateWithHandler:(ATApplicationScrapeHandler _Nullable)handler;
 {
+    // TODO: This isn't working
     __block BOOL updatedApplication = NO;
     __block BOOL updatedWindows = NO;
     __block BOOL updatedMenuBar = NO;
@@ -145,7 +146,7 @@ const ATOperationPriority kATApplicationScraperUpdatePriority = kATOperationPrio
         }
         va_end(argumentList);
 
-        return ^(NSError * _Nullable error, ATApplicationTimeline * _Nullable __weak timeline)
+        return ^(NSError * _Nullable error, ATApplicationTimeline * _Nullable timeline)
         {
             BOOL **checkerList = [checkerListData mutableBytes];
             if (error != nil)
@@ -263,7 +264,7 @@ const ATOperationPriority kATApplicationScraperUpdatePriority = kATOperationPrio
             [ATApplicationScraper _updateWindowAtIndex:i
                                               onObject:weakSelf
                                            withHandler:^(NSError * _Nullable error,
-                                                         ATApplicationTimeline * _Nullable __weak timeline) {
+                                                         ATApplicationTimeline * _Nullable timeline) {
                 completed = YES;
             }];
             while (!completed) {}
@@ -305,7 +306,7 @@ const ATOperationPriority kATApplicationScraperUpdatePriority = kATOperationPrio
         }
         [ATApplicationScraper _updateWindowAtIndex:windowIndex
                                           onObject:weakSelf
-                                       withHandler:^(NSError * _Nullable error,ATApplicationTimeline * _Nullable __weak timeline) {
+                                       withHandler:^(NSError * _Nullable error,ATApplicationTimeline * _Nullable timeline) {
             if (handler != nil)
             {
                 handler(error, timeline);
@@ -469,8 +470,14 @@ const ATOperationPriority kATApplicationScraperUpdatePriority = kATOperationPrio
     
     if (![tree.cursor.element isEqual:cachedElement])
     {
-        // TODO: Add changes to timeline
-        NSLog(@"Found a change: %@, %@", tree.cursor.element.role, cachedElement.role);
+        ATApplicationScraper *strongSelf = weakSelf;
+        if (strongSelf != nil)
+        {
+            ATApplicationEvent *changeEvent = [ATApplicationEvent eventWithType:kATApplicationEventChangeEvent
+                                                                           node:tree.cursor
+                                                                       userInfo:@{ kATApplicationChangesKey: [ATCachedElement cacheElement:element] }];
+            [strongSelf->_timeline addEvent:changeEvent];
+        }
     }
 
     tree.cursor.element = cachedElement;
@@ -478,7 +485,14 @@ const ATOperationPriority kATApplicationScraperUpdatePriority = kATOperationPrio
     {
         while (elementChildrenCount < tree.cursor.children.count)
         {
-            // TODO: Add removal to the timeline
+            ATApplicationScraper *strongSelf = weakSelf;
+            if (strongSelf != nil)
+            {
+                ATApplicationEvent *removalEvent = [ATApplicationEvent eventWithType:kATApplicationEventDeletionEvent
+                                                                                node:[tree.cursor.children objectAtIndex:tree.cursor.children.count - 1]
+                                                                            userInfo:@{}];
+                [strongSelf->_timeline addEvent:removalEvent];
+            }
             [tree.cursor.children removeObjectAtIndex:tree.cursor.children.count - 1];
         }
     }
@@ -490,12 +504,19 @@ const ATOperationPriority kATApplicationScraperUpdatePriority = kATOperationPrio
         for (NSUInteger i = 0; i < newChildren.count; i++)
         {
             ATElement *newChild = [newChildren objectAtIndex:i];
-            // TODO: Add addition of element tree to timeline
-            
             ATCachedElement *cachedChild = [ATCachedElement cacheElement:newChild];
             ATCachedElementTreeNode *newChildNode = [[ATCachedElementTreeNode alloc] initWithElement:cachedChild];
             [tree.cursor addChild:newChildNode];
             tree.cursor = newChildNode;
+            
+            ATApplicationScraper *strongSelf = weakSelf;
+            if (strongSelf != nil)
+            {
+                ATApplicationEvent *addEvent = [ATApplicationEvent eventWithType:kATApplicationEventAdditionEvent
+                                                                            node:tree.cursor
+                                                                        userInfo:@{ kATApplicationAdditionsKey : [ATCachedElement cacheElement:newChild]}];
+                [strongSelf->_timeline addEvent:addEvent];
+            }
             [ATApplicationScraper _scrapeElementChildren:newChild forTree:tree onObject:weakSelf];
         }
         tree.cursor = currentCursorNode;

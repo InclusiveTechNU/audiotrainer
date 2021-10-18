@@ -11,6 +11,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+// TODO: Setup a better method of calculating changes and
+// createing a dictionary of changes
+
 @interface ATCachedElement : NSObject
 
 @property (nonatomic, strong, readonly, nullable) NSString *label;

@@ -24,7 +24,7 @@
 
 - (void)addEvent:(ATApplicationEvent *)event
 {
-    
+    [_events addObject:event];
 }
 
 @end

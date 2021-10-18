@@ -12,9 +12,12 @@ static const pid_t kATGlobalApplicationProcessIdentifier = -1;
 
 static CGEventRef ATKeyboardRecordingMarkerEventCallback(CGEventTapProxy proxy, CGEventType type, CGEventRef event, void *refcon)
 {
-    ATKeyboardRecordingMarker *marker = (__bridge ATKeyboardRecordingMarker *) refcon;
-    // TODO: Fill this in with keyboard info
-    [marker.delegate marker:marker didFireWithUserInfo:@{}];
+    if (refcon != NULL)
+    {
+        // TODO: Fill this in with keyboard info
+        ATKeyboardRecordingMarker *marker = (__bridge ATKeyboardRecordingMarker *) refcon;
+        [marker.delegate marker:marker didFireWithUserInfo:@{}];
+    }
     return event;
 }
 
@@ -74,7 +77,7 @@ static CGEventRef ATKeyboardRecordingMarkerEventCallback(CGEventTapProxy proxy, 
     CGEventTapPlacement placement = kCGHeadInsertEventTap; // TODO: Look into this
     CGEventTapOptions options = kCGEventTapOptionListenOnly;
     CGEventTapCallBack callback = ATKeyboardRecordingMarkerEventCallback;
-    void * _Nullable userInfo = (__bridge void*) self;
+    void * _Nullable userInfo = (__bridge_retained void*) self;
     if (process == kATGlobalApplicationProcessIdentifier)
     {
         CGEventTapLocation location = kCGAnnotatedSessionEventTap;
