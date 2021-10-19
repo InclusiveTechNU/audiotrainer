@@ -9,7 +9,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ATViewController : NSViewController
+@interface ATViewController : NSViewController {
+    NSTimer * _Nullable accessibilityPermissionTimer;
+}
 
 @end
 

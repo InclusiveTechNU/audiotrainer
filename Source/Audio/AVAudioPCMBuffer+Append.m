@@ -24,8 +24,6 @@
         return nil;
     }
     
-    if (
-    
     for (NSUInteger i = 0; i < buffers.count; i++)
     {
         
