@@ -22,10 +22,9 @@ typedef enum {
     kATApplicationEventChangeEvent
 } ATApplicationEventType;
 
-@interface ATApplicationEvent : NSObject {
-    CFAbsoluteTime _startTime;
-}
+@interface ATApplicationEvent : NSObject
 
+@property (nonatomic, assign) double time;
 @property (nonatomic, assign, readonly) ATApplicationEventType type;
 @property (nonatomic, assign, readonly) NSUInteger level;
 @property (nonatomic, strong, readonly) NSDictionary<ATApplicationEventInfoKey, id> *userInfo;

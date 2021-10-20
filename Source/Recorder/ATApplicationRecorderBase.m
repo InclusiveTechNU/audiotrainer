@@ -19,6 +19,7 @@
     {
         _scraper = [ATApplicationScraper scraperForApplication:self.applicationName];
         _recognizer = [[ATSpeechRecognizer alloc] init];
+        _recognizer.delegate = self;
     }
     return self;
 }
@@ -47,21 +48,15 @@
     }];
     
     _recording = YES;
-    [_scraper scrapeWithHandler:^(NSError * _Nullable error,
-                                  ATApplicationTimeline * _Nullable timeline) {
-        __weak ATApplicationRecorderBase *weakSelf = self;
-        ATApplicationRecorderBase *strongSelf = weakSelf;
-        if (strongSelf != nil)
-        {
-            // TODO: Check event types
-            // TODO: Figure out where to release these objects
-            ATVoiceOverRecordingMarker *voiceoverMarker = [ATVoiceOverRecordingMarker markerWithEventType:kATVoiceOverKeyDownEvent];
-            ATKeyboardRecordingMarker *keyboardMarker = [ATKeyboardRecordingMarker globalMarkerWithEventType:kATKeyboardKeyDownEvent];
-            voiceoverMarker.delegate = strongSelf;
-            keyboardMarker.delegate = strongSelf;
-            [strongSelf->_markers addObject:voiceoverMarker];
-            [strongSelf->_markers addObject:keyboardMarker];
-        }
+    [_scraper scrapeWithHandler:^(NSError * _Nullable error, ATApplicationTimeline * _Nullable timeline) {
+        // TODO: Check event types
+        // TODO: Figure out where to release these objects
+        ATVoiceOverRecordingMarker *voiceoverMarker = [ATVoiceOverRecordingMarker markerWithEventType:kATVoiceOverKeyDownEvent];
+        ATKeyboardRecordingMarker *keyboardMarker = [ATKeyboardRecordingMarker globalMarkerWithEventType:kATKeyboardKeyDownEvent];
+        voiceoverMarker.delegate = self;
+        keyboardMarker.delegate = self;
+        [_markers addObject:voiceoverMarker];
+        [_markers addObject:keyboardMarker];
     }];
 }
 
@@ -73,18 +68,29 @@
         return;
     }
 
-    [_recognizer stopRecording];
-
-    [_scraper updateWithHandler:^(NSError * _Nullable error, ATApplicationTimeline * _Nullable timeline) {
+    [_scraper updateWindowsWithHandler:^(NSError * _Nullable error, ATApplicationTimeline * _Nullable timeline) {
         self->_recording = NO;
         for (id <ATRecordingMarker> marker in self->_markers)
         {
             [marker disable];
         }
         
-        //ATRecording *recording = [ATRecording recordingWithTimeline:timeline instructions:nil];
-        handler(nil);
+        // Wait until the speech recognizer is available
+        self->_recordingSemaphore = dispatch_semaphore_create(0);
+        [self->_recognizer stopRecording];
+        dispatch_semaphore_wait(self->_recordingSemaphore, DISPATCH_TIME_FOREVER);
+        self->_recordingSemaphore = nil;
+        handler([ATRecording recordingWithTimeline:timeline voiceover:self->_currentRecording]);
     }];
+}
+
+- (void)speechRecognizer:(ATSpeechRecognizer *)recognizer didFinishRecognizingSpeech:(ATSpeechRecording *)recording
+{
+    _currentRecording = recording;
+    if (_recordingSemaphore != nil)
+    {
+        dispatch_semaphore_signal(_recordingSemaphore);
+    }
 }
 
 - (void)marker:(nonnull id<ATRecordingMarker>)marker didFireWithUserInfo:(nonnull ATRecordingMarkerUserInfo)userInfo {

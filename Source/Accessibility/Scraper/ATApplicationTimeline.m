@@ -24,6 +24,8 @@
 
 - (void)addEvent:(ATApplicationEvent *)event
 {
+    double eventTime = CFAbsoluteTimeGetCurrent() - _startTime;
+    event.time = eventTime;
     [_events addObject:event];
 }
 

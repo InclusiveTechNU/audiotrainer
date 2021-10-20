@@ -68,22 +68,15 @@ const ATOperationPriority kATApplicationScraperUpdatePriority = kATOperationPrio
     }
 }
 
+- (NSArray<ATPriorityOperationQueue *> *)windowQueues
+{
+    return _windowQueues;
+}
+
 - (void)scrapeWithHandler:(ATApplicationScrapeHandler _Nullable)handler
 {
     __weak ATApplicationScraper *weakSelf = self;
     [_applicationQueue addOperationWithPriority:kATOperationPriorityHigh withBlock:^{
-        ATApplicationScraper *strongSelf = weakSelf;
-        if (strongSelf == nil)
-        {
-            if (handler != nil)
-            {
-                // TODO: Set error code & message
-                NSError *responseError = [NSError scrapeErrorWithCode:kATApplicationScraperUnknownErrorCode
-                                                              message:kATApplicationScraperUnknownErrorMessage];
-                handler(responseError, nil);
-            }
-            return;
-        }
         if (weakSelf.hasScraped)
         {
             if (handler != nil)
@@ -96,19 +89,29 @@ const ATOperationPriority kATApplicationScraperUpdatePriority = kATOperationPrio
             return;
         }
         // TODO: Scrape menubar
+        ATApplicationScraper *strongSelf = weakSelf;
         for (ATWindowElement *window in weakSelf.application.windows)
         {
             ATPriorityOperationQueue *windowQueue = [[ATPriorityOperationQueue alloc] init];
-            [strongSelf->_windowQueues addObject:windowQueue];
+            if (strongSelf != nil)
+            {
+                [strongSelf->_windowQueues addObject:windowQueue];
+            }
             ATCachedElement *cachedWindow = [ATCachedElement cacheElement:window];
             ATCachedElementTreeNode *windowNode = [[ATCachedElementTreeNode alloc] initWithElement:cachedWindow];
             ATCachedElementTree *windowTree = [[ATCachedElementTree alloc] initWithNode:windowNode];
-            [ATApplicationScraper _scrapeElementChildren:window forTree:windowTree onObject:weakSelf];
-            [strongSelf->_windows addObject:windowTree];
+            [weakSelf _scrapeElementChildren:window forTree:windowTree];
+            if (strongSelf != nil)
+            {
+                [strongSelf->_windows addObject:windowTree];
+            }
         }
-        strongSelf->_hasScraped = YES;
+        if (strongSelf != nil)
+        {
+            strongSelf->_hasScraped = YES;
+            strongSelf->_timeline = [[ATApplicationTimeline alloc] init];
+        }
 
-        strongSelf->_timeline = [[ATApplicationTimeline alloc] init];
         if (weakSelf.timeline != nil)
         {
             [weakSelf.delegate applicationScraper:weakSelf didCompleteInitialScrape:weakSelf.timeline];
@@ -197,18 +200,6 @@ const ATOperationPriority kATApplicationScraperUpdatePriority = kATOperationPrio
 {
     __weak ATApplicationScraper *weakSelf = self;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-        ATApplicationScraper *strongSelf = weakSelf;
-        if (strongSelf == nil)
-        {
-            if (handler != nil)
-            {
-                // TODO: Set error code & message
-                NSError *responseError = [NSError scrapeErrorWithCode:kATApplicationScraperUnknownErrorCode
-                                                              message:kATApplicationScraperUnknownErrorMessage];
-                handler(responseError, nil);
-            }
-            return;
-        }
         if (!weakSelf.hasScraped)
         {
             if (handler != nil)
@@ -220,8 +211,8 @@ const ATOperationPriority kATApplicationScraperUpdatePriority = kATOperationPrio
             }
             return;
         }
-        [ATApplicationScraper _setupUpdateWithQueue:strongSelf->_applicationQueue onObject:weakSelf];
-        [strongSelf->_applicationQueue addOperationWithPriority:kATApplicationScraperUpdatePriority withBlock:^{
+        [weakSelf _setupUpdateWithQueue:weakSelf.applicationQueue];
+        [weakSelf.applicationQueue addOperationWithPriority:kATApplicationScraperUpdatePriority withBlock:^{
             NSString *applicationName = weakSelf.application.title;
             if (applicationName == nil)
             {
@@ -232,7 +223,11 @@ const ATOperationPriority kATApplicationScraperUpdatePriority = kATOperationPrio
             {
                 return;
             }
-            strongSelf->_application = application;
+            ATApplicationScraper *strongSelf = weakSelf;
+            if (strongSelf != nil)
+            {
+                strongSelf->_application = application;
+            }
         }];
 
         if (handler != nil)
@@ -261,10 +256,7 @@ const ATOperationPriority kATApplicationScraperUpdatePriority = kATOperationPrio
         for (NSUInteger i = 0; i < weakSelf.windows.count; i++)
         {
             __block BOOL completed = NO;
-            [ATApplicationScraper _updateWindowAtIndex:i
-                                              onObject:weakSelf
-                                           withHandler:^(NSError * _Nullable error,
-                                                         ATApplicationTimeline * _Nullable timeline) {
+            [weakSelf _updateWindowAtIndex:i withHandler:^(NSError * _Nullable error, ATApplicationTimeline * _Nullable timeline) {
                 completed = YES;
             }];
             while (!completed) {}
@@ -304,9 +296,8 @@ const ATOperationPriority kATApplicationScraperUpdatePriority = kATOperationPrio
         {
             return;
         }
-        [ATApplicationScraper _updateWindowAtIndex:windowIndex
-                                          onObject:weakSelf
-                                       withHandler:^(NSError * _Nullable error,ATApplicationTimeline * _Nullable timeline) {
+        [weakSelf _updateWindowAtIndex:windowIndex withHandler:^(NSError * _Nullable error,
+                                                                 ATApplicationTimeline * _Nullable timeline) {
             if (handler != nil)
             {
                 handler(error, timeline);
@@ -343,22 +334,8 @@ const ATOperationPriority kATApplicationScraperUpdatePriority = kATOperationPrio
     [self.blockedClasses removeObject:className];
 }
 
-+ (void)_updateWindowAtIndex:(NSUInteger)windowIndex
-                    onObject:(__weak ATApplicationScraper *)weakSelf
-                 withHandler:(ATApplicationScrapeHandler _Nullable)handler;
+- (void)_updateWindowAtIndex:(NSUInteger)windowIndex withHandler:(ATApplicationScrapeHandler _Nullable)handler;
 {
-    ATApplicationScraper *strongSelf = weakSelf;
-    if (strongSelf == nil)
-    {
-        if (handler != nil)
-        {
-            // TODO: Set error code & message
-            NSError *responseError = [NSError scrapeErrorWithCode:kATApplicationScraperUnknownErrorCode
-                                                          message:kATApplicationScraperUnknownErrorMessage];
-            handler(responseError, weakSelf.timeline);
-        }
-        return;
-    }
     if (windowIndex < 0)
     {
         if (handler != nil)
@@ -366,25 +343,31 @@ const ATOperationPriority kATApplicationScraperUpdatePriority = kATOperationPrio
             // TODO: Set error code & message
             NSError *responseError = [NSError scrapeErrorWithCode:kATApplicationScraperUnknownErrorCode
                                                           message:kATApplicationScraperUnknownErrorMessage];
-            handler(responseError, weakSelf.timeline);
+            handler(responseError, self.timeline);
         }
         return;
     }
-    ATPriorityOperationQueue *queue = [strongSelf->_windowQueues objectAtIndex:windowIndex];
-    [ATApplicationScraper _setupUpdateWithQueue:queue onObject:weakSelf];
+    ATPriorityOperationQueue *queue = [_windowQueues objectAtIndex:windowIndex];
+    [self _setupUpdateWithQueue:queue];
+    
+    __weak ATApplicationScraper *weakSelf = self;
     [queue addOperationWithPriority:kATApplicationScraperUpdatePriority withBlock:^{
         if (weakSelf.application.windows.count < windowIndex)
         {
-            // Window was deleted. Remove priority queue and add removal to the timeline.
-            // TODO: Add removal to the timeline
-            [strongSelf->_windows removeObjectAtIndex:windowIndex];
-            [strongSelf->_windowQueues removeObjectAtIndex:windowIndex];
+            ATApplicationScraper *strongSelf = weakSelf;
+            if (strongSelf != nil)
+            {
+                // Window was deleted. Remove priority queue and add removal to the timeline.
+                // TODO: Add removal to the timeline
+                [strongSelf->_windows removeObjectAtIndex:windowIndex];
+                [strongSelf->_windowQueues removeObjectAtIndex:windowIndex];
+            }
         }
         else
         {
             ATElement *windowElement = [weakSelf.application.windows objectAtIndex:windowIndex];
             ATCachedElementTree *windowTree = [[weakSelf windows] objectAtIndex:windowIndex];
-            [ATApplicationScraper _updateTree:windowTree withElement:windowElement onObject:weakSelf];
+            [weakSelf _updateTree:windowTree withElement:windowElement];
         }
         if (handler != nil)
         {
@@ -393,25 +376,17 @@ const ATOperationPriority kATApplicationScraperUpdatePriority = kATOperationPrio
     }];
 }
 
-+ (void)_setupUpdateWithQueue:(ATPriorityOperationQueue *)queue
-                   onObject:(__weak ATApplicationScraper *)weakSelf
+- (void)_setupUpdateWithQueue:(ATPriorityOperationQueue *)queue
 {
-    if (!weakSelf.hasScraped)
+    if (!self.hasScraped)
     {
         return;
     }
     [queue cancelOperationsLessThanAndEqualToPriority:kATApplicationScraperUpdatePriority];
 }
 
-+ (void)_scrapeElementChildren:(ATElement *)element
-                       forTree:(ATCachedElementTree *)tree
-                      onObject:(__weak ATApplicationScraper *)weakSelf
+- (void)_scrapeElementChildren:(ATElement *)element forTree:(ATCachedElementTree *)tree
 {
-    ATApplicationScraper *strongSelf = weakSelf;
-    if (strongSelf == nil)
-    {
-        return;
-    }
     if (tree.cursor == nil)
     {
         return;
@@ -419,11 +394,11 @@ const ATOperationPriority kATApplicationScraperUpdatePriority = kATOperationPrio
 
     NSArray<ATElement *> *children;
     NSUInteger visibileChildrenCount = element.visibileChildrenCount;
-    if (strongSelf->_preferVisibleChildren && visibileChildrenCount > 0)
+    if (_preferVisibleChildren && visibileChildrenCount > 0)
     {
-        if (weakSelf.limitChildrenScraped && visibileChildrenCount > weakSelf.maxScrapedChildElements)
+        if (self.limitChildrenScraped && visibileChildrenCount > self.maxScrapedChildElements)
         {
-            children = [element visibileChildrenAtIndex:0 maxValues:weakSelf.maxScrapedChildElements];
+            children = [element visibileChildrenAtIndex:0 maxValues:self.maxScrapedChildElements];
         }
         else
         {
@@ -432,9 +407,9 @@ const ATOperationPriority kATApplicationScraperUpdatePriority = kATOperationPrio
     }
     else
     {
-        if (weakSelf.limitChildrenScraped && element.childrenCount > weakSelf.maxScrapedChildElements)
+        if (self.limitChildrenScraped && element.childrenCount > self.maxScrapedChildElements)
         {
-            children = [element childrenAtIndex:0 maxValues:weakSelf.maxScrapedChildElements];
+            children = [element childrenAtIndex:0 maxValues:self.maxScrapedChildElements];
         }
         else
         {
@@ -448,29 +423,27 @@ const ATOperationPriority kATApplicationScraperUpdatePriority = kATOperationPrio
         ATCachedElement *cachedElement = [ATCachedElement cacheElement:child];
         ATCachedElementTreeNode *childNode = [[ATCachedElementTreeNode alloc] initWithElement:cachedElement];
         [tree.cursor addChild:childNode];
-        if (![weakSelf.blockedLabels containsObject:cachedElement.label])
+        if (![self.blockedLabels containsObject:cachedElement.label])
         {
             [tree moveCursorToChildWithIndex:tree.cursor.children.count - 1];
-            [ATApplicationScraper _scrapeElementChildren:child forTree:tree onObject:weakSelf];
+            [self _scrapeElementChildren:child forTree:tree];
             tree.cursor = currentCursor;
         }
     }
 }
 
-+ (void)_updateTree:(ATCachedElementTree *)tree
-        withElement:(ATElement *)element
-           onObject:(__weak ATApplicationScraper *)weakSelf
+- (void)_updateTree:(ATCachedElementTree *)tree withElement:(ATElement *)element
 {
     ATCachedElement *cachedElement = [ATCachedElement cacheElement:element];
     NSUInteger elementChildrenCount = element.childrenCount;
-    if (weakSelf.limitChildrenScraped && elementChildrenCount > weakSelf.maxScrapedChildElements)
+    if (self.limitChildrenScraped && elementChildrenCount > self.maxScrapedChildElements)
     {
-        elementChildrenCount = weakSelf.maxScrapedChildElements;
+        elementChildrenCount = self.maxScrapedChildElements;
     }
     
     if (![tree.cursor.element isEqual:cachedElement])
     {
-        ATApplicationScraper *strongSelf = weakSelf;
+        ATApplicationScraper *strongSelf = self;
         if (strongSelf != nil)
         {
             ATApplicationEvent *changeEvent = [ATApplicationEvent eventWithType:kATApplicationEventChangeEvent
@@ -485,14 +458,10 @@ const ATOperationPriority kATApplicationScraperUpdatePriority = kATOperationPrio
     {
         while (elementChildrenCount < tree.cursor.children.count)
         {
-            ATApplicationScraper *strongSelf = weakSelf;
-            if (strongSelf != nil)
-            {
-                ATApplicationEvent *removalEvent = [ATApplicationEvent eventWithType:kATApplicationEventDeletionEvent
-                                                                                node:[tree.cursor.children objectAtIndex:tree.cursor.children.count - 1]
-                                                                            userInfo:@{}];
-                [strongSelf->_timeline addEvent:removalEvent];
-            }
+            ATApplicationEvent *removalEvent = [ATApplicationEvent eventWithType:kATApplicationEventDeletionEvent
+                                                                            node:[tree.cursor.children objectAtIndex:tree.cursor.children.count - 1]
+                                                                        userInfo:@{}];
+            [_timeline addEvent:removalEvent];
             [tree.cursor.children removeObjectAtIndex:tree.cursor.children.count - 1];
         }
     }
@@ -509,15 +478,11 @@ const ATOperationPriority kATApplicationScraperUpdatePriority = kATOperationPrio
             [tree.cursor addChild:newChildNode];
             tree.cursor = newChildNode;
             
-            ATApplicationScraper *strongSelf = weakSelf;
-            if (strongSelf != nil)
-            {
-                ATApplicationEvent *addEvent = [ATApplicationEvent eventWithType:kATApplicationEventAdditionEvent
-                                                                            node:tree.cursor
-                                                                        userInfo:@{ kATApplicationAdditionsKey : [ATCachedElement cacheElement:newChild]}];
-                [strongSelf->_timeline addEvent:addEvent];
-            }
-            [ATApplicationScraper _scrapeElementChildren:newChild forTree:tree onObject:weakSelf];
+            ATApplicationEvent *addEvent = [ATApplicationEvent eventWithType:kATApplicationEventAdditionEvent
+                                                                        node:tree.cursor
+                                                                    userInfo:@{ kATApplicationAdditionsKey : [ATCachedElement cacheElement:newChild]}];
+            [_timeline addEvent:addEvent];
+            [self _scrapeElementChildren:newChild forTree:tree];
         }
         tree.cursor = currentCursorNode;
     }
@@ -526,7 +491,7 @@ const ATOperationPriority kATApplicationScraperUpdatePriority = kATOperationPrio
     for (NSUInteger i = 0; i < tree.cursor.children.count; i++)
     {
         [tree moveCursorToChildWithIndex:i];
-        [ATApplicationScraper _updateTree:tree withElement:[elementChildren objectAtIndex:i] onObject:weakSelf];
+        [self _updateTree:tree withElement:[elementChildren objectAtIndex:i]];
         tree.cursor = cursorNode;
     }
 }

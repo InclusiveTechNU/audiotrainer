@@ -19,14 +19,14 @@ extern const NSUInteger kATApplicationScraperMaxChildElements;
 typedef void (^ATApplicationScrapeHandler)(NSError * _Nullable error, ATApplicationTimeline * _Nullable timeline);
 
 @interface ATApplicationScraper : NSObject {
-    ATPriorityOperationQueue *_applicationQueue;
-    ATPriorityOperationQueue *_menuBarQueue;
     NSMutableArray<ATPriorityOperationQueue *> *_windowQueues;
     NSMutableArray<ATCachedElementTree *> *_windows;
     BOOL _preferVisibleChildren;
     BOOL _hasScraped;
 }
 
+@property (nonatomic, strong, readonly) ATPriorityOperationQueue *menuBarQueue;
+@property (nonatomic, strong, readonly) ATPriorityOperationQueue *applicationQueue;
 @property (nonatomic, strong, readonly) ATApplicationElement *application;
 @property (nonatomic, strong, readonly, nullable) ATCachedElementTree *menuBar;
 @property (nonatomic, strong, readonly) NSArray<ATCachedElementTree *> *windows;
@@ -56,6 +56,8 @@ typedef void (^ATApplicationScrapeHandler)(NSError * _Nullable error, ATApplicat
 - (void)blockClass:(NSString *)className;
 - (void)unblockLabel:(NSString *)label;
 - (void)unblockClass:(NSString *)className;
+
+- (NSArray<ATPriorityOperationQueue *> *)windowQueues;
 
 @end
 

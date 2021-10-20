@@ -17,17 +17,15 @@ const ATApplicationEventInfoKey kATApplicationChangesKey = @"ATApplicationChange
                          node:(id<ATTreeNode>)node
                      userInfo:(NSDictionary<ATApplicationEventInfoKey, id> *)userInfo
 {
-    CFAbsoluteTime time = CFAbsoluteTimeGetCurrent();
     NSArray<NSNumber *> *location = [ATApplicationEvent _locationForNode:node];
-    return [[ATApplicationEvent alloc] initWithType:type location:location userInfo:userInfo time:time];
+    return [[ATApplicationEvent alloc] initWithType:type location:location userInfo:userInfo time:0];
 }
 
 + (instancetype)eventWithType:(ATApplicationEventType)type
                          location:(NSArray<NSNumber *> *)location
                      userInfo:(NSDictionary<ATApplicationEventInfoKey, id> *)userInfo
 {
-    CFAbsoluteTime time = CFAbsoluteTimeGetCurrent();
-    return [[ATApplicationEvent alloc] initWithType:type location:location userInfo:userInfo time:time];
+    return [[ATApplicationEvent alloc] initWithType:type location:location userInfo:userInfo time:0];
 }
 
 + (void)_addLocationForNode:(id<ATTreeNode>)node withLocation:(NSMutableArray<NSNumber *> *)location
@@ -71,7 +69,7 @@ const ATApplicationEventInfoKey kATApplicationChangesKey = @"ATApplicationChange
         _userInfo = userInfo;
         _location = location;
         _level = location.count;
-        _startTime = time;
+        _time = time;
     }
     return self;
 }
