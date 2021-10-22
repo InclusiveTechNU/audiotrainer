@@ -448,7 +448,7 @@ const ATOperationPriority kATApplicationScraperUpdatePriority = kATOperationPrio
         {
             ATApplicationEvent *changeEvent = [ATApplicationEvent eventWithType:kATApplicationEventChangeEvent
                                                                            node:tree.cursor
-                                                                       userInfo:@{ kATApplicationChangesKey: [ATCachedElement cacheElement:element] }];
+                                                                       userInfo:@{ @"element": [ATCachedElement cacheElement:element] }];
             [strongSelf->_timeline addEvent:changeEvent];
         }
     }
@@ -480,7 +480,7 @@ const ATOperationPriority kATApplicationScraperUpdatePriority = kATOperationPrio
             
             ATApplicationEvent *addEvent = [ATApplicationEvent eventWithType:kATApplicationEventAdditionEvent
                                                                         node:tree.cursor
-                                                                    userInfo:@{ kATApplicationAdditionsKey : [ATCachedElement cacheElement:newChild]}];
+                                                                    userInfo:@{ @"element" : [ATCachedElement cacheElement:newChild]}];
             [_timeline addEvent:addEvent];
             [self _scrapeElementChildren:newChild forTree:tree];
         }

@@ -40,13 +40,8 @@
     {
         return;
     }
-
-    [ATAudioRecorder requestPermissionWithCompletionHandler:^(ATAudioRecorderPermissionStatus status) {
-        [ATSpeechRecognizer requestPermissionWithCompletionHandler:^(ATSpeechRecognizerPermissionStatus status) {
-            [_recognizer startRecording];
-        }];
-    }];
     
+    [_recognizer startRecording];
     _recording = YES;
     [_scraper scrapeWithHandler:^(NSError * _Nullable error, ATApplicationTimeline * _Nullable timeline) {
         // TODO: Check event types

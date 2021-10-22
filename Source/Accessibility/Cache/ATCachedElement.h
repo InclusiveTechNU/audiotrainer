@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 // TODO: Setup a better method of calculating changes and
 // createing a dictionary of changes
 
-@interface ATCachedElement : NSObject
+@interface ATCachedElement : NSObject <NSSecureCoding>
 
 @property (nonatomic, strong, readonly, nullable) NSString *label;
 @property (nonatomic, strong, readonly, nullable) NSString *title;
@@ -26,6 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (instancetype)cacheElement:(ATElement *)element;
 - (instancetype)init NS_UNAVAILABLE;
+- (BOOL)isEqualToElement:(ATElement *)element;
 
 @end
 

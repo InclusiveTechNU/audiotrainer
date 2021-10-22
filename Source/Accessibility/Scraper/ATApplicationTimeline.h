@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ATApplicationTimeline : NSObject {
     NSMutableArray<ATApplicationEvent *> *_events;
-    CFAbsoluteTime _startTime;
+    NSTimeInterval _startTime;
 }
 
 @property (nonatomic, strong, readonly) NSArray<ATApplicationEvent *> *events;

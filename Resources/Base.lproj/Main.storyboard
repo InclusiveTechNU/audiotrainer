@@ -720,7 +720,7 @@
                                         </connections>
                                     </containerView>
                                     <button wantsLayer="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="cWY-bH-YqB">
-                                        <rect key="frame" x="5" y="104.5" width="26" height="36"/>
+                                        <rect key="frame" x="5" y="104" width="26" height="37"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="26" id="0X0-up-TFy"/>
                                             <constraint firstAttribute="width" constant="26" id="A7U-dj-bJL"/>
@@ -773,13 +773,33 @@
             </objects>
             <point key="canvasLocation" x="75" y="655"/>
         </scene>
-        <!--View Controller-->
+        <!--Player View Controller-->
         <scene sceneID="C65-29-84T">
             <objects>
-                <viewController id="rFs-TD-mn4" sceneMemberID="viewController">
+                <viewController id="rFs-TD-mn4" customClass="ATPlayerViewController" sceneMemberID="viewController">
                     <view key="view" id="zeX-Bf-WKe">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Ftr-XE-z8K">
+                                <rect key="frame" x="173" y="133" width="105" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="91" id="BgW-y2-Eq8"/>
+                                    <constraint firstAttribute="height" constant="20" id="ipD-WF-omS"/>
+                                </constraints>
+                                <buttonCell key="cell" type="push" title="Choose File" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="nz1-xb-iAk">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="filePickerButtonOnPress:" target="rFs-TD-mn4" id="T4y-oH-Tjv"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="Ftr-XE-z8K" firstAttribute="centerY" secondItem="zeX-Bf-WKe" secondAttribute="centerY" id="aAr-U6-OuX"/>
+                            <constraint firstItem="Ftr-XE-z8K" firstAttribute="centerX" secondItem="zeX-Bf-WKe" secondAttribute="centerX" id="tCm-Dv-rQn"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <customObject id="KV5-WY-WOL" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -858,6 +878,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="xmark.circle.fill" catalog="system" width="19" height="19"/>
+        <image name="xmark.circle.fill" catalog="system" width="20" height="20"/>
     </resources>
 </document>

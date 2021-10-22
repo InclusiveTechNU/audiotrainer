@@ -36,7 +36,6 @@ static CGFloat kWindowWidth = 440.0;
     window.styleMask = NSWindowStyleMaskTitled | NSWindowStyleMaskFullSizeContentView;
     window.opaque = NO;
     window.backgroundColor = NSColor.clearColor;
-    window.movable = NO;
 }
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification

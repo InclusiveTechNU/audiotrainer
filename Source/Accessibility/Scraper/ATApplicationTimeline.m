@@ -16,7 +16,7 @@
     self = [super init];
     if (self != nil)
     {
-        _startTime = CFAbsoluteTimeGetCurrent();
+        _startTime = NSProcessInfo.processInfo.systemUptime;
         _events = [[NSMutableArray alloc] init];
     }
     return self;
@@ -24,7 +24,7 @@
 
 - (void)addEvent:(ATApplicationEvent *)event
 {
-    double eventTime = CFAbsoluteTimeGetCurrent() - _startTime;
+    double eventTime = NSProcessInfo.processInfo.systemUptime - _startTime;
     event.time = eventTime;
     [_events addObject:event];
 }

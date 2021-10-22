@@ -6,10 +6,13 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "ATApplicationPlayerBase.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ATPlayerViewController : NSViewController
+@interface ATPlayerViewController : NSViewController {
+    ATApplicationPlayerBase * _Nullable _player;
+}
 
 @end
 

@@ -6,8 +6,14 @@
 //
 
 #import "ATRecording.h"
+#import "AVAudioPCMBuffer+Data.h"
 
 @implementation ATRecording
+
++ (BOOL)supportsSecureCoding
+{
+    return YES;
+}
 
 + (instancetype)recordingWithTimeline:(ATApplicationTimeline *)timeline
                             voiceover:(ATSpeechRecording *)recording
@@ -31,7 +37,6 @@
             for (NSUInteger i = lastStoppedIndex; i < timeline.events.count; i++)
             {
                 ATApplicationEvent *event = [timeline.events objectAtIndex:i];
-                NSLog(@"Event: %f, %f, %f", event.time, lastEndTime, newEndTime);
                 if (event.time >= lastEndTime && event.time <= newEndTime)
                 {
                     [events addObject:event];
@@ -52,12 +57,6 @@
             lastEndTime = newEndTime;
         }
     }
-    for (ATRecordingSection *section in sections)
-    {
-        NSLog(@"\nSection: pause at - %f, resuming at - %f", section.pauseTime, section.resumeTime);
-        NSLog(@"%@", section.events);
-        NSLog(@"End Section\n");
-    }
     return [[ATRecording alloc] initWithAudio:recording.audio sections:sections];
 }
 
@@ -72,9 +71,43 @@
     return self;
 }
 
-- (void)saveToPath:(NSURL *)url
+- (NSData * _Nullable)data
 {
-    
+    NSError *error = nil;
+    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:self requiringSecureCoding:NO error:&error];
+    return data;
+}
+
+- (void)exportRecordingWithName:(NSString *)name window:(NSWindow *)window
+{
+    // TODO: Manage alert for failed to save
+    NSData *recordingData = self.data;
+    NSSavePanel *savePanel = [NSSavePanel savePanel];
+    savePanel.nameFieldStringValue = [name stringByAppendingPathExtension:@"tutorial"];
+    [savePanel beginSheetModalForWindow:window completionHandler:^(NSModalResponse result) {
+        if (result == NSModalResponseOK && savePanel.URL != nil && recordingData != nil)
+        {
+            NSURL *fileURL = savePanel.URL;
+            [recordingData writeToURL:fileURL atomically:NO];
+        }
+    }];
+}
+
+- (void)encodeWithCoder:(nonnull NSCoder *)coder {
+    [coder encodeObject:self.sections forKey:@"sections"];
+    [coder encodeObject:self.audioBuffer.data forKey:@"audioBuffer"];
+}
+
+- (nullable instancetype)initWithCoder:(nonnull NSCoder *)coder {
+    self = [super init];
+    if (self != nil)
+    {
+        _sections = [coder decodeObjectOfClasses:[NSSet setWithObjects:[NSArray class], [ATRecordingSection class], nil]
+                                          forKey:@"sections"];
+        NSData *audioData = [coder decodeObjectOfClass:[NSData class] forKey:@"audioBuffer"];
+        _audioBuffer = [AVAudioPCMBuffer fromData:audioData];
+    }
+    return self;
 }
 
 @end

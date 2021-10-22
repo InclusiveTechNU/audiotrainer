@@ -22,7 +22,7 @@ typedef enum {
     kATApplicationEventChangeEvent
 } ATApplicationEventType;
 
-@interface ATApplicationEvent : NSObject
+@interface ATApplicationEvent : NSObject <NSSecureCoding>
 
 @property (nonatomic, assign) double time;
 @property (nonatomic, assign, readonly) ATApplicationEventType type;

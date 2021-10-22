@@ -45,7 +45,7 @@ static NSString *kATApplicationElementEnhancedInterfaceValueKey = @"AXEnhancedUs
 - (NSArray<ATWindowElement *> *)windows
 {
     NSArray * _Nullable windowRefs = [self _attributeValueForKey:kATApplicationElementWindowsValueKey];
-    return [ATElement elementArrayWithElementRefs:windowRefs];
+    return [ATWindowElement windowArrayWithElementRefs:windowRefs];
 }
 
 - (ATWindowElement * _Nullable)mainWindow

@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ATRecordingSection : NSObject
+@interface ATRecordingSection : NSObject <NSSecureCoding>
 
 @property (nonatomic, assign, readonly) double pauseTime;
 @property (nonatomic, assign, readonly) double resumeTime;

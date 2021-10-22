@@ -6,12 +6,18 @@
 //
 
 #import "ATApplicationEvent.h"
+#import "ATCachedElement.h"
 
 const ATApplicationEventInfoKey kATApplicationAdditionsKey = @"ATApplicationAdditions";
 const ATApplicationEventInfoKey kATApplicationDeletionsKey = @"ATApplicationDeletions";
 const ATApplicationEventInfoKey kATApplicationChangesKey = @"ATApplicationChanges";
 
 @implementation ATApplicationEvent
+
++ (BOOL)supportsSecureCoding
+{
+    return YES;
+}
 
 + (instancetype)eventWithType:(ATApplicationEventType)type
                          node:(id<ATTreeNode>)node
@@ -43,7 +49,7 @@ const ATApplicationEventInfoKey kATApplicationChangesKey = @"ATApplicationChange
             }
         }
     }
-    [location addObject:[NSNumber numberWithLong:nodeIndex]];
+    [location insertObject:[NSNumber numberWithLong:nodeIndex] atIndex:0];
     if (node.parent != nil)
     {
         [ATApplicationEvent _addLocationForNode:node.parent withLocation:location];
@@ -60,7 +66,7 @@ const ATApplicationEventInfoKey kATApplicationChangesKey = @"ATApplicationChange
 - (instancetype)initWithType:(ATApplicationEventType)type
                     location:(NSArray<NSNumber *> *)location
                     userInfo:(NSDictionary<ATApplicationEventInfoKey, id> *)userInfo
-                        time:(CFAbsoluteTime)time
+                        time:(NSTimeInterval)time
 {
     self = [super init];
     if (self != nil)
@@ -70,6 +76,29 @@ const ATApplicationEventInfoKey kATApplicationChangesKey = @"ATApplicationChange
         _location = location;
         _level = location.count;
         _time = time;
+    }
+    return self;
+}
+
+- (void)encodeWithCoder:(nonnull NSCoder *)coder {
+    [coder encodeDouble:self.time forKey:@"time"];
+    [coder encodeInt:self.type forKey:@"type"];
+    [coder encodeObject:[NSNumber numberWithUnsignedInteger:self.level] forKey:@"level"];
+    [coder encodeObject:self.userInfo forKey:@"userInfo"];
+    [coder encodeObject:self.location forKey:@"location"];
+}
+
+- (nullable instancetype)initWithCoder:(nonnull NSCoder *)coder {
+    self = [super init];
+    if (self != nil)
+    {
+        _time = [coder decodeDoubleForKey:@"time"];
+        _type = [coder decodeIntForKey:@"type"];
+        _level = ((NSNumber *)[coder decodeObjectOfClass:[NSNumber class] forKey:@"level"]).unsignedIntegerValue;
+        _userInfo = [coder decodeObjectOfClasses:[NSSet setWithObjects:[NSDictionary class], [NSString class], [ATCachedElement class], nil]
+                                          forKey:@"userInfo"];
+        _location = [coder decodeObjectOfClasses:[NSSet setWithObjects:[NSArray class], [NSNumber class], nil]
+                                          forKey:@"location"];
     }
     return self;
 }

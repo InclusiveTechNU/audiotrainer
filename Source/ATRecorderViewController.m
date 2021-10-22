@@ -44,6 +44,7 @@
             [_activeRecorder stopRecording:^(ATRecording * _Nullable recording) {
                 self->_activeRecorder = nil;
                 dispatch_async(dispatch_get_main_queue(), ^{
+                    [recording exportRecordingWithName:@"Untitled" window:self.view.window];
                     [self.recordingButton setTitle:@"Record"];
                 });
             }];

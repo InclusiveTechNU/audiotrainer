@@ -39,6 +39,10 @@
 		0D4BD938270B9E4B0066BC44 /* ATWindowElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D4BD937270B9E4B0066BC44 /* ATWindowElement.m */; };
 		0D4BD93B270B9F1B0066BC44 /* ATApplicationUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D4BD93A270B9F1B0066BC44 /* ATApplicationUtilities.m */; };
 		0D8DC83A271F29370031CE9C /* ATRecordingSection.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D8DC839271F29370031CE9C /* ATRecordingSection.m */; };
+		0D8DC83D2721CD1A0031CE9C /* AVAudioPCMBuffer+Data.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D8DC83C2721CD1A0031CE9C /* AVAudioPCMBuffer+Data.m */; };
+		0D8DC8422721D5E90031CE9C /* GarageBand Tutorial.band in Resources */ = {isa = PBXBuildFile; fileRef = 0D8DC8402721D5E90031CE9C /* GarageBand Tutorial.band */; };
+		0D8DC8432721D5E90031CE9C /* Logic Tutorial.logicx in Resources */ = {isa = PBXBuildFile; fileRef = 0D8DC8412721D5E90031CE9C /* Logic Tutorial.logicx */; };
+		0D8DC8472721E0790031CE9C /* ATApplicationPlayerBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D8DC8462721E0790031CE9C /* ATApplicationPlayerBase.m */; };
 		0DAA997A271DD1D300EC9A6F /* ATAccessibilityPermission.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DAA9979271DD1D300EC9A6F /* ATAccessibilityPermission.m */; };
 		0DC778AC2719EEF900784E39 /* ATAudioRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DC778AB2719EEF900784E39 /* ATAudioRecorder.m */; };
 		0DC778AF2719EF6800784E39 /* ATSpeechRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DC778AE2719EF6800784E39 /* ATSpeechRecognizer.m */; };
@@ -138,6 +142,12 @@
 		0D4BD93C270BA08C0066BC44 /* ATElement_Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATElement_Private.h; sourceTree = "<group>"; };
 		0D8DC838271F29370031CE9C /* ATRecordingSection.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATRecordingSection.h; sourceTree = "<group>"; };
 		0D8DC839271F29370031CE9C /* ATRecordingSection.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ATRecordingSection.m; sourceTree = "<group>"; };
+		0D8DC83B2721CD1A0031CE9C /* AVAudioPCMBuffer+Data.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AVAudioPCMBuffer+Data.h"; sourceTree = "<group>"; };
+		0D8DC83C2721CD1A0031CE9C /* AVAudioPCMBuffer+Data.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "AVAudioPCMBuffer+Data.m"; sourceTree = "<group>"; };
+		0D8DC8402721D5E90031CE9C /* GarageBand Tutorial.band */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = "GarageBand Tutorial.band"; sourceTree = "<group>"; };
+		0D8DC8412721D5E90031CE9C /* Logic Tutorial.logicx */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = "Logic Tutorial.logicx"; sourceTree = "<group>"; };
+		0D8DC8452721E0790031CE9C /* ATApplicationPlayerBase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATApplicationPlayerBase.h; sourceTree = "<group>"; };
+		0D8DC8462721E0790031CE9C /* ATApplicationPlayerBase.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ATApplicationPlayerBase.m; sourceTree = "<group>"; };
 		0DAA9978271DD1D300EC9A6F /* ATAccessibilityPermission.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATAccessibilityPermission.h; sourceTree = "<group>"; };
 		0DAA9979271DD1D300EC9A6F /* ATAccessibilityPermission.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ATAccessibilityPermission.m; sourceTree = "<group>"; };
 		0DC778A427189E6700784E39 /* Audio-Trainer-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Audio-Trainer-Info.plist"; sourceTree = "<group>"; };
@@ -228,6 +238,7 @@
 				0D0045A02703CA6400C2BB3A /* Views */,
 				0DC778A92719EE3800784E39 /* Audio */,
 				0D4BD928270B7E070066BC44 /* Accessibility */,
+				0D8DC8442721E0640031CE9C /* Player */,
 				0D0045882703BDB900C2BB3A /* Recorder */,
 				0D0045952703BFAE00C2BB3A /* Utilities */,
 				0D0045732703B13F00C2BB3A /* ATAppDelegate.h */,
@@ -245,6 +256,8 @@
 		0D0045932703BEED00C2BB3A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				0D8DC8402721D5E90031CE9C /* GarageBand Tutorial.band */,
+				0D8DC8412721D5E90031CE9C /* Logic Tutorial.logicx */,
 				0D0045792703B14100C2BB3A /* Assets.xcassets */,
 				0D00457B2703B14100C2BB3A /* Main.storyboard */,
 				0D00457E2703B14100C2BB3A /* main.m */,
@@ -277,6 +290,8 @@
 				0D0224E2270FD6600029A7DA /* ATPriorityOperation.m */,
 				0D0224E4270FDEC30029A7DA /* ATPriorityOperationDelegate.h */,
 				0D0224F8271331DB0029A7DA /* ATTreeNode.h */,
+				0D8DC83B2721CD1A0031CE9C /* AVAudioPCMBuffer+Data.h */,
+				0D8DC83C2721CD1A0031CE9C /* AVAudioPCMBuffer+Data.m */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -371,6 +386,15 @@
 				0D8DC839271F29370031CE9C /* ATRecordingSection.m */,
 			);
 			path = Recording;
+			sourceTree = "<group>";
+		};
+		0D8DC8442721E0640031CE9C /* Player */ = {
+			isa = PBXGroup;
+			children = (
+				0D8DC8452721E0790031CE9C /* ATApplicationPlayerBase.h */,
+				0D8DC8462721E0790031CE9C /* ATApplicationPlayerBase.m */,
+			);
+			path = Player;
 			sourceTree = "<group>";
 		};
 		0DAA9977271DD1C600EC9A6F /* Utilities */ = {
@@ -506,6 +530,8 @@
 			files = (
 				0D00457A2703B14100C2BB3A /* Assets.xcassets in Resources */,
 				0D00457D2703B14100C2BB3A /* Main.storyboard in Resources */,
+				0D8DC8432721D5E90031CE9C /* Logic Tutorial.logicx in Resources */,
+				0D8DC8422721D5E90031CE9C /* GarageBand Tutorial.band in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -556,8 +582,10 @@
 				0DC778AF2719EF6800784E39 /* ATSpeechRecognizer.m in Sources */,
 				0D0224E3270FD6600029A7DA /* ATPriorityOperation.m in Sources */,
 				0D4BD938270B9E4B0066BC44 /* ATWindowElement.m in Sources */,
+				0D8DC83D2721CD1A0031CE9C /* AVAudioPCMBuffer+Data.m in Sources */,
 				0D8DC83A271F29370031CE9C /* ATRecordingSection.m in Sources */,
 				0D00458B2703BE9200C2BB3A /* ATApplicationRecorderBase.m in Sources */,
+				0D8DC8472721E0790031CE9C /* ATApplicationPlayerBase.m in Sources */,
 				0D0045A32703CA8400C2BB3A /* ATApplicationPopUpButton.m in Sources */,
 				0D24229227178ECD0054E448 /* ATKeyboardBaseRecordingMarker.m in Sources */,
 				0D0224DA270F9F0F0029A7DA /* ATVoiceOverRecordingMarker.m in Sources */,
