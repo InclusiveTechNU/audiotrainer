@@ -290,6 +290,8 @@
 				0D0224E2270FD6600029A7DA /* ATPriorityOperation.m */,
 				0D0224E4270FDEC30029A7DA /* ATPriorityOperationDelegate.h */,
 				0D0224F8271331DB0029A7DA /* ATTreeNode.h */,
+				0DC778B8271A0BBF00784E39 /* AVAudioPCMBuffer+Append.h */,
+				0DC778B9271A0BBF00784E39 /* AVAudioPCMBuffer+Append.m */,
 				0D8DC83B2721CD1A0031CE9C /* AVAudioPCMBuffer+Data.h */,
 				0D8DC83C2721CD1A0031CE9C /* AVAudioPCMBuffer+Data.m */,
 			);
@@ -419,8 +421,6 @@
 				0DC778B3271A01B600784E39 /* ATSpeechRecording.m */,
 				0DC778B5271A02DC00784E39 /* ATSpeechBreak.h */,
 				0DC778B6271A02DC00784E39 /* ATSpeechBreak.m */,
-				0DC778B8271A0BBF00784E39 /* AVAudioPCMBuffer+Append.h */,
-				0DC778B9271A0BBF00784E39 /* AVAudioPCMBuffer+Append.m */,
 			);
 			path = Audio;
 			sourceTree = "<group>";

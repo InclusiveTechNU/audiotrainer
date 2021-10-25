@@ -11,8 +11,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ATWindowElement : ATElement
 
-- (ATElement * _Nullable)elementAtLocation:(NSArray<NSNumber *> *)location;
 + (NSArray *)windowArrayWithElementRefs:(NSArray *)elementRefs;
+- (ATElement * _Nullable)elementAtLocation:(NSArray<NSNumber *> *)location;
 
 @end
 

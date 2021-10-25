@@ -17,6 +17,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do view setup here.
+    _engine = [[AVAudioEngine alloc] init];
+    _playerNode = [[AVAudioPlayerNode alloc] init];
 }
 
 - (IBAction)filePickerButtonOnPress:(id)sender {
@@ -33,9 +35,19 @@
             ATRecording *tutorialRecording = [NSKeyedUnarchiver unarchivedObjectOfClass:ATRecording.class
                                                                                fromData:tutorialData
                                                                                   error:&error];
+            [_engine attachNode:_playerNode];
+            [_engine connect:_playerNode to:_engine.mainMixerNode format:tutorialRecording.audioBuffer.format];
+            
+            // Play the buffer
+            [_playerNode scheduleBuffer:tutorialRecording.audioBuffer completionHandler:nil];
+            [_engine startAndReturnError:nil];
+            [_playerNode play];
+            
+            
             _player = [[ATApplicationPlayerBase alloc] initWithRecording:tutorialRecording];
-            [_player waitForSectionWithTimeout:0 completionHandler:^{
-                NSLog(@"Finished tutorial!");
+            
+            [_player waitForSection:[tutorialRecording.sections objectAtIndex:0] withTimeout:0 completionHandler:^{
+                NSLog(@"hi");
             }];
         }
     }];

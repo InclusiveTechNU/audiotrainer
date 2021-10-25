@@ -71,16 +71,14 @@
     
 }
 
-- (void)waitForSectionWithTimeout:(NSTimeInterval)timeout completionHandler:(void(^)(void))handler
+// TODO: Make this work with timeout
+- (void)waitForSection:(ATRecordingSection *)section
+           withTimeout:(NSTimeInterval)timeout
+     completionHandler:(void(^)(void))handler
 {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
         ATApplicationElement *application = [ATApplicationElement applicationWithName:@"GarageBand"];
-        for (ATRecordingSection *section in self.recording.sections)
-        {
-            NSLog(@"Starting new section");
-            while (![ATApplicationPlayerBase areEventsCompleted:section.events inApplication:application]) {}
-            NSLog(@"Completed Section");
-        }
+        while (![ATApplicationPlayerBase areEventsCompleted:section.events inApplication:application]) {};
         handler();
     });
 }

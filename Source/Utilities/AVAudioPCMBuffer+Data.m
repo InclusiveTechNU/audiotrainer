@@ -11,30 +11,49 @@
 
 + (instancetype)fromData:(NSData *)data
 {
+    // TODO: Deal with nullable
     NSSet *allowedClasses = [NSSet setWithObjects:[NSDictionary class],
                                                   [NSString class],
                                                   [AVAudioFormat class],
                                                   [NSNumber class],
+                                                  [NSArray class],
+                                                  [NSMutableArray class],
                                                   [NSData class], nil];
     NSDictionary *dataDictionary = [NSKeyedUnarchiver unarchivedObjectOfClasses:allowedClasses
                                                                        fromData:data
                                                                           error:nil];
     AVAudioFormat *format = [dataDictionary objectForKey:@"bufferFormat"];
     AVAudioFrameCount count = ((NSNumber *)[dataDictionary objectForKey:@"bufferCapacity"]).intValue;
+    AVAudioFrameCount length = ((NSNumber *)[dataDictionary objectForKey:@"bufferLength"]).intValue;
     AVAudioPCMBuffer *buffer = [[AVAudioPCMBuffer alloc] initWithPCMFormat:format
                                                              frameCapacity:count];
-    // TODO: Copy memory to buffer
+    buffer.frameLength = length;
+    
+    NSArray *bufferChannelData = (NSArray *)[dataDictionary objectForKey:@"bufferData"];
+    size_t bufferSize = buffer.format.streamDescription->mBytesPerFrame * buffer.frameLength;
+    for (NSUInteger channel = 0; channel < bufferChannelData.count; channel++)
+    {
+        NSData *channelData = [bufferChannelData objectAtIndex:channel];
+        memcpy(buffer.floatChannelData[channel], channelData.bytes, bufferSize);
+    }
     return buffer;
 }
 
 - (NSData *)data
 {
-    NSData *bufferData = [[NSData alloc] initWithBytes:self.audioBufferList->mBuffers->mData
-                                                length:self.audioBufferList->mBuffers->mDataByteSize];
+    NSMutableArray *bufferChannelData = [[NSMutableArray alloc] init];
+    size_t bufferSize = self.format.streamDescription->mBytesPerFrame * self.frameLength;
+    for (NSUInteger channel = 0; channel < self.format.channelCount; channel++)
+    {
+        NSData *bufferData = [[NSData alloc] initWithBytes:self.floatChannelData[channel]
+                                                    length:bufferSize];
+        [bufferChannelData addObject:bufferData];
+    }
     NSDictionary *dataDictionary = @{
         @"bufferCapacity": [NSNumber numberWithInt:self.frameCapacity],
+        @"bufferLength": [NSNumber numberWithInt:self.frameLength],
         @"bufferFormat": self.format,
-        @"bufferData": bufferData
+        @"bufferData": bufferChannelData
     };
     NSError *error = nil;
     NSData *data = [NSKeyedArchiver archivedDataWithRootObject:dataDictionary

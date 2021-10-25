@@ -17,7 +17,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (instancetype)initWithRecording:(ATRecording *)recording;
 - (void)play;
-- (void)waitForSectionWithTimeout:(NSTimeInterval)timeout completionHandler:(void(^)(void))handler;
+- (void)waitForSection:(ATRecordingSection *)section
+           withTimeout:(NSTimeInterval)timeout
+     completionHandler:(void(^)(void))handler;
 
 @end
 
