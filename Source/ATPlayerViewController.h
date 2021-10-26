@@ -12,8 +12,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ATPlayerViewController : NSViewController {
     ATApplicationPlayerBase * _Nullable _player;
-    AVAudioEngine *_engine;
-    AVAudioPlayerNode *_playerNode;
 }
 
 @end
