@@ -17,8 +17,24 @@
 + (BOOL)isEventCompleted:(ATApplicationEvent *)event inWindow:(ATWindowElement *)window
 {
     ATElement *element = [window elementAtLocation:event.location];
+    if (element == nil && event.type == kATApplicationEventDeletionEvent)
+    {
+        return YES;
+    }
     ATCachedElement *cachedElement = [event.userInfo objectForKey:@"element"];
     return [cachedElement isEqualToElement:element];
+}
+
++ (BOOL)isEventCompleted:(ATApplicationEvent *)event inApplication:(ATApplicationElement *)application
+{
+    for (ATWindowElement *window in application.windows)
+    {
+        if ([ATApplicationPlayerBase isEventCompleted:event inWindow:window])
+        {
+            return YES;
+        }
+    }
+    return NO;
 }
 
 + (BOOL)areEventsCompleted:(NSArray<ATApplicationEvent *> *)events
@@ -154,8 +170,16 @@
 
     [self playRecordingAtTime:startTime until:pauseTime completionHandler:^{
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+            NSMutableArray *uncompletedEvents = [NSMutableArray arrayWithArray:section.events];
             ATApplicationElement *application = [ATApplicationElement applicationWithName:@"GarageBand"];
-            while (![ATApplicationPlayerBase areEventsCompleted:section.events inApplication:application]) {};
+            while(uncompletedEvents.count > 0)
+            {
+                ATApplicationEvent *event = [uncompletedEvents firstObject];
+                if ([ATApplicationPlayerBase isEventCompleted:event inApplication:application])
+                {
+                    [uncompletedEvents removeObjectAtIndex:0];
+                }
+            }
             handler(YES);
         });
     }];

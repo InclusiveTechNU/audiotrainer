@@ -25,9 +25,6 @@
         NSArray<id <ATApplicationRecorder>> *recorders = @[[[ATGarageBandRecorder alloc] init], [[ATLogicRecorder alloc] init]];
         [self.applicationPickerButton addRecorders:recorders];
     }
-    scraper = [ATApplicationScraper scraperForApplication:@"GarageBand"];
-    [scraper blockLabel:@"Apple Loops"];
-    [scraper blockLabel:@"Playhead thumb"];
 }
 
 - (BOOL)isRecording

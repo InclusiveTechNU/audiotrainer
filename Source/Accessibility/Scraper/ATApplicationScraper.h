@@ -33,6 +33,7 @@ typedef void (^ATApplicationScrapeHandler)(NSError * _Nullable error, ATApplicat
 @property (nonatomic, strong, readonly, nullable) ATApplicationTimeline *timeline;
 @property (nonatomic, strong) NSMutableSet<NSString *> *blockedLabels;
 @property (nonatomic, strong) NSMutableSet<NSString *> *blockedClasses;
+@property (nonatomic, strong) NSMutableSet<NSString *> *enabledTopLevelGroups;
 @property (nonatomic, weak) id<ATApplicationScraperDelegate> delegate;
 @property (nonatomic, assign, readonly) BOOL hasScraped;
 @property (nonatomic, assign) BOOL limitChildrenScraped;
@@ -52,6 +53,7 @@ typedef void (^ATApplicationScrapeHandler)(NSError * _Nullable error, ATApplicat
 - (void)updateWindowsWithHandler:(ATApplicationScrapeHandler _Nullable)handler;
 - (void)updateElement:(ATCachedElementTreeNode *)node withHandler:(ATApplicationScrapeHandler _Nullable)handler;
 
+- (void)enableTopLevelGroup:(NSString *)label;
 - (void)blockLabel:(NSString *)label;
 - (void)blockClass:(NSString *)className;
 - (void)unblockLabel:(NSString *)label;

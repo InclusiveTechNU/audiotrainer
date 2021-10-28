@@ -14,16 +14,18 @@
 {
     if (level == location.count - 1)
     {
-        if (location.count > level && element.childrenCount > [location objectAtIndex:level].unsignedIntegerValue)
+        NSArray *children = element.children;
+        if (location.count > level && children.count > [location objectAtIndex:level].unsignedIntegerValue)
         {
-            return [element.children objectAtIndex:[location objectAtIndex:level].unsignedIntegerValue];
+            return [children objectAtIndex:[location objectAtIndex:level].unsignedIntegerValue];
         }
         return nil;
     }
     
-    if (location.count > level && element.childrenCount > [location objectAtIndex:level].unsignedIntegerValue)
+    NSArray *children = element.children;
+    if (location.count > level && children.count > [location objectAtIndex:level].unsignedIntegerValue)
     {
-        ATElement *nextElement = [element.children objectAtIndex:[location objectAtIndex:level].unsignedIntegerValue];
+        ATElement *nextElement = [children objectAtIndex:[location objectAtIndex:level].unsignedIntegerValue];
         return [ATWindowElement element:nextElement level:level+1 location:location];
     }
     return nil;

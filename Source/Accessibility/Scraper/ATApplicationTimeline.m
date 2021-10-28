@@ -22,6 +22,11 @@
     return self;
 }
 
+- (void)popEvent
+{
+    [_events removeLastObject];
+}
+
 - (void)addEvent:(ATApplicationEvent *)event
 {
     double eventTime = NSProcessInfo.processInfo.systemUptime - _startTime;

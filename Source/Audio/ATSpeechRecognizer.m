@@ -121,6 +121,7 @@
 
 - (void)audioRecorder:(ATAudioRecorder *)recorder didFailToRecordWithError:(NSError *)error
 {
+    NSLog(@"%@", error);
     if (!self.isRecording)
     {
         return;

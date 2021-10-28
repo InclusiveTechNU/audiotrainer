@@ -18,6 +18,11 @@
     if (self != nil)
     {
         _scraper = [ATApplicationScraper scraperForApplication:self.applicationName];
+        [_scraper blockLabel:@"Playhead thumb"];
+        [_scraper enableTopLevelGroup:@"Control Bar"];
+        [_scraper enableTopLevelGroup:@"Tracks"];
+        [_scraper enableTopLevelGroup:@"Smart Controls"];
+
         _recognizer = [[ATSpeechRecognizer alloc] init];
         _recognizer.delegate = self;
     }

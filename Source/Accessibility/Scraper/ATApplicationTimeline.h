@@ -17,6 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong, readonly) NSArray<ATApplicationEvent *> *events;
 
+- (void)popEvent;
 - (void)addEvent:(ATApplicationEvent *)event;
 
 @end

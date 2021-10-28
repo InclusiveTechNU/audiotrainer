@@ -48,6 +48,7 @@ const ATOperationPriority kATApplicationScraperUpdatePriority = kATOperationPrio
         _hasScraped = NO;
         _blockedLabels = [[NSMutableSet alloc] init];
         _blockedClasses = [[NSMutableSet alloc] init];
+        _enabledTopLevelGroups = [[NSMutableSet alloc] init];
         _delegate = nil;
         
         // Set flags and defaults
@@ -314,6 +315,11 @@ const ATOperationPriority kATApplicationScraperUpdatePriority = kATOperationPrio
     }
 }
 
+- (void)enableTopLevelGroup:(NSString *)label
+{
+    [self.enabledTopLevelGroups addObject:label];
+}
+
 - (void)blockLabel:(NSString *)label
 {
     [self.blockedLabels addObject:label];
@@ -417,30 +423,35 @@ const ATOperationPriority kATApplicationScraperUpdatePriority = kATOperationPrio
         }
     }
     
+    BOOL isTopLevel = NO;
+    ATElement *parentElement = element.parent;
+    if (parentElement != nil && [parentElement.role isEqualToString:@"AXWindow"])
+    {
+        isTopLevel = YES;
+    }
+    
     for (ATElement *child in children)
     {
+        /*if (isTopLevel && ![self.enabledTopLevelGroups containsObject:child.label])
+        {
+            continue;
+        }*/
         __weak ATCachedElementTreeNode *currentCursor = tree.cursor;
         ATCachedElement *cachedElement = [ATCachedElement cacheElement:child];
         ATCachedElementTreeNode *childNode = [[ATCachedElementTreeNode alloc] initWithElement:cachedElement];
         [tree.cursor addChild:childNode];
-        if (![self.blockedLabels containsObject:cachedElement.label])
-        {
+        //if (![self.blockedLabels containsObject:cachedElement.label])
+        //{
             [tree moveCursorToChildWithIndex:tree.cursor.children.count - 1];
             [self _scrapeElementChildren:child forTree:tree];
             tree.cursor = currentCursor;
-        }
+        //}
     }
 }
 
 - (void)_updateTree:(ATCachedElementTree *)tree withElement:(ATElement *)element
 {
     ATCachedElement *cachedElement = [ATCachedElement cacheElement:element];
-    NSUInteger elementChildrenCount = element.childrenCount;
-    if (self.limitChildrenScraped && elementChildrenCount > self.maxScrapedChildElements)
-    {
-        elementChildrenCount = self.maxScrapedChildElements;
-    }
-    
     if (![tree.cursor.element isEqual:cachedElement])
     {
         ATApplicationScraper *strongSelf = self;
@@ -451,48 +462,123 @@ const ATOperationPriority kATApplicationScraperUpdatePriority = kATOperationPrio
                                                                        userInfo:@{ @"element": [ATCachedElement cacheElement:element] }];
             [strongSelf->_timeline addEvent:changeEvent];
         }
-    }
 
-    tree.cursor.element = cachedElement;
-    if (elementChildrenCount < tree.cursor.children.count)
-    {
-        while (elementChildrenCount < tree.cursor.children.count)
+        __weak ATCachedElementTreeNode *cursorNode = tree.cursor;
+        NSArray *elementChildren = element.children;
+        for (NSUInteger i = 0; i < tree.cursor.children.count; i++)
         {
-            ATApplicationEvent *removalEvent = [ATApplicationEvent eventWithType:kATApplicationEventDeletionEvent
-                                                                            node:[tree.cursor.children objectAtIndex:tree.cursor.children.count - 1]
+            [tree moveCursorToChildWithIndex:i];
+            [self _updateTree:tree withElement:[elementChildren objectAtIndex:i]];
+            tree.cursor = cursorNode;
+        }
+    }
+    tree.cursor.element = cachedElement;
+
+    NSUInteger elementChildrenCount = element.childrenCount;
+    if (self.limitChildrenScraped && elementChildrenCount > self.maxScrapedChildElements)
+    {
+        elementChildrenCount = self.maxScrapedChildElements;
+    }
+    
+    if (elementChildrenCount == tree.cursor.children.count)
+    {
+        __weak ATCachedElementTreeNode *cursorNode = tree.cursor;
+        NSArray *elementChildren = element.children;
+        for (NSUInteger i = 0; i < tree.cursor.children.count; i++)
+        {
+            [tree moveCursorToChildWithIndex:i];
+            [self _updateTree:tree withElement:[elementChildren objectAtIndex:i]];
+            tree.cursor = cursorNode;
+        }
+    }
+    else if (elementChildrenCount < tree.cursor.children.count)
+    {
+        NSArray *newChildren = element.children;
+        for (NSUInteger i = 0; i < tree.cursor.children.count; i++)
+        {
+            if (i >= elementChildrenCount)
+            {
+                __weak ATCachedElementTreeNode *currentCursorNode = tree.cursor;
+                [tree moveCursorToChildWithIndex:i];
+                ATApplicationEvent *deleteEvent = [ATApplicationEvent eventWithType:kATApplicationEventDeletionEvent
+                                                                            node:tree.cursor
                                                                         userInfo:@{}];
-            [_timeline addEvent:removalEvent];
-            [tree.cursor.children removeObjectAtIndex:tree.cursor.children.count - 1];
+                tree.cursor = currentCursorNode;
+                [tree.cursor.children removeObjectAtIndex:i];
+                [_timeline addEvent:deleteEvent];
+            }
+            else
+            {
+                ATElement *newChild = [newChildren objectAtIndex:i];
+                if (i < tree.cursor.children.count)
+                {
+                    ATCachedElementTreeNode *childNode = [tree.cursor.children objectAtIndex:i];
+                    if ([childNode.element isEqualToElement:newChild])
+                    {
+                        __weak ATCachedElementTreeNode *currentCursorNode = tree.cursor;
+                        [tree moveCursorToChildWithIndex:i];
+                        [self _updateTree:tree withElement:newChild];
+                        tree.cursor = currentCursorNode;
+                        continue;
+                    }
+                    else
+                    {
+                        ATCachedElement *cachedChild = [ATCachedElement cacheElement:newChild];
+                        ATCachedElementTreeNode *newChildNode = [[ATCachedElementTreeNode alloc] initWithElement:cachedChild];
+                        [tree.cursor replaceChild:childNode withNode:newChildNode];
+                    }
+                    __weak ATCachedElementTreeNode *currentCursorNode = tree.cursor;
+                    [tree moveCursorToChildWithIndex:i];
+                    ATApplicationEvent *addEvent = [ATApplicationEvent eventWithType:kATApplicationEventAdditionEvent
+                                                                                node:tree.cursor
+                                                                            userInfo:@{ @"element" : [ATCachedElement cacheElement:newChild]}];
+                    [_timeline addEvent:addEvent];
+                    [self _scrapeElementChildren:newChild forTree:tree];
+                    tree.cursor = currentCursorNode;
+                }
+            }
         }
     }
     else if (elementChildrenCount > tree.cursor.children.count)
     {
-        __weak ATCachedElementTreeNode *currentCursorNode = tree.cursor;
-        NSArray *newChildren = [element childrenAtIndex:tree.cursor.children.count
-                                              maxValues:elementChildrenCount-tree.cursor.children.count];
+        NSArray *newChildren = element.children;
         for (NSUInteger i = 0; i < newChildren.count; i++)
         {
             ATElement *newChild = [newChildren objectAtIndex:i];
-            ATCachedElement *cachedChild = [ATCachedElement cacheElement:newChild];
-            ATCachedElementTreeNode *newChildNode = [[ATCachedElementTreeNode alloc] initWithElement:cachedChild];
-            [tree.cursor addChild:newChildNode];
-            tree.cursor = newChildNode;
+            if (i < tree.cursor.children.count)
+            {
+                ATCachedElementTreeNode *childNode = [tree.cursor.children objectAtIndex:i];
+                if ([childNode.element isEqualToElement:newChild])
+                {
+                    __weak ATCachedElementTreeNode *currentCursorNode = tree.cursor;
+                    [tree moveCursorToChildWithIndex:i];
+                    [self _updateTree:tree withElement:newChild];
+                    tree.cursor = currentCursorNode;
+                    continue;
+                }
+                else
+                {
+                    ATCachedElement *cachedChild = [ATCachedElement cacheElement:newChild];
+                    ATCachedElementTreeNode *newChildNode = [[ATCachedElementTreeNode alloc] initWithElement:cachedChild];
+                    [tree.cursor replaceChild:childNode withNode:newChildNode];
+                }
+            }
+            else
+            {
+                ATCachedElement *cachedChild = [ATCachedElement cacheElement:newChild];
+                ATCachedElementTreeNode *newChildNode = [[ATCachedElementTreeNode alloc] initWithElement:cachedChild];
+                [tree.cursor addChild:newChildNode];
+            }
             
+            __weak ATCachedElementTreeNode *currentCursorNode = tree.cursor;
+            [tree moveCursorToChildWithIndex:i];
             ATApplicationEvent *addEvent = [ATApplicationEvent eventWithType:kATApplicationEventAdditionEvent
                                                                         node:tree.cursor
                                                                     userInfo:@{ @"element" : [ATCachedElement cacheElement:newChild]}];
             [_timeline addEvent:addEvent];
             [self _scrapeElementChildren:newChild forTree:tree];
+            tree.cursor = currentCursorNode;
         }
-        tree.cursor = currentCursorNode;
-    }
-    __weak ATCachedElementTreeNode *cursorNode = tree.cursor;
-    NSArray *elementChildren = element.children;
-    for (NSUInteger i = 0; i < tree.cursor.children.count; i++)
-    {
-        [tree moveCursorToChildWithIndex:i];
-        [self _updateTree:tree withElement:[elementChildren objectAtIndex:i]];
-        tree.cursor = cursorNode;
     }
 }
 
