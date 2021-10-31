@@ -7,11 +7,12 @@
 
 #import <Foundation/Foundation.h>
 #import <AVFoundation/AVFoundation.h>
+#import "ATApplicationPlayer.h"
 #import "ATRecording.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ATApplicationPlayerBase : NSObject {
+@interface ATApplicationPlayerBase : NSObject <ATApplicationPlayer> {
     NSTimer * _Nullable _pauseTimer;
     AVAudioEngine *_engine;
     AVAudioPlayerNode *_playerNode;

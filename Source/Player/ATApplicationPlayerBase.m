@@ -16,25 +16,29 @@
 
 + (BOOL)isEventCompleted:(ATApplicationEvent *)event inWindow:(ATWindowElement *)window
 {
-    ATElement *element = [window elementAtLocation:event.location];
-    if (element == nil && event.type == kATApplicationEventDeletionEvent)
-    {
-        return YES;
+    @autoreleasepool {
+        ATElement *element = [window elementAtLocation:event.location];
+        if (element == nil && event.type == kATApplicationEventDeletionEvent)
+        {
+            return YES;
+        }
+        ATCachedElement *cachedElement = [event.userInfo objectForKey:@"element"];
+        return [cachedElement isEqualToElement:element];
     }
-    ATCachedElement *cachedElement = [event.userInfo objectForKey:@"element"];
-    return [cachedElement isEqualToElement:element];
 }
 
 + (BOOL)isEventCompleted:(ATApplicationEvent *)event inApplication:(ATApplicationElement *)application
 {
-    for (ATWindowElement *window in application.windows)
-    {
-        if ([ATApplicationPlayerBase isEventCompleted:event inWindow:window])
+    @autoreleasepool {
+        for (ATWindowElement *window in application.windows)
         {
-            return YES;
+            if ([ATApplicationPlayerBase isEventCompleted:event inWindow:window])
+            {
+                return YES;
+            }
         }
+        return NO;
     }
-    return NO;
 }
 
 + (BOOL)areEventsCompleted:(NSArray<ATApplicationEvent *> *)events
@@ -174,10 +178,12 @@
             ATApplicationElement *application = [ATApplicationElement applicationWithName:@"GarageBand"];
             while(uncompletedEvents.count > 0)
             {
-                ATApplicationEvent *event = [uncompletedEvents firstObject];
-                if ([ATApplicationPlayerBase isEventCompleted:event inApplication:application])
-                {
-                    [uncompletedEvents removeObjectAtIndex:0];
+                @autoreleasepool {
+                    ATApplicationEvent *event = [uncompletedEvents firstObject];
+                    if ([ATApplicationPlayerBase isEventCompleted:event inApplication:application])
+                    {
+                        [uncompletedEvents removeObjectAtIndex:0];
+                    }
                 }
             }
             handler(YES);

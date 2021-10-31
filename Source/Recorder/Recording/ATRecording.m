@@ -33,12 +33,18 @@
         for (ATSpeechBreak *speechBreak in recording.breaks)
         {
             double newEndTime = speechBreak.endTime;
-            NSMutableArray *events = [[NSMutableArray alloc] init];
+            NSMutableArray<ATApplicationEvent *> *events = [[NSMutableArray alloc] init];
             for (NSUInteger i = lastStoppedIndex; i < timeline.events.count; i++)
             {
                 ATApplicationEvent *event = [timeline.events objectAtIndex:i];
                 if (event.time >= lastEndTime && event.time <= newEndTime)
                 {
+                    if (events.count > 0 &&
+                        [events.lastObject.location isEqualToArray:event.location] &&
+                        [events.lastObject isOnlyValueChange:event])
+                    {
+                        [events removeLastObject];
+                    }
                     [events addObject:event];
                 }
                 else

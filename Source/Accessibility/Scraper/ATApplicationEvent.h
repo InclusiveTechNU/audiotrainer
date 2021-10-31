@@ -38,6 +38,8 @@ typedef enum {
                          location:(NSArray<NSNumber *> *)location
                      userInfo:(NSDictionary<ATApplicationEventInfoKey, id> *)userInfo;
 
+- (BOOL)isOnlyValueChange:(ATApplicationEvent *)event;
+
 @end
 
 NS_ASSUME_NONNULL_END

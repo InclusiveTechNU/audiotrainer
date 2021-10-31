@@ -104,4 +104,9 @@ const ATApplicationEventInfoKey kATApplicationChangesKey = @"ATApplicationChange
     return self;
 }
 
+- (BOOL)isOnlyValueChange:(ATApplicationEvent *)event
+{
+    return NO;
+}
+
 @end
