@@ -7,6 +7,8 @@
 
 #import <Foundation/Foundation.h>
 #import "ATTreeNode.h"
+#import "ATApplicationElement.h"
+#import "ATWindowElement.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -37,8 +39,12 @@ typedef enum {
 + (instancetype)eventWithType:(ATApplicationEventType)type
                          location:(NSArray<NSNumber *> *)location
                      userInfo:(NSDictionary<ATApplicationEventInfoKey, id> *)userInfo;
++ (BOOL)areEventsCompleted:(NSArray<ATApplicationEvent *> *)events
+             inApplication:(ATApplicationElement *)application;
 
 - (BOOL)isOnlyValueChange:(ATApplicationEvent *)event;
+- (BOOL)isCompletedInApplication:(ATApplicationElement *)application;
+- (BOOL)isCompletedInWindow:(ATWindowElement *)window;
 
 @end
 

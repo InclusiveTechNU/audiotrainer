@@ -11,9 +11,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol ATApplicationPlayer
 
+@property (nonatomic, assign, readonly, getter=isPlaying) BOOL playing;
+@property (nonatomic, assign, readonly, getter=isPaused) BOOL paused;
+
 - (NSString *)applicationName;
-- (BOOL)isPlaying;
-- (BOOL)isPaused;
 - (void)pause;
 - (void)restart;
 - (void)stop;

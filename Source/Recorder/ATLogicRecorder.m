@@ -14,6 +14,7 @@
     return @"Logic Pro";
 }
 
+// TODO: Add the identifier for logic
 - (NSString *)applicationIdentifier
 {
     return @"";

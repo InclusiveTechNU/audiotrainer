@@ -44,6 +44,8 @@
 		0D8DC8432721D5E90031CE9C /* Logic Tutorial.logicx in Resources */ = {isa = PBXBuildFile; fileRef = 0D8DC8412721D5E90031CE9C /* Logic Tutorial.logicx */; };
 		0D8DC8472721E0790031CE9C /* ATApplicationPlayerBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D8DC8462721E0790031CE9C /* ATApplicationPlayerBase.m */; };
 		0DAA997A271DD1D300EC9A6F /* ATAccessibilityPermission.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DAA9979271DD1D300EC9A6F /* ATAccessibilityPermission.m */; };
+		0DAF74F1272E822E00F26256 /* ATGarageBandPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DAF74F0272E822E00F26256 /* ATGarageBandPlayer.m */; };
+		0DAF74F4272E823900F26256 /* ATLogicPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DAF74F3272E823900F26256 /* ATLogicPlayer.m */; };
 		0DC778AC2719EEF900784E39 /* ATAudioRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DC778AB2719EEF900784E39 /* ATAudioRecorder.m */; };
 		0DC778AF2719EF6800784E39 /* ATSpeechRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DC778AE2719EF6800784E39 /* ATSpeechRecognizer.m */; };
 		0DC778B4271A01B600784E39 /* ATSpeechRecording.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DC778B3271A01B600784E39 /* ATSpeechRecording.m */; };
@@ -151,6 +153,10 @@
 		0DAA9978271DD1D300EC9A6F /* ATAccessibilityPermission.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATAccessibilityPermission.h; sourceTree = "<group>"; };
 		0DAA9979271DD1D300EC9A6F /* ATAccessibilityPermission.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ATAccessibilityPermission.m; sourceTree = "<group>"; };
 		0DAF74EB272E7E5200F26256 /* ATApplicationPlayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATApplicationPlayer.h; sourceTree = "<group>"; };
+		0DAF74EF272E822E00F26256 /* ATGarageBandPlayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATGarageBandPlayer.h; sourceTree = "<group>"; };
+		0DAF74F0272E822E00F26256 /* ATGarageBandPlayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ATGarageBandPlayer.m; sourceTree = "<group>"; };
+		0DAF74F2272E823900F26256 /* ATLogicPlayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATLogicPlayer.h; sourceTree = "<group>"; };
+		0DAF74F3272E823900F26256 /* ATLogicPlayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ATLogicPlayer.m; sourceTree = "<group>"; };
 		0DC778A427189E6700784E39 /* Audio-Trainer-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Audio-Trainer-Info.plist"; sourceTree = "<group>"; };
 		0DC778AA2719EEF900784E39 /* ATAudioRecorder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATAudioRecorder.h; sourceTree = "<group>"; };
 		0DC778AB2719EEF900784E39 /* ATAudioRecorder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ATAudioRecorder.m; sourceTree = "<group>"; };
@@ -397,6 +403,10 @@
 				0DAF74EB272E7E5200F26256 /* ATApplicationPlayer.h */,
 				0D8DC8452721E0790031CE9C /* ATApplicationPlayerBase.h */,
 				0D8DC8462721E0790031CE9C /* ATApplicationPlayerBase.m */,
+				0DAF74EF272E822E00F26256 /* ATGarageBandPlayer.h */,
+				0DAF74F0272E822E00F26256 /* ATGarageBandPlayer.m */,
+				0DAF74F2272E823900F26256 /* ATLogicPlayer.h */,
+				0DAF74F3272E823900F26256 /* ATLogicPlayer.m */,
 			);
 			path = Player;
 			sourceTree = "<group>";
@@ -576,8 +586,10 @@
 				0DC778B4271A01B600784E39 /* ATSpeechRecording.m in Sources */,
 				0D0224C7270F802B0029A7DA /* ATCachedElementTreeNode.m in Sources */,
 				0DC778B7271A02DC00784E39 /* ATSpeechBreak.m in Sources */,
+				0DAF74F4272E823900F26256 /* ATLogicPlayer.m in Sources */,
 				0D0224E727108DA80029A7DA /* ATCachedElement.m in Sources */,
 				0D0045752703B13F00C2BB3A /* ATAppDelegate.m in Sources */,
+				0DAF74F1272E822E00F26256 /* ATGarageBandPlayer.m in Sources */,
 				0D4BD931270B7E7C0066BC44 /* ATElement.m in Sources */,
 				0D00459F2703C90600C2BB3A /* ATApplicationRecorderUtilities.m in Sources */,
 				0D4BD93B270B9F1B0066BC44 /* ATApplicationUtilities.m in Sources */,

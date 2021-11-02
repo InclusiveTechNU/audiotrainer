@@ -20,7 +20,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong, readonly) ATRecording *recording;
 @property (nonatomic, assign, readonly) BOOL isReadyToPlay;
-@property (nonatomic, assign, readonly) BOOL isPlaying;
 
 - (instancetype)initWithRecording:(ATRecording *)recording;
 - (void)playSectionAtIndex:(NSUInteger)index

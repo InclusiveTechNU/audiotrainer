@@ -11,85 +11,116 @@
 #import "ATApplicationElement.h"
 #import "ATWindowElement.h"
 #import "ATCachedElement.h"
+#import "ATUnimplementedError.h"
 
 @implementation ATApplicationPlayerBase
 
-+ (BOOL)isEventCompleted:(ATApplicationEvent *)event inWindow:(ATWindowElement *)window
-{
-    @autoreleasepool {
-        ATElement *element = [window elementAtLocation:event.location];
-        if (element == nil && event.type == kATApplicationEventDeletionEvent)
-        {
-            return YES;
-        }
-        ATCachedElement *cachedElement = [event.userInfo objectForKey:@"element"];
-        return [cachedElement isEqualToElement:element];
-    }
-}
-
-+ (BOOL)isEventCompleted:(ATApplicationEvent *)event inApplication:(ATApplicationElement *)application
-{
-    @autoreleasepool {
-        for (ATWindowElement *window in application.windows)
-        {
-            if ([ATApplicationPlayerBase isEventCompleted:event inWindow:window])
-            {
-                return YES;
-            }
-        }
-        return NO;
-    }
-}
-
-+ (BOOL)areEventsCompleted:(NSArray<ATApplicationEvent *> *)events
-             inApplication:(ATApplicationElement *)application
-{
-    @autoreleasepool {
-        // TODO: Maybe have a better way of determining which window it is
-        NSMutableSet<NSNumber *> *completedIndexes = [[NSMutableSet alloc] init];
-        for (ATWindowElement *window in application.windows)
-        {
-            for (NSUInteger i = 0; i < events.count; i++)
-            {
-                
-                NSNumber *numIndex = [NSNumber numberWithUnsignedInteger:i];
-                if ([completedIndexes containsObject:numIndex])
-                {
-                    continue;
-                }
-                ATApplicationEvent *event = [events objectAtIndex:i];
-                // TODO: figure out how to do deletres
-                if (event.type == kATApplicationEventDeletionEvent)
-                {
-                    [completedIndexes addObject:numIndex];
-                    continue;
-                }
-                if ([ATApplicationPlayerBase isEventCompleted:event inWindow:window])
-                {
-                    [completedIndexes addObject:numIndex];
-                }
-            }
-        }
-        return completedIndexes.count == events.count;
-    }
-}
+@synthesize playing;
+@synthesize paused;
 
 - (instancetype)initWithRecording:(ATRecording *)recording
 {
     self = [super init];
     if (self != nil)
     {
+        playing = NO;
         _recording = recording;
-        _isPlaying = NO;
         _isReadyToPlay = NO;
         _engine = [[AVAudioEngine alloc] init];
         _playerNode = [[AVAudioPlayerNode alloc] init];
-        [self setupPlayerNode];
+        [self _setupPlayerNode];
     }
     return self;
 }
 
-- (void)setupPlayerNode
+- (nonnull NSString *)applicationName
+{
+    @throw [ATUnimplementedError errorWithSelector:_cmd sourceClass:[self class]];
+}
+
+- (void)pause {
+    // TODO: Implement
+}
+
+
+- (void)restart {
+    // TODO: Implement
+}
+
+
+- (void)stop {
+    // TODO: Implement
+}
+
+- (void)playSectionAtIndex:(NSUInteger)index
+                   timeout:(NSTimeInterval)timeout
+         completionHandler:(void (^)(BOOL))handler
+{
+    if (index >= self.recording.sections.count || !self.isReadyToPlay)
+    {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+            handler(NO);
+        });
+        return;
+    }
+
+    ATRecordingSection *section = [self.recording.sections objectAtIndex:index];
+    NSTimeInterval startTime = 0.0;
+    NSTimeInterval pauseTime = section.pauseTime;
+    if (index != 0)
+    {
+        ATRecordingSection *prevSection = [self.recording.sections objectAtIndex:index - 1];
+        startTime = prevSection.resumeTime;
+    }
+
+    [self _playRecordingAtTime:startTime until:pauseTime completionHandler:^{
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+            NSMutableArray *uncompletedEvents = [NSMutableArray arrayWithArray:section.events];
+            ATApplicationElement *application = [ATApplicationElement applicationWithName:@"GarageBand"];
+            while(uncompletedEvents.count > 0)
+            {
+                @autoreleasepool {
+                    ATApplicationEvent *event = [uncompletedEvents firstObject];
+                    if ([event isCompletedInApplication:application])
+                    {
+                        [uncompletedEvents removeObjectAtIndex:0];
+                    }
+                }
+            }
+            handler(YES);
+        });
+    }];
+}
+
+- (void)playEndingWithCompletionHandler:(void(^)(BOOL))handler
+{
+    NSTimeInterval startTime = 0.0;
+    if (self.recording.sections.count > 0)
+    {
+        ATRecordingSection *endSection = [self.recording.sections objectAtIndex:self.recording.sections.count - 1];
+        startTime = endSection.resumeTime;
+    }
+
+    [self _playRecordingAtTime:startTime completionHandler:^{
+        handler(YES);
+    }];
+}
+
+- (void)playSectionAtIndex:(NSUInteger)index completionHandler:(nonnull void (^)(BOOL))handler {
+    // TODO: Implement
+}
+
+
+- (void)playWithSectionCompletionHandler:(nonnull void (^)(BOOL))handler {
+    // TODO: Implement
+}
+
+
+- (void)playWithTimeout:(NSTimeInterval)timeout sectionCompletionHandler:(nonnull void (^)(BOOL))handler {
+    // TODO: Implement
+}
+
+- (void)_setupPlayerNode
 {
     if (self.isReadyToPlay)
     {
@@ -107,7 +138,7 @@
     }
 }
 
-- (void)playRecordingAtTime:(NSTimeInterval)startTime until:(NSTimeInterval)endTime completionHandler:(void (^)(void))handler
+- (void)_playRecordingAtTime:(NSTimeInterval)startTime until:(NSTimeInterval)endTime completionHandler:(void (^)(void))handler
 {
     [_playerNode stop];
     AVAudioFrameCount startFrame = startTime * self.recording.audioBuffer.format.sampleRate;
@@ -138,71 +169,17 @@
         ATApplicationPlayerBase *strongSelf = weakSelf;
         if (strongSelf != nil)
         {
-            strongSelf->_isPlaying = NO;
+            strongSelf->playing = NO;
         }
         handler();
     }];
     [_playerNode play];
-    _isPlaying = YES;
+    playing = YES;
 }
 
-- (void)playRecordingAtTime:(NSTimeInterval)time completionHandler:(void (^)(void))handler
+- (void)_playRecordingAtTime:(NSTimeInterval)time completionHandler:(void (^)(void))handler
 {
-    [self playRecordingAtTime:time until:-1.0 completionHandler:handler];
-}
-
-- (void)playSectionAtIndex:(NSUInteger)index
-                   timeout:(NSTimeInterval)timeout
-         completionHandler:(void (^)(BOOL))handler
-{
-    if (index >= self.recording.sections.count || !self.isReadyToPlay)
-    {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-            handler(NO);
-        });
-        return;
-    }
-
-    ATRecordingSection *section = [self.recording.sections objectAtIndex:index];
-    NSTimeInterval startTime = 0.0;
-    NSTimeInterval pauseTime = section.pauseTime;
-    if (index != 0)
-    {
-        ATRecordingSection *prevSection = [self.recording.sections objectAtIndex:index - 1];
-        startTime = prevSection.resumeTime;
-    }
-
-    [self playRecordingAtTime:startTime until:pauseTime completionHandler:^{
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-            NSMutableArray *uncompletedEvents = [NSMutableArray arrayWithArray:section.events];
-            ATApplicationElement *application = [ATApplicationElement applicationWithName:@"GarageBand"];
-            while(uncompletedEvents.count > 0)
-            {
-                @autoreleasepool {
-                    ATApplicationEvent *event = [uncompletedEvents firstObject];
-                    if ([ATApplicationPlayerBase isEventCompleted:event inApplication:application])
-                    {
-                        [uncompletedEvents removeObjectAtIndex:0];
-                    }
-                }
-            }
-            handler(YES);
-        });
-    }];
-}
-
-- (void)playEndingWithCompletionHandler:(void(^)(BOOL))handler
-{
-    NSTimeInterval startTime = 0.0;
-    if (self.recording.sections.count > 0)
-    {
-        ATRecordingSection *endSection = [self.recording.sections objectAtIndex:self.recording.sections.count - 1];
-        startTime = endSection.resumeTime;
-    }
-
-    [self playRecordingAtTime:startTime completionHandler:^{
-        handler(YES);
-    }];
+    [self _playRecordingAtTime:time until:-1.0 completionHandler:handler];
 }
 
 @end

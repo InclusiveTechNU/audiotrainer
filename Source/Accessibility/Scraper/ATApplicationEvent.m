@@ -109,4 +109,61 @@ const ATApplicationEventInfoKey kATApplicationChangesKey = @"ATApplicationChange
     return NO;
 }
 
+- (BOOL)isCompletedInWindow:(ATWindowElement *)window
+{
+    @autoreleasepool
+    {
+        ATElement *element = [window elementAtLocation:self.location];
+        if (element == nil && self.type == kATApplicationEventDeletionEvent)
+        {
+            return YES;
+        }
+        ATCachedElement *cachedElement = [self.userInfo objectForKey:@"element"];
+        return [cachedElement isEqualToElement:element];
+    }
+}
+
+- (BOOL)isCompletedInApplication:(ATApplicationElement *)application
+{
+    @autoreleasepool
+    {
+        for (ATWindowElement *window in application.windows)
+        {
+            if ([self isCompletedInWindow:window])
+            {
+                return YES;
+            }
+        }
+        return NO;
+    }
+}
+
++ (BOOL)areEventsCompleted:(NSArray<ATApplicationEvent *> *)events
+             inApplication:(ATApplicationElement *)application
+{
+    @autoreleasepool
+    {
+        // TODO: Maybe have a better way of determining which window it is
+        NSMutableSet<NSNumber *> *completedIndexes = [[NSMutableSet alloc] init];
+        for (ATWindowElement *window in application.windows)
+        {
+            for (NSUInteger i = 0; i < events.count; i++)
+            {
+                NSNumber *numIndex = [NSNumber numberWithUnsignedInteger:i];
+                if ([completedIndexes containsObject:numIndex])
+                {
+                    continue;
+                }
+
+                ATApplicationEvent *event = [events objectAtIndex:i];
+                if ([event isCompletedInWindow:window])
+                {
+                    [completedIndexes addObject:numIndex];
+                }
+            }
+        }
+        return completedIndexes.count == events.count;
+    }
+}
+
 @end

@@ -14,6 +14,7 @@
     return @"GarageBand";
 }
 
+// TODO: Add the identifier for garageband
 - (NSString *)applicationIdentifier
 {
     return @"";
