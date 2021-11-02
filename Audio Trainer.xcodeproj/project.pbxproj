@@ -157,7 +157,6 @@
 		0DAF74F0272E822E00F26256 /* ATGarageBandPlayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ATGarageBandPlayer.m; sourceTree = "<group>"; };
 		0DAF74F2272E823900F26256 /* ATLogicPlayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATLogicPlayer.h; sourceTree = "<group>"; };
 		0DAF74F3272E823900F26256 /* ATLogicPlayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ATLogicPlayer.m; sourceTree = "<group>"; };
-		0DC778A427189E6700784E39 /* Audio-Trainer-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Audio-Trainer-Info.plist"; sourceTree = "<group>"; };
 		0DC778AA2719EEF900784E39 /* ATAudioRecorder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATAudioRecorder.h; sourceTree = "<group>"; };
 		0DC778AB2719EEF900784E39 /* ATAudioRecorder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ATAudioRecorder.m; sourceTree = "<group>"; };
 		0DC778AD2719EF6800784E39 /* ATSpeechRecognizer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATSpeechRecognizer.h; sourceTree = "<group>"; };
@@ -205,7 +204,6 @@
 		0D0045672703B13F00C2BB3A = {
 			isa = PBXGroup;
 			children = (
-				0DC778A427189E6700784E39 /* Audio-Trainer-Info.plist */,
 				0D0045922703BEE900C2BB3A /* Source */,
 				0D0045942703BEF600C2BB3A /* Tests */,
 				0D0045932703BEED00C2BB3A /* Resources */,
@@ -777,7 +775,7 @@
 				ENABLE_APP_SANDBOX = NO;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "Audio-Trainer-Info.plist";
+				INFOPLIST_FILE = "";
 				INFOPLIST_KEY_LSApplicationCategoryType = NSAppleEventsUsageDescription;
 				INFOPLIST_KEY_NSAppleEventsUsageDescription = "We use apple events to record GarageBand & Logic Pro tutorials. ";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
@@ -808,7 +806,7 @@
 				ENABLE_APP_SANDBOX = NO;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "Audio-Trainer-Info.plist";
+				INFOPLIST_FILE = "";
 				INFOPLIST_KEY_LSApplicationCategoryType = NSAppleEventsUsageDescription;
 				INFOPLIST_KEY_NSAppleEventsUsageDescription = "We use apple events to record GarageBand & Logic Pro tutorials. ";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
