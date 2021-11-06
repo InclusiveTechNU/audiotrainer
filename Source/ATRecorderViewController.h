@@ -18,6 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
     ATApplicationScraper *scraper;
     CFMachPortRef _eventListenerPort;
     NSTimer * _Nullable accessibilityPermissionTimer;
+    AVAudioPlayer * _player;
 }
 
 @property (weak, nullable) IBOutlet NSButton *recordingButton;

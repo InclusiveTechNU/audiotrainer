@@ -38,6 +38,8 @@
 		0D4BD934270B9DF40066BC44 /* ATApplicationElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D4BD933270B9DF40066BC44 /* ATApplicationElement.m */; };
 		0D4BD938270B9E4B0066BC44 /* ATWindowElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D4BD937270B9E4B0066BC44 /* ATWindowElement.m */; };
 		0D4BD93B270B9F1B0066BC44 /* ATApplicationUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D4BD93A270B9F1B0066BC44 /* ATApplicationUtilities.m */; };
+		0D65ED232736D6B40034A3B8 /* state-change_confirm-down.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0D65ED212736D6B40034A3B8 /* state-change_confirm-down.wav */; };
+		0D65ED242736D6B40034A3B8 /* state-change_confirm-up.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0D65ED222736D6B40034A3B8 /* state-change_confirm-up.wav */; };
 		0D8DC83A271F29370031CE9C /* ATRecordingSection.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D8DC839271F29370031CE9C /* ATRecordingSection.m */; };
 		0D8DC83D2721CD1A0031CE9C /* AVAudioPCMBuffer+Data.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D8DC83C2721CD1A0031CE9C /* AVAudioPCMBuffer+Data.m */; };
 		0D8DC8422721D5E90031CE9C /* GarageBand Tutorial.band in Resources */ = {isa = PBXBuildFile; fileRef = 0D8DC8402721D5E90031CE9C /* GarageBand Tutorial.band */; };
@@ -142,6 +144,8 @@
 		0D4BD939270B9F1B0066BC44 /* ATApplicationUtilities.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATApplicationUtilities.h; sourceTree = "<group>"; };
 		0D4BD93A270B9F1B0066BC44 /* ATApplicationUtilities.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ATApplicationUtilities.m; sourceTree = "<group>"; };
 		0D4BD93C270BA08C0066BC44 /* ATElement_Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATElement_Private.h; sourceTree = "<group>"; };
+		0D65ED212736D6B40034A3B8 /* state-change_confirm-down.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "state-change_confirm-down.wav"; sourceTree = "<group>"; };
+		0D65ED222736D6B40034A3B8 /* state-change_confirm-up.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "state-change_confirm-up.wav"; sourceTree = "<group>"; };
 		0D8DC838271F29370031CE9C /* ATRecordingSection.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATRecordingSection.h; sourceTree = "<group>"; };
 		0D8DC839271F29370031CE9C /* ATRecordingSection.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ATRecordingSection.m; sourceTree = "<group>"; };
 		0D8DC83B2721CD1A0031CE9C /* AVAudioPCMBuffer+Data.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AVAudioPCMBuffer+Data.h"; sourceTree = "<group>"; };
@@ -261,6 +265,7 @@
 		0D0045932703BEED00C2BB3A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				0D65ED202736D6B40034A3B8 /* Sounds */,
 				0D8DC8402721D5E90031CE9C /* GarageBand Tutorial.band */,
 				0D8DC8412721D5E90031CE9C /* Logic Tutorial.logicx */,
 				0D0045792703B14100C2BB3A /* Assets.xcassets */,
@@ -382,6 +387,15 @@
 				0D4BD930270B7E7C0066BC44 /* ATElement.m */,
 			);
 			path = Elements;
+			sourceTree = "<group>";
+		};
+		0D65ED202736D6B40034A3B8 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				0D65ED212736D6B40034A3B8 /* state-change_confirm-down.wav */,
+				0D65ED222736D6B40034A3B8 /* state-change_confirm-up.wav */,
+			);
+			path = Sounds;
 			sourceTree = "<group>";
 		};
 		0D8DC837271F29290031CE9C /* Recording */ = {
@@ -540,8 +554,10 @@
 			files = (
 				0D00457A2703B14100C2BB3A /* Assets.xcassets in Resources */,
 				0D00457D2703B14100C2BB3A /* Main.storyboard in Resources */,
+				0D65ED242736D6B40034A3B8 /* state-change_confirm-up.wav in Resources */,
 				0D8DC8432721D5E90031CE9C /* Logic Tutorial.logicx in Resources */,
 				0D8DC8422721D5E90031CE9C /* GarageBand Tutorial.band in Resources */,
+				0D65ED232736D6B40034A3B8 /* state-change_confirm-down.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

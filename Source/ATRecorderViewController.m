@@ -69,6 +69,10 @@ static CGEventRef ATVoiceOverRecordingMarkerEventCallback(CGEventTapProxy proxy,
         {
             [self.recordingButton setTitle:@"Record"];
             self.recordingButton.enabled = NO;
+            NSString *soundFilePath = [NSString stringWithFormat:@"%@/state-change_confirm-down.wav", [[NSBundle mainBundle] resourcePath]];
+            NSURL *soundFileURL = [NSURL fileURLWithPath:soundFilePath];
+            _player = [[AVAudioPlayer alloc] initWithContentsOfURL:soundFileURL error:nil];
+            [_player play];
             NSAccessibilityPostNotificationWithUserInfo(NSApp.mainWindow,
                                                         NSAccessibilityAnnouncementRequestedNotification,
                                                         @{ NSAccessibilityAnnouncementKey: @"Processing recording",
@@ -90,6 +94,10 @@ static CGEventRef ATVoiceOverRecordingMarkerEventCallback(CGEventTapProxy proxy,
         {
             [self.recordingButton setTitle:@"Stop Recording"];
             [_activeRecorder startRecording];
+            NSString *soundFilePath = [NSString stringWithFormat:@"%@/state-change_confirm-up.wav", [[NSBundle mainBundle] resourcePath]];
+            NSURL *soundFileURL = [NSURL fileURLWithPath:soundFilePath];
+            _player = [[AVAudioPlayer alloc] initWithContentsOfURL:soundFileURL error:nil];
+            [_player play];
         }
     }
     else
