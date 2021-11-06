@@ -19,6 +19,7 @@ NSString * const kATElementVisibleChildrenKey = @"AXVisibleChildren";
 NSString * const kATElementValueValueKey = @"AXValue";
 NSString * const kATElementTypeValueKey = @"AXType";
 NSString * const kATElementClassValueKey = @"AXClassName";
+NSString * const kATElementHelpValueKey = @"AXHelp";
 
 @implementation ATElement
 
@@ -109,6 +110,11 @@ NSString * const kATElementClassValueKey = @"AXClassName";
 - (NSString * _Nullable)title
 {
     return [self _attributeValueForKey:kATElementTitleValueKey];
+}
+
+- (NSString * _Nullable)help
+{
+    return [self _attributeValueForKey:kATElementHelpValueKey];
 }
 
 - (CGRect)frame

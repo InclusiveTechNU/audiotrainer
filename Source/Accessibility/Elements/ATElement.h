@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 extern NSString * const kATElementLabelValueKey;
 extern NSString * const kATElementRoleValueKey;
 extern NSString * const kATElementTitleValueKey;
+extern NSString * const kATElementHelpValueKey;
 extern NSString * const kATElementValueValueKey;
 extern NSString * const kATElementTypeValueKey;
 extern NSString * const kATElementClassValueKey;
@@ -34,6 +35,7 @@ extern NSString * const kATElementVisibleChildrenKey;
 - (NSString * _Nullable)label;
 - (NSString * _Nullable)role;
 - (NSString * _Nullable)title;
+- (NSString * _Nullable)help;
 - (CGRect)frame;
 - (ATElement * _Nullable)parent;
 

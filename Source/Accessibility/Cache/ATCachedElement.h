@@ -19,6 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong, readonly, nullable) NSString *label;
 @property (nonatomic, strong, readonly, nullable) NSString *title;
 @property (nonatomic, strong, readonly, nullable) NSString *role;
+@property (nonatomic, strong, readonly, nullable) NSString *help;
 @property (nonatomic, strong, readonly, nullable) id value;
 @property (nonatomic, strong, readonly, nullable) NSString *type;
 @property (nonatomic, strong, readonly, nullable) NSString *classType;

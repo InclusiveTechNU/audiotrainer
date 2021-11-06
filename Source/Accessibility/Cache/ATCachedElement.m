@@ -28,7 +28,8 @@
              kATElementValueValueKey,
              kATElementTypeValueKey,
              kATElementClassValueKey,
-             kATElementFrameValueKey];
+             kATElementFrameValueKey,
+             kATElementHelpValueKey];
 }
 
 - (instancetype)initWithElement:(ATElement *)element
@@ -49,6 +50,10 @@
         // Role
         valueRef = [attributeValues objectForKey:kATElementRoleValueKey];
         (valueRef == nil || [self _isErrorValue:valueRef]) ? (_role = nil) : (_role = valueRef);
+        
+        // Help
+        valueRef = [attributeValues objectForKey:kATElementHelpValueKey];
+        (valueRef == nil || [self _isErrorValue:valueRef]) ? (_help = nil) : (_help = valueRef);
 
         // Value
         valueRef = [attributeValues objectForKey:kATElementValueValueKey];
@@ -106,6 +111,7 @@
     return ((self.label == nil && cachedElement.label == nil) || [self.label isEqualToString:cachedElement.label]) &&
             ((self.title == nil && cachedElement.title == nil) || [self.title isEqualToString:cachedElement.title]) &&
             ((self.role == nil && cachedElement.role == nil) || [self.role isEqualToString:cachedElement.role]) &&
+            ((self.help == nil && cachedElement.help == nil) || [self.help isEqualToString:cachedElement.help]) &&
             ((self.type == nil && cachedElement.type == nil) || [self.type isEqualToString:cachedElement.type]) &&
             ((self.value == nil && cachedElement.value == nil) || [self.value isEqual:cachedElement.value]) &&
             ((self.classType == nil && cachedElement.classType == nil) || [self.classType isEqualToString:cachedElement.classType]);
@@ -115,6 +121,7 @@
     [coder encodeObject:self.label forKey:@"label"];
     [coder encodeObject:self.title forKey:@"title"];
     [coder encodeObject:self.role forKey:@"role"];
+    [coder encodeObject:self.help forKey:@"help"];
     [coder encodeObject:self.value forKey:@"value"];
     [coder encodeObject:self.type forKey:@"type"];
     [coder encodeObject:self.classType forKey:@"classType"];
@@ -128,6 +135,7 @@
         _label = [coder decodeObjectOfClass:[NSString class] forKey:@"label"];
         _title = [coder decodeObjectOfClass:[NSString class] forKey:@"title"];
         _role = [coder decodeObjectOfClass:[NSString class] forKey:@"role"];
+        _help = [coder decodeObjectOfClass:[NSString class] forKey:@"help"];
         NSSet *valueClasses = [NSSet setWithObjects:[NSString class], [NSNumber class], nil];
         _value = [coder decodeObjectOfClasses:valueClasses forKey:@"value"];
         _type = [coder decodeObjectOfClass:[NSString class] forKey:@"type"];
