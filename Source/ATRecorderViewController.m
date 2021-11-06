@@ -5,11 +5,29 @@
 //  Created by Tommy McHugh on 10/6/21.
 //
 
+#import <Carbon/Carbon.h>
 #import "ATRecorderViewController.h"
 #import "ATLogicRecorder.h"
 #import "ATGarageBandRecorder.h"
 #import "ATApplicationRecorderUtilities.h"
 #import "ATApplicationElement.h"
+#import "ATAccessibilityPermission.h"
+
+static CGEventRef ATVoiceOverRecordingMarkerEventCallback(CGEventTapProxy proxy, CGEventType type, CGEventRef event, void *refcon)
+{
+    CGEventFlags flags = CGEventGetFlags(event);
+    CGEventFlags modifierFlags = kCGEventFlagMaskControl | kCGEventFlagMaskCommand;
+    BOOL didPressModifier = (flags & modifierFlags) == modifierFlags;
+    if (didPressModifier)
+    {
+        CGKeyCode key = CGEventGetIntegerValueField(event, kCGKeyboardEventKeycode);
+        if (key == kVK_ANSI_R) {
+            ATRecorderViewController *viewController = (__bridge ATRecorderViewController *) refcon;
+            [viewController recordButtonOnPress:viewController];
+        }
+    }
+    return event;
+}
 
 @interface ATRecorderViewController ()
 
@@ -25,6 +43,17 @@
         NSArray<id <ATApplicationRecorder>> *recorders = @[[[ATGarageBandRecorder alloc] init], [[ATLogicRecorder alloc] init]];
         [self.applicationPickerButton addRecorders:recorders];
     }
+    
+    accessibilityPermissionTimer = [ATAccessibilityPermission waitForPermissionWithCompletionHandler:^{
+        CGEventTapLocation location = kCGHIDEventTap;
+        CGEventTapPlacement placement = kCGHeadInsertEventTap; // TODO: Look into this
+        CGEventTapOptions options = kCGEventTapOptionListenOnly;
+        CGEventTapCallBack callback = ATVoiceOverRecordingMarkerEventCallback;
+        void * _Nullable userInfo = (__bridge_retained void*) self;
+        self->_eventListenerPort = CGEventTapCreate(location, placement, options, CGEventMaskBit(kCGEventKeyDown), callback, userInfo);
+        CFRunLoopSourceRef eventListenerLoop = CFMachPortCreateRunLoopSource(kCFAllocatorDefault, self->_eventListenerPort, 0);
+        CFRunLoopAddSource(CFRunLoopGetMain(), eventListenerLoop, kCFRunLoopDefaultMode);
+    }];
 }
 
 - (BOOL)isRecording
