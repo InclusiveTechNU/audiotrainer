@@ -79,7 +79,6 @@ static CGEventRef ATVoiceOverRecordingMarkerEventCallback(CGEventTapProxy proxy,
                                                            NSAccessibilityPriorityKey: @(NSAccessibilityPriorityHigh)
                                                         });
             [_activeRecorder stopRecording:^(ATRecording * _Nullable recording) {
-                self->_activeRecorder = nil;
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [recording exportRecordingWithName:@"Untitled" window:self.view.window];
                     self.recordingButton.enabled = YES;
