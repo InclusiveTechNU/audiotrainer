@@ -40,6 +40,11 @@
         {
             [self.recordingButton setTitle:@"Record"];
             self.recordingButton.enabled = NO;
+            NSAccessibilityPostNotificationWithUserInfo(NSApp.mainWindow,
+                                                        NSAccessibilityAnnouncementRequestedNotification,
+                                                        @{ NSAccessibilityAnnouncementKey: @"Processing recording",
+                                                           NSAccessibilityPriorityKey: @(NSAccessibilityPriorityHigh)
+                                                        });
             [_activeRecorder stopRecording:^(ATRecording * _Nullable recording) {
                 self->_activeRecorder = nil;
                 dispatch_async(dispatch_get_main_queue(), ^{
