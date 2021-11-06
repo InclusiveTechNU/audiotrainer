@@ -38,11 +38,13 @@
     {
         if (_activeRecorder.isRecording)
         {
+            [self.recordingButton setTitle:@"Record"];
+            self.recordingButton.enabled = NO;
             [_activeRecorder stopRecording:^(ATRecording * _Nullable recording) {
                 self->_activeRecorder = nil;
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [recording exportRecordingWithName:@"Untitled" window:self.view.window];
-                    [self.recordingButton setTitle:@"Record"];
+                    self.recordingButton.enabled = YES;
                 });
             }];
         }
