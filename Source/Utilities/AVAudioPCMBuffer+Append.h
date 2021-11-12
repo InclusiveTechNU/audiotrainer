@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface AVAudioPCMBuffer (Append)
 
 + (AVAudioPCMBuffer * _Nullable)combineBuffers:(NSArray<AVAudioPCMBuffer *> *)buffers;
+- (NSArray<AVAudioPCMBuffer *> *)splitByTimeInterval:(NSTimeInterval)time;
 
 @end
 

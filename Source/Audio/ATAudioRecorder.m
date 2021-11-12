@@ -92,6 +92,8 @@ static const int kATAudioRecorderBufferSize = 1024;
     [_engine startAndReturnError:&recordingError];
     if (recordingError != nil)
     {
+        NSLog(@"Error");
+        NSLog(@"%@", recordingError);
         _currentRecording = nil;
         [self.delegate audioRecorder:self didFailToRecordWithError:recordingError];
         return NO;

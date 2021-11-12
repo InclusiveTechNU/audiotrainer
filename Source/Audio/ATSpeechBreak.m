@@ -11,6 +11,28 @@ static const NSTimeInterval kATSpeechBreakMinimumBreakTime = 2.0;
 
 @implementation ATSpeechBreak
 
++ (NSArray<ATSpeechBreak *> *)breaksFromSpeechResults:(NSArray<ATSpeechRecognitionResult *> *)results
+{
+    NSMutableArray<ATSpeechBreak *> *breaks = [[NSMutableArray alloc] init];
+    NSTimeInterval lastEndTime = -1.0;
+    NSTimeInterval bufferStartTime = 0.0;
+    for (ATSpeechRecognitionResult *result in results)
+    {
+        for (SFTranscriptionSegment *segment in result.result.bestTranscription.segments)
+        {
+            NSTimeInterval startTime = bufferStartTime + segment.timestamp;
+            if (lastEndTime != -1.0 && (startTime - lastEndTime) >= kATSpeechBreakMinimumBreakTime)
+            {
+                [breaks addObject:[[ATSpeechBreak alloc] initWithStartTime:lastEndTime
+                                                                   endTime:startTime]];
+            }
+            lastEndTime = startTime + segment.duration;
+        }
+        bufferStartTime += result.length;
+    }
+    return breaks;
+}
+
 + (NSArray<ATSpeechBreak *> *)breaksFromSpeechResult:(SFSpeechRecognitionResult *)result
 {
     NSMutableArray<ATSpeechBreak *> *breaks = [[NSMutableArray alloc] init];

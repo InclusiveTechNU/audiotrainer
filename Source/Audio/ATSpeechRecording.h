@@ -9,6 +9,7 @@
 #import <AVFoundation/AVFoundation.h>
 #import <Speech/Speech.h>
 #import "ATSpeechBreak.h"
+#import "ATSpeechRecognitionResult.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -18,6 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong, readonly) NSArray<ATSpeechBreak *> *breaks;
 @property (nonatomic, strong, readonly) AVAudioPCMBuffer *audio;
 
+- (instancetype)initWithSpeechResults:(NSArray<ATSpeechRecognitionResult *> *)results audioBuffer:(AVAudioPCMBuffer *)buffer;
 - (instancetype)initWithSpeechResult:(SFSpeechRecognitionResult *)result audioBuffer:(AVAudioPCMBuffer *)buffer;
 
 @end

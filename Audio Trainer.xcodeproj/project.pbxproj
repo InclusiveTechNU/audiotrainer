@@ -53,6 +53,7 @@
 		0DC778B4271A01B600784E39 /* ATSpeechRecording.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DC778B3271A01B600784E39 /* ATSpeechRecording.m */; };
 		0DC778B7271A02DC00784E39 /* ATSpeechBreak.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DC778B6271A02DC00784E39 /* ATSpeechBreak.m */; };
 		0DC778BA271A0BBF00784E39 /* AVAudioPCMBuffer+Append.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DC778B9271A0BBF00784E39 /* AVAudioPCMBuffer+Append.m */; };
+		0DCEDD8F273E047700F70C9F /* ATSpeechRecognitionResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DCEDD8E273E047700F70C9F /* ATSpeechRecognitionResult.m */; };
 		0DD3CF27270E256D00B166EC /* Audio_Trainer_UI_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DD3CF26270E256D00B166EC /* Audio_Trainer_UI_Tests.m */; };
 		0DD3CF29270E256D00B166EC /* Audio_Trainer_UI_TestsLaunchTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DD3CF28270E256D00B166EC /* Audio_Trainer_UI_TestsLaunchTests.m */; };
 		0DD3CF3C270E258C00B166EC /* Audio_Trainer_Unit_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DD3CF35270E258800B166EC /* Audio_Trainer_Unit_Tests.m */; };
@@ -173,6 +174,8 @@
 		0DC778B6271A02DC00784E39 /* ATSpeechBreak.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ATSpeechBreak.m; sourceTree = "<group>"; };
 		0DC778B8271A0BBF00784E39 /* AVAudioPCMBuffer+Append.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AVAudioPCMBuffer+Append.h"; sourceTree = "<group>"; };
 		0DC778B9271A0BBF00784E39 /* AVAudioPCMBuffer+Append.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "AVAudioPCMBuffer+Append.m"; sourceTree = "<group>"; };
+		0DCEDD8D273E047700F70C9F /* ATSpeechRecognitionResult.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATSpeechRecognitionResult.h; sourceTree = "<group>"; };
+		0DCEDD8E273E047700F70C9F /* ATSpeechRecognitionResult.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ATSpeechRecognitionResult.m; sourceTree = "<group>"; };
 		0DD3CF24270E256D00B166EC /* Audio Trainer UI Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Audio Trainer UI Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0DD3CF26270E256D00B166EC /* Audio_Trainer_UI_Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Audio_Trainer_UI_Tests.m; sourceTree = "<group>"; };
 		0DD3CF28270E256D00B166EC /* Audio_Trainer_UI_TestsLaunchTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Audio_Trainer_UI_TestsLaunchTests.m; sourceTree = "<group>"; };
@@ -445,6 +448,8 @@
 				0DC778B3271A01B600784E39 /* ATSpeechRecording.m */,
 				0DC778B5271A02DC00784E39 /* ATSpeechBreak.h */,
 				0DC778B6271A02DC00784E39 /* ATSpeechBreak.m */,
+				0DCEDD8D273E047700F70C9F /* ATSpeechRecognitionResult.h */,
+				0DCEDD8E273E047700F70C9F /* ATSpeechRecognitionResult.m */,
 			);
 			path = Audio;
 			sourceTree = "<group>";
@@ -593,6 +598,7 @@
 				0D197408270DE24800CF6813 /* ATPlayerViewController.m in Sources */,
 				0D0224F7271308C70029A7DA /* NSError+ApplicationScraper.m in Sources */,
 				0DC778BA271A0BBF00784E39 /* AVAudioPCMBuffer+Append.m in Sources */,
+				0DCEDD8F273E047700F70C9F /* ATSpeechRecognitionResult.m in Sources */,
 				0D0045992703C04000C2BB3A /* ATRecording.m in Sources */,
 				0DAA997A271DD1D300EC9A6F /* ATAccessibilityPermission.m in Sources */,
 				0D4BD934270B9DF40066BC44 /* ATApplicationElement.m in Sources */,
@@ -785,14 +791,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_APP_SANDBOX = NO;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "";
-				INFOPLIST_KEY_LSApplicationCategoryType = NSAppleEventsUsageDescription;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSAppleEventsUsageDescription = "We use apple events to record GarageBand & Logic Pro tutorials. ";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_NSMainStoryboardFile = Main;
@@ -816,14 +824,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_APP_SANDBOX = NO;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "";
-				INFOPLIST_KEY_LSApplicationCategoryType = NSAppleEventsUsageDescription;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSAppleEventsUsageDescription = "We use apple events to record GarageBand & Logic Pro tutorials. ";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_NSMainStoryboardFile = Main;

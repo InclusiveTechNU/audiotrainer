@@ -41,4 +41,40 @@
     return buffer;
 }
 
+- (NSArray<AVAudioPCMBuffer *> *)splitByTimeInterval:(NSTimeInterval)time;
+{
+    AVAudioFrameCount maxFrames = self.format.sampleRate * time;
+    double segments = ceil((double) self.frameLength / (double) maxFrames);
+    NSMutableArray<AVAudioPCMBuffer *> *buffers = [[NSMutableArray alloc] initWithCapacity:segments];
+    
+    AVAudioFrameCount framesLeft = self.frameLength;
+    for (unsigned int i = 0; i < (unsigned int) segments; i++)
+    {
+        AVAudioFrameCount startFrame = maxFrames * i;
+        AVAudioFrameCount frames;
+        if (framesLeft >= maxFrames)
+        {
+            frames = maxFrames;
+        }
+        else
+        {
+            frames = framesLeft;
+        }
+        framesLeft -= frames;
+        AVAudioPCMBuffer *buffer = [[AVAudioPCMBuffer alloc] initWithPCMFormat:self.format
+                                                                 frameCapacity:frames];
+        buffer.frameLength = frames;
+        size_t bytesPerFrame = self.format.streamDescription->mBytesPerFrame;
+        size_t bufferSize = bytesPerFrame * buffer.frameLength;
+        for (NSUInteger channel = 0; channel < self.format.channelCount; channel++)
+        {
+            memcpy(buffer.floatChannelData[channel],
+                   self.floatChannelData[channel]+startFrame,
+                   bufferSize);
+        }
+        [buffers addObject:buffer];
+    }
+    return buffers;
+}
+
 @end
