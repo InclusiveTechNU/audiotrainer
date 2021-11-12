@@ -19,6 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong, readonly) NSArray<ATSpeechBreak *> *breaks;
 @property (nonatomic, strong, readonly) AVAudioPCMBuffer *audio;
 
+- (instancetype)initWithSpeechMarkers:(NSArray<NSDictionary *> *)result audioBuffer:(AVAudioPCMBuffer *)buffer;
 - (instancetype)initWithSpeechResults:(NSArray<ATSpeechRecognitionResult *> *)results audioBuffer:(AVAudioPCMBuffer *)buffer;
 - (instancetype)initWithSpeechResult:(SFSpeechRecognitionResult *)result audioBuffer:(AVAudioPCMBuffer *)buffer;
 

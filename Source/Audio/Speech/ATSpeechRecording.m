@@ -9,6 +9,18 @@
 
 @implementation ATSpeechRecording
 
+- (instancetype)initWithSpeechMarkers:(NSArray<NSDictionary *> *)result audioBuffer:(AVAudioPCMBuffer *)buffer
+{
+    self = [super init];
+    if (self != nil)
+    {
+        _audio = buffer;
+        _formattedSpeech = @"";
+        _breaks = [ATSpeechBreak breaksFromSpeechMarkers:result];
+    }
+    return self;
+}
+
 - (instancetype)initWithSpeechResults:(NSArray<ATSpeechRecognitionResult *> *)results audioBuffer:(AVAudioPCMBuffer *)buffer
 {
     self = [super init];

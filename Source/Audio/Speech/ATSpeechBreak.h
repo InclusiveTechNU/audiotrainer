@@ -17,6 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign, readonly) double endTime;
 
 + (NSArray<ATSpeechBreak *> *)breaksFromSpeechResults:(NSArray<ATSpeechRecognitionResult *> *)results;
++ (NSArray<ATSpeechBreak *> *)breaksFromSpeechMarkers:(NSArray<NSDictionary *> *)result;
 + (NSArray<ATSpeechBreak *> *)breaksFromSpeechResult:(SFSpeechRecognitionResult *)result;
 - (instancetype)initWithStartTime:(double)startTime endTime:(double)endTime;
 

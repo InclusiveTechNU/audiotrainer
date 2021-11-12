@@ -27,6 +27,10 @@ typedef enum {
     SFSpeechRecognitionTask * _Nullable _currentTask;
     SFSpeechRecognitionResult * _Nullable _currentResult;
     AVAudioPCMBuffer * _Nullable _currentRecording;
+    NSTimeInterval _currentRecordingTime;
+    BOOL _acceptingBuffers;
+    BOOL _isReady;
+    dispatch_semaphore_t _Nullable _recordingSemaphore;
 }
 
 @property (nonatomic, weak, nullable) id<ATSpeechRecognizerDelegate> delegate;

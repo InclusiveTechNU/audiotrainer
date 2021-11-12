@@ -54,6 +54,7 @@
 		0DC778B7271A02DC00784E39 /* ATSpeechBreak.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DC778B6271A02DC00784E39 /* ATSpeechBreak.m */; };
 		0DC778BA271A0BBF00784E39 /* AVAudioPCMBuffer+Append.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DC778B9271A0BBF00784E39 /* AVAudioPCMBuffer+Append.m */; };
 		0DCEDD8F273E047700F70C9F /* ATSpeechRecognitionResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DCEDD8E273E047700F70C9F /* ATSpeechRecognitionResult.m */; };
+		0DCEDD95273E144700F70C9F /* ATAudioThresholdRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DCEDD94273E144700F70C9F /* ATAudioThresholdRecognizer.m */; };
 		0DD3CF27270E256D00B166EC /* Audio_Trainer_UI_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DD3CF26270E256D00B166EC /* Audio_Trainer_UI_Tests.m */; };
 		0DD3CF29270E256D00B166EC /* Audio_Trainer_UI_TestsLaunchTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DD3CF28270E256D00B166EC /* Audio_Trainer_UI_TestsLaunchTests.m */; };
 		0DD3CF3C270E258C00B166EC /* Audio_Trainer_Unit_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DD3CF35270E258800B166EC /* Audio_Trainer_Unit_Tests.m */; };
@@ -176,6 +177,9 @@
 		0DC778B9271A0BBF00784E39 /* AVAudioPCMBuffer+Append.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "AVAudioPCMBuffer+Append.m"; sourceTree = "<group>"; };
 		0DCEDD8D273E047700F70C9F /* ATSpeechRecognitionResult.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATSpeechRecognitionResult.h; sourceTree = "<group>"; };
 		0DCEDD8E273E047700F70C9F /* ATSpeechRecognitionResult.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ATSpeechRecognitionResult.m; sourceTree = "<group>"; };
+		0DCEDD93273E144700F70C9F /* ATAudioThresholdRecognizer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATAudioThresholdRecognizer.h; sourceTree = "<group>"; };
+		0DCEDD94273E144700F70C9F /* ATAudioThresholdRecognizer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ATAudioThresholdRecognizer.m; sourceTree = "<group>"; };
+		0DCEDD98273E156E00F70C9F /* ATAudioThresholdRecognizerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATAudioThresholdRecognizerDelegate.h; sourceTree = "<group>"; };
 		0DD3CF24270E256D00B166EC /* Audio Trainer UI Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Audio Trainer UI Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0DD3CF26270E256D00B166EC /* Audio_Trainer_UI_Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Audio_Trainer_UI_Tests.m; sourceTree = "<group>"; };
 		0DD3CF28270E256D00B166EC /* Audio_Trainer_UI_TestsLaunchTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Audio_Trainer_UI_TestsLaunchTests.m; sourceTree = "<group>"; };
@@ -438,9 +442,18 @@
 		0DC778A92719EE3800784E39 /* Audio */ = {
 			isa = PBXGroup;
 			children = (
+				0DCEDD97273E149100F70C9F /* Threshold */,
+				0DCEDD96273E148B00F70C9F /* Speech */,
 				0DC778B02719EF7700784E39 /* ATAudioRecorderDelegate.h */,
 				0DC778AA2719EEF900784E39 /* ATAudioRecorder.h */,
 				0DC778AB2719EEF900784E39 /* ATAudioRecorder.m */,
+			);
+			path = Audio;
+			sourceTree = "<group>";
+		};
+		0DCEDD96273E148B00F70C9F /* Speech */ = {
+			isa = PBXGroup;
+			children = (
 				0DC778B12719EF8000784E39 /* ATSpeechRecognizerDelegate.h */,
 				0DC778AD2719EF6800784E39 /* ATSpeechRecognizer.h */,
 				0DC778AE2719EF6800784E39 /* ATSpeechRecognizer.m */,
@@ -451,7 +464,17 @@
 				0DCEDD8D273E047700F70C9F /* ATSpeechRecognitionResult.h */,
 				0DCEDD8E273E047700F70C9F /* ATSpeechRecognitionResult.m */,
 			);
-			path = Audio;
+			path = Speech;
+			sourceTree = "<group>";
+		};
+		0DCEDD97273E149100F70C9F /* Threshold */ = {
+			isa = PBXGroup;
+			children = (
+				0DCEDD93273E144700F70C9F /* ATAudioThresholdRecognizer.h */,
+				0DCEDD94273E144700F70C9F /* ATAudioThresholdRecognizer.m */,
+				0DCEDD98273E156E00F70C9F /* ATAudioThresholdRecognizerDelegate.h */,
+			);
+			path = Threshold;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -588,6 +611,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0D0224DD270F9F180029A7DA /* ATKeyboardRecordingMarker.m in Sources */,
+				0DCEDD95273E144700F70C9F /* ATAudioThresholdRecognizer.m in Sources */,
 				0D0045782703B13F00C2BB3A /* ATViewController.m in Sources */,
 				0D0224E0270FD5120029A7DA /* ATPriorityOperationQueue.m in Sources */,
 				0D0224CE270F89840029A7DA /* ATApplicationScraper.m in Sources */,
