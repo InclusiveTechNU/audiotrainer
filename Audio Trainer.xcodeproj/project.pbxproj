@@ -128,8 +128,8 @@
 		0D0224F5271308C70029A7DA /* NSError+ApplicationScraper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSError+ApplicationScraper.h"; sourceTree = "<group>"; };
 		0D0224F6271308C70029A7DA /* NSError+ApplicationScraper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSError+ApplicationScraper.m"; sourceTree = "<group>"; };
 		0D0224F8271331DB0029A7DA /* ATTreeNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATTreeNode.h; sourceTree = "<group>"; };
-		0D1973FE270DE21F00CF6813 /* ATRecorderViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ATRecorderViewController.h; path = Source/ATRecorderViewController.h; sourceTree = SOURCE_ROOT; };
-		0D1973FF270DE21F00CF6813 /* ATRecorderViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ATRecorderViewController.m; path = Source/ATRecorderViewController.m; sourceTree = SOURCE_ROOT; };
+		0D1973FE270DE21F00CF6813 /* ATRecorderViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ATRecorderViewController.h; path = "Source/View Controllers/ATRecorderViewController.h"; sourceTree = SOURCE_ROOT; };
+		0D1973FF270DE21F00CF6813 /* ATRecorderViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ATRecorderViewController.m; path = "Source/View Controllers/ATRecorderViewController.m"; sourceTree = SOURCE_ROOT; };
 		0D197406270DE24800CF6813 /* ATPlayerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATPlayerViewController.h; sourceTree = "<group>"; };
 		0D197407270DE24800CF6813 /* ATPlayerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ATPlayerViewController.m; sourceTree = "<group>"; };
 		0D24229027178ECD0054E448 /* ATKeyboardBaseRecordingMarker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATKeyboardBaseRecordingMarker.h; sourceTree = "<group>"; };
@@ -251,20 +251,15 @@
 		0D0045922703BEE900C2BB3A /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				0D0045732703B13F00C2BB3A /* ATAppDelegate.h */,
+				0D0045742703B13F00C2BB3A /* ATAppDelegate.m */,
 				0D0045A02703CA6400C2BB3A /* Views */,
+				0D6EAD8E274090D2000DF431 /* View Controllers */,
 				0DC778A92719EE3800784E39 /* Audio */,
 				0D4BD928270B7E070066BC44 /* Accessibility */,
 				0D8DC8442721E0640031CE9C /* Player */,
 				0D0045882703BDB900C2BB3A /* Recorder */,
 				0D0045952703BFAE00C2BB3A /* Utilities */,
-				0D0045732703B13F00C2BB3A /* ATAppDelegate.h */,
-				0D0045742703B13F00C2BB3A /* ATAppDelegate.m */,
-				0D0045762703B13F00C2BB3A /* ATViewController.h */,
-				0D0045772703B13F00C2BB3A /* ATViewController.m */,
-				0D1973FE270DE21F00CF6813 /* ATRecorderViewController.h */,
-				0D1973FF270DE21F00CF6813 /* ATRecorderViewController.m */,
-				0D197406270DE24800CF6813 /* ATPlayerViewController.h */,
-				0D197407270DE24800CF6813 /* ATPlayerViewController.m */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -403,6 +398,19 @@
 				0D65ED222736D6B40034A3B8 /* state-change_confirm-up.wav */,
 			);
 			path = Sounds;
+			sourceTree = "<group>";
+		};
+		0D6EAD8E274090D2000DF431 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				0D0045762703B13F00C2BB3A /* ATViewController.h */,
+				0D0045772703B13F00C2BB3A /* ATViewController.m */,
+				0D1973FE270DE21F00CF6813 /* ATRecorderViewController.h */,
+				0D1973FF270DE21F00CF6813 /* ATRecorderViewController.m */,
+				0D197406270DE24800CF6813 /* ATPlayerViewController.h */,
+				0D197407270DE24800CF6813 /* ATPlayerViewController.m */,
+			);
+			path = "View Controllers";
 			sourceTree = "<group>";
 		};
 		0D8DC837271F29290031CE9C /* Recording */ = {
