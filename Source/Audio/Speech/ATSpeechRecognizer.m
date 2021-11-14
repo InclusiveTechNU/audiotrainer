@@ -108,17 +108,21 @@
 - (void)_stopRecording
 {
     [_audioRecorder stopRecordingWithCompletionHandler:^(AVAudioPCMBuffer * _Nullable recording) {
-        self->_currentRecording = recording;
-        self->_isRecording = NO;
-        if (self->_acceptingBuffers)
-        {
-            [self->_currentTask finish];
-        }
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-            [self _processRecording];
-        });
-       
+        [self _stopRecognizingWithRecording:recording];
     }];
+}
+
+- (void)_stopRecognizingWithRecording:(AVAudioPCMBuffer * _Nullable)recording
+{
+    _currentRecording = recording;
+    _isRecording = NO;
+    if (_acceptingBuffers)
+    {
+        [_currentTask finish];
+    }
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+        [self _processRecording];
+    });
 }
 
 - (void)_processRecording
@@ -130,6 +134,8 @@
         dispatch_semaphore_wait(_recordingSemaphore, DISPATCH_TIME_FOREVER);
     }
     
+    double segmentsLength = _currentRecording.format.sampleRate * 2;
+
     // Calculate minimum speech threshold
     float minimumRMS = 0.0;
     if (_currentResult != nil)
@@ -138,15 +144,31 @@
         {
             AVAudioFrameCount startFrame = segment.timestamp * _currentRecording.format.sampleRate;
             AVAudioFrameCount frameAmount = segment.duration * _currentRecording.format.sampleRate;
-            float sampleSum = 0.0;
-            for (NSUInteger i = 0; i < frameAmount; i++)
+            AVAudioFrameCount endFrame = startFrame + frameAmount;
+            double segmentsCount = ceil((endFrame - startFrame) / segmentsLength);
+            for (NSUInteger i = 0; i < (NSUInteger) segmentsCount; i++)
             {
-                sampleSum += pow(_currentRecording.floatChannelData[0][startFrame + i], 2);
-            }
-            float sampleRMS = sqrt(sampleSum / frameAmount);
-            if (sampleRMS < minimumRMS || minimumRMS == 0.0)
-            {
-                minimumRMS = sampleRMS;
+                AVAudioFrameCount segmentStartFrame = startFrame + (segmentsLength * i);
+                AVAudioFrameCount endFrameCount;
+                if (i == segmentsCount - 1)
+                {
+                    endFrameCount = endFrame - segmentStartFrame;
+                }
+                else
+                {
+                    endFrameCount = frameAmount;
+                }
+
+                float sampleSum = 0.0;
+                for (NSUInteger frame = 0; frame < endFrameCount; frame++)
+                {
+                    sampleSum += pow(_currentRecording.floatChannelData[0][segmentStartFrame + frame], 2);
+                }
+                float sampleRMS = sqrt(sampleSum / endFrameCount);
+                if (sampleRMS < minimumRMS || minimumRMS == 0.0)
+                {
+                    minimumRMS = sampleRMS;
+                }
             }
         }
     }
@@ -154,14 +176,13 @@
     {
         minimumRMS = 0.0095;
     }
+
     // TODO: Decide whether we should allow the last segment to be the start point for RMS comparison
-    
     NSMutableArray *segments = [[NSMutableArray alloc] init];
     NSTimeInterval segmentsStartTime = 0; //lastSegment.timestamp + lastSegment.duration;
     AVAudioFrameCount segmentsStartFrame = segmentsStartTime * _currentRecording.format.sampleRate;
     if (segmentsStartFrame < _currentRecording.frameLength)
     {
-        double segmentsLength = _currentRecording.format.sampleRate * 2;
         double segmentsCount = ceil((_currentRecording.frameLength - segmentsStartFrame) / segmentsLength);
         BOOL inSpeech = NO;
         double startSpeechTime = 0.0;
@@ -218,10 +239,8 @@
             }
         }
     }
-    NSLog(@"%@", segments);
     ATSpeechRecording *speechRecording = [[ATSpeechRecording alloc] initWithSpeechMarkers:segments
                                                                               audioBuffer:_currentRecording];
-    
     _isProcessing = NO;
     [self.delegate speechRecognizer:self didFinishRecognizingSpeech:speechRecording];
 }
