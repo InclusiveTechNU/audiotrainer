@@ -30,6 +30,7 @@ typedef enum {
 + (void)requestPermissionWithCompletionHandler:(void (^)(ATAudioRecorderPermissionStatus status))handler;
 
 - (BOOL)startRecording;
+- (AVAudioFormat *)format;
 
 // TODO: Add NSError
 - (void)stopRecordingWithCompletionHandler:(nullable void (^)(AVAudioPCMBuffer* _Nullable recording))handler;

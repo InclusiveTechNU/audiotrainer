@@ -24,7 +24,6 @@ const ATApplicationEventInfoKey kATApplicationChangesKey = @"ATApplicationChange
                      userInfo:(NSDictionary<ATApplicationEventInfoKey, id> *)userInfo
 {
     NSArray<NSNumber *> *location = [ATApplicationEvent _locationForNode:node];
-    NSLog(@"%@", location);
     return [[ATApplicationEvent alloc] initWithType:type location:location userInfo:userInfo time:0];
 }
 

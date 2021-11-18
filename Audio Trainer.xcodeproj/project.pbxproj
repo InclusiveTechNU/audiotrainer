@@ -40,6 +40,11 @@
 		0D4BD93B270B9F1B0066BC44 /* ATApplicationUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D4BD93A270B9F1B0066BC44 /* ATApplicationUtilities.m */; };
 		0D65ED232736D6B40034A3B8 /* state-change_confirm-down.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0D65ED212736D6B40034A3B8 /* state-change_confirm-down.wav */; };
 		0D65ED242736D6B40034A3B8 /* state-change_confirm-up.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0D65ED222736D6B40034A3B8 /* state-change_confirm-up.wav */; };
+		0D6EAD9127409172000DF431 /* ATKeyboardShortcutManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D6EAD9027409172000DF431 /* ATKeyboardShortcutManager.m */; };
+		0D6EAD9427409223000DF431 /* ATKeyboardShortcut.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D6EAD9327409223000DF431 /* ATKeyboardShortcut.m */; };
+		0D847D4A2746184D00BF4CF6 /* ATSoundAnalyzer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D847D492746184D00BF4CF6 /* ATSoundAnalyzer.m */; };
+		0D847D4D27461BEB00BF4CF6 /* ATSoundAnalyzerObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D847D4C27461BEB00BF4CF6 /* ATSoundAnalyzerObserver.m */; };
+		0D847D4F27462DFD00BF4CF6 /* BaseSound.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 0D847D4E27462DFD00BF4CF6 /* BaseSound.mlmodel */; };
 		0D8DC83A271F29370031CE9C /* ATRecordingSection.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D8DC839271F29370031CE9C /* ATRecordingSection.m */; };
 		0D8DC83D2721CD1A0031CE9C /* AVAudioPCMBuffer+Data.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D8DC83C2721CD1A0031CE9C /* AVAudioPCMBuffer+Data.m */; };
 		0D8DC8422721D5E90031CE9C /* GarageBand Tutorial.band in Resources */ = {isa = PBXBuildFile; fileRef = 0D8DC8402721D5E90031CE9C /* GarageBand Tutorial.band */; };
@@ -148,6 +153,15 @@
 		0D4BD93C270BA08C0066BC44 /* ATElement_Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATElement_Private.h; sourceTree = "<group>"; };
 		0D65ED212736D6B40034A3B8 /* state-change_confirm-down.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "state-change_confirm-down.wav"; sourceTree = "<group>"; };
 		0D65ED222736D6B40034A3B8 /* state-change_confirm-up.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "state-change_confirm-up.wav"; sourceTree = "<group>"; };
+		0D6EAD8F27409172000DF431 /* ATKeyboardShortcutManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATKeyboardShortcutManager.h; sourceTree = "<group>"; };
+		0D6EAD9027409172000DF431 /* ATKeyboardShortcutManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ATKeyboardShortcutManager.m; sourceTree = "<group>"; };
+		0D6EAD9227409223000DF431 /* ATKeyboardShortcut.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATKeyboardShortcut.h; sourceTree = "<group>"; };
+		0D6EAD9327409223000DF431 /* ATKeyboardShortcut.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ATKeyboardShortcut.m; sourceTree = "<group>"; };
+		0D847D482746184D00BF4CF6 /* ATSoundAnalyzer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATSoundAnalyzer.h; sourceTree = "<group>"; };
+		0D847D492746184D00BF4CF6 /* ATSoundAnalyzer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ATSoundAnalyzer.m; sourceTree = "<group>"; };
+		0D847D4B27461BEB00BF4CF6 /* ATSoundAnalyzerObserver.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATSoundAnalyzerObserver.h; sourceTree = "<group>"; };
+		0D847D4C27461BEB00BF4CF6 /* ATSoundAnalyzerObserver.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ATSoundAnalyzerObserver.m; sourceTree = "<group>"; };
+		0D847D4E27462DFD00BF4CF6 /* BaseSound.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = BaseSound.mlmodel; sourceTree = "<group>"; };
 		0D8DC838271F29370031CE9C /* ATRecordingSection.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATRecordingSection.h; sourceTree = "<group>"; };
 		0D8DC839271F29370031CE9C /* ATRecordingSection.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ATRecordingSection.m; sourceTree = "<group>"; };
 		0D8DC83B2721CD1A0031CE9C /* AVAudioPCMBuffer+Data.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AVAudioPCMBuffer+Data.h"; sourceTree = "<group>"; };
@@ -267,6 +281,7 @@
 		0D0045932703BEED00C2BB3A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				0D847D4E27462DFD00BF4CF6 /* BaseSound.mlmodel */,
 				0D65ED202736D6B40034A3B8 /* Sounds */,
 				0D8DC8402721D5E90031CE9C /* GarageBand Tutorial.band */,
 				0D8DC8412721D5E90031CE9C /* Logic Tutorial.logicx */,
@@ -306,6 +321,10 @@
 				0DC778B9271A0BBF00784E39 /* AVAudioPCMBuffer+Append.m */,
 				0D8DC83B2721CD1A0031CE9C /* AVAudioPCMBuffer+Data.h */,
 				0D8DC83C2721CD1A0031CE9C /* AVAudioPCMBuffer+Data.m */,
+				0D6EAD8F27409172000DF431 /* ATKeyboardShortcutManager.h */,
+				0D6EAD9027409172000DF431 /* ATKeyboardShortcutManager.m */,
+				0D6EAD9227409223000DF431 /* ATKeyboardShortcut.h */,
+				0D6EAD9327409223000DF431 /* ATKeyboardShortcut.m */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -455,6 +474,10 @@
 				0DC778B02719EF7700784E39 /* ATAudioRecorderDelegate.h */,
 				0DC778AA2719EEF900784E39 /* ATAudioRecorder.h */,
 				0DC778AB2719EEF900784E39 /* ATAudioRecorder.m */,
+				0D847D482746184D00BF4CF6 /* ATSoundAnalyzer.h */,
+				0D847D492746184D00BF4CF6 /* ATSoundAnalyzer.m */,
+				0D847D4B27461BEB00BF4CF6 /* ATSoundAnalyzerObserver.h */,
+				0D847D4C27461BEB00BF4CF6 /* ATSoundAnalyzerObserver.m */,
 			);
 			path = Audio;
 			sourceTree = "<group>";
@@ -619,6 +642,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0D0224DD270F9F180029A7DA /* ATKeyboardRecordingMarker.m in Sources */,
+				0D6EAD9427409223000DF431 /* ATKeyboardShortcut.m in Sources */,
 				0DCEDD95273E144700F70C9F /* ATAudioThresholdRecognizer.m in Sources */,
 				0D0045782703B13F00C2BB3A /* ATViewController.m in Sources */,
 				0D0224E0270FD5120029A7DA /* ATPriorityOperationQueue.m in Sources */,
@@ -635,6 +659,7 @@
 				0DAA997A271DD1D300EC9A6F /* ATAccessibilityPermission.m in Sources */,
 				0D4BD934270B9DF40066BC44 /* ATApplicationElement.m in Sources */,
 				0D0224F127121DB30029A7DA /* ATApplicationEvent.m in Sources */,
+				0D6EAD9127409172000DF431 /* ATKeyboardShortcutManager.m in Sources */,
 				0DC778B4271A01B600784E39 /* ATSpeechRecording.m in Sources */,
 				0D0224C7270F802B0029A7DA /* ATCachedElementTreeNode.m in Sources */,
 				0DC778B7271A02DC00784E39 /* ATSpeechBreak.m in Sources */,
@@ -642,6 +667,9 @@
 				0D0224E727108DA80029A7DA /* ATCachedElement.m in Sources */,
 				0D0045752703B13F00C2BB3A /* ATAppDelegate.m in Sources */,
 				0DAF74F1272E822E00F26256 /* ATGarageBandPlayer.m in Sources */,
+				0D847D4D27461BEB00BF4CF6 /* ATSoundAnalyzerObserver.m in Sources */,
+				0D847D4F27462DFD00BF4CF6 /* BaseSound.mlmodel in Sources */,
+				0D847D4A2746184D00BF4CF6 /* ATSoundAnalyzer.m in Sources */,
 				0D4BD931270B7E7C0066BC44 /* ATElement.m in Sources */,
 				0D00459F2703C90600C2BB3A /* ATApplicationRecorderUtilities.m in Sources */,
 				0D4BD93B270B9F1B0066BC44 /* ATApplicationUtilities.m in Sources */,

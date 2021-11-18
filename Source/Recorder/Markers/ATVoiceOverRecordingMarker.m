@@ -17,7 +17,7 @@ static CGEventRef ATVoiceOverRecordingMarkerEventCallback(CGEventTapProxy proxy,
     if (didPressModifier)
     {
         // TODO: Check for a better way that event follows responder chain to application
-        [NSTimer scheduledTimerWithTimeInterval:0.1 repeats:NO block:^(NSTimer * _Nonnull timer) {
+        [NSTimer scheduledTimerWithTimeInterval:0.35 repeats:NO block:^(NSTimer * _Nonnull timer) {
             // TODO: Fill this in with keyboard info
             ATVoiceOverRecordingMarker *marker = (__bridge ATVoiceOverRecordingMarker *) refcon;
             [marker.delegate marker:marker didFireWithUserInfo:@{}];

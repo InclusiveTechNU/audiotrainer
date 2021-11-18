@@ -23,7 +23,7 @@
         [_scraper enableTopLevelGroup:@"Tracks"];
         [_scraper enableTopLevelGroup:@"Smart Controls"];
 
-        _recognizer = [[ATSpeechRecognizer alloc] init];
+        _recognizer = [[ATSoundAnalyzer alloc] init];
         _recognizer.delegate = self;
     }
     return self;

@@ -266,7 +266,7 @@
 
 - (void)audioRecorder:(ATAudioRecorder *)recorder didFailToRecordWithError:(NSError *)error
 {
-    NSLog(@"%@", error);
+    NSLog(@"Audio Recording Error: %@", error);
     if (!self.isRecording)
     {
         return;
@@ -277,15 +277,16 @@
 
 - (void)speechRecognitionTaskWasCancelled:(SFSpeechRecognitionTask *)task
 {
-    _isReady = YES;
+    /*_isReady = YES;
     if (_recordingSemaphore != nil)
     {
         dispatch_semaphore_signal(_recordingSemaphore);
-    }
+    }*/
 }
 
 - (void)speechRecognitionTask:(SFSpeechRecognitionTask *)task didFinishSuccessfully:(BOOL)successfully
 {
+    /*NSLog(@"Finished!");
     if (!successfully)
     {
         _isReady = YES;
@@ -293,17 +294,17 @@
         {
             dispatch_semaphore_signal(_recordingSemaphore);
         }
-    }
+    }*/
 }
 
 - (void)speechRecognitionTask:(SFSpeechRecognitionTask *)task didFinishRecognition:(SFSpeechRecognitionResult *)recognitionResult
 {
-    _isReady = YES;
+    /*_isReady = YES;
     _currentResult = recognitionResult;
     if (_recordingSemaphore != nil)
     {
         dispatch_semaphore_signal(_recordingSemaphore);
-    }
+    }*/
 }
 
 @end

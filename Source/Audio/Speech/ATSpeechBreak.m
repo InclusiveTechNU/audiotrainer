@@ -11,6 +11,38 @@ static const NSTimeInterval kATSpeechBreakMinimumBreakTime = 2.0;
 
 @implementation ATSpeechBreak
 
++ (NSArray<ATSpeechBreak *> *)breaksFromSoundAnalysis:(NSArray<NSDictionary *> *)result
+{
+    NSMutableArray<ATSpeechBreak *> *breaks = [[NSMutableArray alloc] init];
+    BOOL hasSpoken = NO;
+    BOOL inBreak = NO;
+    NSTimeInterval startTime = 0.0;
+    for (NSDictionary *segment in result)
+    {
+        BOOL isSpeaking = ((NSNumber *) segment[@"speaking"]).boolValue;
+        if (!hasSpoken && isSpeaking)
+        {
+            hasSpoken = YES;
+            continue;
+        }
+        
+        if (hasSpoken && !isSpeaking && !inBreak)
+        {
+            inBreak = YES;
+            startTime = ((NSNumber *) segment[@"startTime"]).doubleValue + 1.0;
+        }
+        else if (inBreak && isSpeaking)
+        {
+            inBreak = NO;
+            NSTimeInterval segmentStartTime = ((NSNumber *) segment[@"startTime"]).doubleValue;
+            NSTimeInterval segmentDuration = ((NSNumber *) segment[@"duration"]).doubleValue;
+            [breaks addObject:[[ATSpeechBreak alloc] initWithStartTime:startTime
+                                                               endTime:segmentStartTime + segmentDuration - 1.0]];
+        }
+    }
+    return breaks;
+}
+
 + (NSArray<ATSpeechBreak *> *)breaksFromSpeechMarkers:(NSArray<NSDictionary *> *)result
 {
     NSMutableArray<ATSpeechBreak *> *breaks = [[NSMutableArray alloc] init];

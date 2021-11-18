@@ -9,7 +9,7 @@
 #import "AVAudioPCMBuffer+Append.h"
 
 static const int kATAudioRecorderBus = 0;
-static const int kATAudioRecorderBufferSize = 1024;
+static const int kATAudioRecorderBufferSize = 8192;
 
 @implementation ATAudioRecorder
 
@@ -123,6 +123,11 @@ static const int kATAudioRecorderBufferSize = 1024;
         handler(outputBuffer);
     }
     _currentRecording = nil;
+}
+
+- (AVAudioFormat *)format
+{
+    return [_engine.inputNode inputFormatForBus:kATAudioRecorderBus];
 }
 
 @end
