@@ -254,7 +254,7 @@ const ATOperationPriority kATApplicationScraperUpdatePriority = kATOperationPrio
             return;
         }
         
-        for (NSUInteger i = 0; i < weakSelf.windows.count; i++)
+        for (NSUInteger i = 0; i < weakSelf.application.windows.count; i++)
         {
             __block BOOL completed = NO;
             [weakSelf _updateWindowAtIndex:i withHandler:^(NSError * _Nullable error, ATApplicationTimeline * _Nullable timeline) {

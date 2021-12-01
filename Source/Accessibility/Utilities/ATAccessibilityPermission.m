@@ -14,10 +14,7 @@ static const NSTimeInterval kATAccessibilityPermissionCheckerInterval = 1.0;
 
 + (BOOL)hasPermission
 {
-    NSDictionary *options = @{
-        (__bridge NSString *) kAXTrustedCheckOptionPrompt: @NO
-    };
-    return AXIsProcessTrustedWithOptions((__bridge CFDictionaryRef) options);
+    return AXIsProcessTrusted();
 }
 
 + (void)requestPermission
