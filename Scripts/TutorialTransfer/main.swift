@@ -11,7 +11,7 @@ import AudioTrainerSupport
 // TODO: Move this to a command line argument
 /// Transfers the array of breakpoints as the timestamps to seperate
 /// the tutorial in the destination tutorial.
-let breakpoints: [[NSNumber]] = [[12.05, 24.95]]
+let breakpoints: [[NSNumber]] = [[12.61, 20.31]]
 
 if CommandLine.arguments.count != 3 {
     fatalError("""
