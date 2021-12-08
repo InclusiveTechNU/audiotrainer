@@ -62,26 +62,29 @@
 
 - (void)stopRecording:(nonnull void (^)(ATRecording * _Nullable))handler
 {
+    NSLog(@"Stopping Recording");
     if (!self.isRecording)
     {
+        NSLog(@"Sending Nil Recording");
         handler(nil);
         return;
     }
-
-    [_scraper updateWindowsWithHandler:^(NSError * _Nullable error, ATApplicationTimeline * _Nullable timeline) {
-        self->_recording = NO;
-        for (id <ATRecordingMarker> marker in self->_markers)
-        {
-            [marker disable];
-        }
-        
-        // Wait until the speech recognizer is available
-        self->_recordingSemaphore = dispatch_semaphore_create(0);
-        [self->_recognizer stopRecording];
-        dispatch_semaphore_wait(self->_recordingSemaphore, DISPATCH_TIME_FOREVER);
-        self->_recordingSemaphore = nil;
-        handler([ATRecording recordingWithTimeline:timeline voiceover:self->_currentRecording]);
-    }];
+    
+    self->_recording = NO;
+    for (id <ATRecordingMarker> marker in self->_markers)
+    {
+        [marker disable];
+    }
+    NSLog(@"Disabled Markers");
+    
+    // Wait until the speech recognizer is available
+    NSLog(@"Waiting for Speech Recognizer");
+    self->_recordingSemaphore = dispatch_semaphore_create(0);
+    [self->_recognizer stopRecording];
+    dispatch_semaphore_wait(self->_recordingSemaphore, DISPATCH_TIME_FOREVER);
+    NSLog(@"Finished Waiting for Speech Recognizer");
+    self->_recordingSemaphore = nil;
+    handler([ATRecording recordingWithTimeline:_scraper.timeline voiceover:self->_currentRecording]);
 }
 
 - (void)speechRecognizer:(ATSpeechRecognizer *)recognizer didFinishRecognizingSpeech:(ATSpeechRecording *)recording

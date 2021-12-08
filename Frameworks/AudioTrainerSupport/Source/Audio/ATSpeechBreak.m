@@ -7,7 +7,7 @@
 
 #import "ATSpeechBreak.h"
 
-static const NSTimeInterval kATSpeechBreakMinimumBreakTime = 2.0;
+static const NSTimeInterval kATSpeechBreakMinimumBreakTime = 1.0;
 
 @implementation ATSpeechBreak
 
