@@ -1,0 +1,775 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0D2179972761176F00E2A7C4 /* AudioTrainerSupport.docc in Sources */ = {isa = PBXBuildFile; fileRef = 0D2179962761176F00E2A7C4 /* AudioTrainerSupport.docc */; };
+		0D21799D2761176F00E2A7C4 /* AudioTrainerSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D2179922761176F00E2A7C4 /* AudioTrainerSupport.framework */; };
+		0D2179A22761176F00E2A7C4 /* AudioTrainerSupportTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D2179A12761176F00E2A7C4 /* AudioTrainerSupportTests.m */; };
+		0D2179A32761176F00E2A7C4 /* AudioTrainerSupport.h in Headers */ = {isa = PBXBuildFile; fileRef = 0D2179952761176F00E2A7C4 /* AudioTrainerSupport.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0D2179D927611A2000E2A7C4 /* ATRecording.h in Headers */ = {isa = PBXBuildFile; fileRef = 0D2179D527611A2000E2A7C4 /* ATRecording.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0D2179DA27611A2000E2A7C4 /* ATRecordingSection.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D2179D627611A2000E2A7C4 /* ATRecordingSection.m */; };
+		0D2179DB27611A2000E2A7C4 /* ATRecordingSection.h in Headers */ = {isa = PBXBuildFile; fileRef = 0D2179D727611A2000E2A7C4 /* ATRecordingSection.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0D2179DC27611A2000E2A7C4 /* ATRecording.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D2179D827611A2000E2A7C4 /* ATRecording.m */; };
+		0D2179DF27611A3900E2A7C4 /* AVAudioPCMBuffer+Data.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D2179DD27611A3900E2A7C4 /* AVAudioPCMBuffer+Data.m */; };
+		0D2179E027611A3900E2A7C4 /* AVAudioPCMBuffer+Data.h in Headers */ = {isa = PBXBuildFile; fileRef = 0D2179DE27611A3900E2A7C4 /* AVAudioPCMBuffer+Data.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0D2179EE27611AE700E2A7C4 /* ATWindowElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D2179E727611AE600E2A7C4 /* ATWindowElement.m */; };
+		0D2179EF27611AE700E2A7C4 /* ATElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D2179E827611AE600E2A7C4 /* ATElement.m */; };
+		0D2179F027611AE700E2A7C4 /* ATApplicationElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D2179E927611AE600E2A7C4 /* ATApplicationElement.m */; };
+		0D2179F127611AE700E2A7C4 /* ATElement.h in Headers */ = {isa = PBXBuildFile; fileRef = 0D2179EA27611AE600E2A7C4 /* ATElement.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0D2179F227611AE700E2A7C4 /* ATWindowElement.h in Headers */ = {isa = PBXBuildFile; fileRef = 0D2179EB27611AE600E2A7C4 /* ATWindowElement.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0D2179F327611AE700E2A7C4 /* ATElement_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 0D2179EC27611AE600E2A7C4 /* ATElement_Private.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0D2179F427611AE700E2A7C4 /* ATApplicationElement.h in Headers */ = {isa = PBXBuildFile; fileRef = 0D2179ED27611AE700E2A7C4 /* ATApplicationElement.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0D2179F827611AF500E2A7C4 /* ATAccessibilityPermission.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D2179F627611AF500E2A7C4 /* ATAccessibilityPermission.m */; };
+		0D2179F927611AF500E2A7C4 /* ATAccessibilityPermission.h in Headers */ = {isa = PBXBuildFile; fileRef = 0D2179F727611AF500E2A7C4 /* ATAccessibilityPermission.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0D217A0227611B0500E2A7C4 /* ATCachedElementTree.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D2179FB27611B0500E2A7C4 /* ATCachedElementTree.m */; };
+		0D217A0327611B0500E2A7C4 /* ATCachedElementTreeNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D2179FC27611B0500E2A7C4 /* ATCachedElementTreeNode.m */; };
+		0D217A0427611B0500E2A7C4 /* ATCachedElementTreeDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 0D2179FD27611B0500E2A7C4 /* ATCachedElementTreeDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0D217A0527611B0500E2A7C4 /* ATCachedElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D2179FE27611B0500E2A7C4 /* ATCachedElement.m */; };
+		0D217A0627611B0500E2A7C4 /* ATCachedElementTreeNode.h in Headers */ = {isa = PBXBuildFile; fileRef = 0D2179FF27611B0500E2A7C4 /* ATCachedElementTreeNode.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0D217A0727611B0500E2A7C4 /* ATCachedElementTree.h in Headers */ = {isa = PBXBuildFile; fileRef = 0D217A0027611B0500E2A7C4 /* ATCachedElementTree.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0D217A0827611B0500E2A7C4 /* ATCachedElement.h in Headers */ = {isa = PBXBuildFile; fileRef = 0D217A0127611B0500E2A7C4 /* ATCachedElement.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0D217A1327611B1500E2A7C4 /* ATApplicationScraper.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D217A0A27611B1400E2A7C4 /* ATApplicationScraper.m */; };
+		0D217A1427611B1500E2A7C4 /* NSError+ApplicationScraper.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D217A0B27611B1400E2A7C4 /* NSError+ApplicationScraper.m */; };
+		0D217A1527611B1500E2A7C4 /* ATApplicationEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D217A0C27611B1400E2A7C4 /* ATApplicationEvent.m */; };
+		0D217A1627611B1500E2A7C4 /* ATApplicationScraper.h in Headers */ = {isa = PBXBuildFile; fileRef = 0D217A0D27611B1400E2A7C4 /* ATApplicationScraper.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0D217A1727611B1500E2A7C4 /* ATApplicationTimeline.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D217A0E27611B1400E2A7C4 /* ATApplicationTimeline.m */; };
+		0D217A1827611B1500E2A7C4 /* ATApplicationEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = 0D217A0F27611B1400E2A7C4 /* ATApplicationEvent.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0D217A1927611B1500E2A7C4 /* ATApplicationTimeline.h in Headers */ = {isa = PBXBuildFile; fileRef = 0D217A1027611B1500E2A7C4 /* ATApplicationTimeline.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0D217A1A27611B1500E2A7C4 /* ATApplicationScraperDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 0D217A1127611B1500E2A7C4 /* ATApplicationScraperDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0D217A1B27611B1500E2A7C4 /* NSError+ApplicationScraper.h in Headers */ = {isa = PBXBuildFile; fileRef = 0D217A1227611B1500E2A7C4 /* NSError+ApplicationScraper.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0D217A1D27611B2B00E2A7C4 /* ATTreeNode.h in Headers */ = {isa = PBXBuildFile; fileRef = 0D217A1C27611B2B00E2A7C4 /* ATTreeNode.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0D217A2327611B4400E2A7C4 /* ATPriorityOperationQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = 0D217A1E27611B4400E2A7C4 /* ATPriorityOperationQueue.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0D217A2427611B4400E2A7C4 /* ATPriorityOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 0D217A1F27611B4400E2A7C4 /* ATPriorityOperation.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0D217A2527611B4400E2A7C4 /* ATPriorityOperationDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 0D217A2027611B4400E2A7C4 /* ATPriorityOperationDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0D217A2627611B4400E2A7C4 /* ATPriorityOperationQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D217A2127611B4400E2A7C4 /* ATPriorityOperationQueue.m */; };
+		0D217A2727611B4400E2A7C4 /* ATPriorityOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D217A2227611B4400E2A7C4 /* ATPriorityOperation.m */; };
+		0D217A2A27611B5500E2A7C4 /* ATApplicationUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 0D217A2827611B5500E2A7C4 /* ATApplicationUtilities.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0D217A2B27611B5500E2A7C4 /* ATApplicationUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D217A2927611B5500E2A7C4 /* ATApplicationUtilities.m */; };
+		0D217A4027611BA400E2A7C4 /* ATSoundAnalyzer.h in Headers */ = {isa = PBXBuildFile; fileRef = 0D217A2D27611BA300E2A7C4 /* ATSoundAnalyzer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0D217A4127611BA400E2A7C4 /* ATSpeechRecording.h in Headers */ = {isa = PBXBuildFile; fileRef = 0D217A2E27611BA300E2A7C4 /* ATSpeechRecording.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0D217A4227611BA400E2A7C4 /* ATSoundAnalyzer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D217A2F27611BA300E2A7C4 /* ATSoundAnalyzer.m */; };
+		0D217A4327611BA400E2A7C4 /* ATSpeechBreak.h in Headers */ = {isa = PBXBuildFile; fileRef = 0D217A3027611BA300E2A7C4 /* ATSpeechBreak.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0D217A4427611BA400E2A7C4 /* ATAudioRecorderDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 0D217A3127611BA300E2A7C4 /* ATAudioRecorderDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0D217A4527611BA400E2A7C4 /* ATAudioRecorder.h in Headers */ = {isa = PBXBuildFile; fileRef = 0D217A3227611BA400E2A7C4 /* ATAudioRecorder.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0D217A4627611BA400E2A7C4 /* ATAudioRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D217A3327611BA400E2A7C4 /* ATAudioRecorder.m */; };
+		0D217A4727611BA400E2A7C4 /* ATAudioThresholdRecognizerDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 0D217A3427611BA400E2A7C4 /* ATAudioThresholdRecognizerDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0D217A4827611BA400E2A7C4 /* ATSpeechRecognizer.h in Headers */ = {isa = PBXBuildFile; fileRef = 0D217A3527611BA400E2A7C4 /* ATSpeechRecognizer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0D217A4927611BA400E2A7C4 /* ATAudioThresholdRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D217A3627611BA400E2A7C4 /* ATAudioThresholdRecognizer.m */; };
+		0D217A4A27611BA400E2A7C4 /* ATSpeechBreak.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D217A3727611BA400E2A7C4 /* ATSpeechBreak.m */; };
+		0D217A4B27611BA400E2A7C4 /* ATAudioThresholdRecognizer.h in Headers */ = {isa = PBXBuildFile; fileRef = 0D217A3827611BA400E2A7C4 /* ATAudioThresholdRecognizer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0D217A4C27611BA400E2A7C4 /* ATSpeechRecognitionResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D217A3927611BA400E2A7C4 /* ATSpeechRecognitionResult.m */; };
+		0D217A4D27611BA400E2A7C4 /* ATSpeechRecognitionResult.h in Headers */ = {isa = PBXBuildFile; fileRef = 0D217A3A27611BA400E2A7C4 /* ATSpeechRecognitionResult.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0D217A4E27611BA400E2A7C4 /* ATSpeechRecognizerDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 0D217A3B27611BA400E2A7C4 /* ATSpeechRecognizerDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0D217A4F27611BA400E2A7C4 /* ATSpeechRecording.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D217A3C27611BA400E2A7C4 /* ATSpeechRecording.m */; };
+		0D217A5027611BA400E2A7C4 /* ATSoundAnalyzerObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D217A3D27611BA400E2A7C4 /* ATSoundAnalyzerObserver.m */; };
+		0D217A5127611BA400E2A7C4 /* ATSpeechRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D217A3E27611BA400E2A7C4 /* ATSpeechRecognizer.m */; };
+		0D217A5227611BA400E2A7C4 /* ATSoundAnalyzerObserver.h in Headers */ = {isa = PBXBuildFile; fileRef = 0D217A3F27611BA400E2A7C4 /* ATSoundAnalyzerObserver.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0D217A5527611BB600E2A7C4 /* AVAudioPCMBuffer+Append.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D217A5327611BB600E2A7C4 /* AVAudioPCMBuffer+Append.m */; };
+		0D217A5627611BB600E2A7C4 /* AVAudioPCMBuffer+Append.h in Headers */ = {isa = PBXBuildFile; fileRef = 0D217A5427611BB600E2A7C4 /* AVAudioPCMBuffer+Append.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0D217A5927611BEB00E2A7C4 /* BaseSound.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 0D217A5827611BEB00E2A7C4 /* BaseSound.mlmodel */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		0D21799E2761176F00E2A7C4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0D2179892761176F00E2A7C4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0D2179912761176F00E2A7C4;
+			remoteInfo = AudioTrainerSupport;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0D2179922761176F00E2A7C4 /* AudioTrainerSupport.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AudioTrainerSupport.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0D2179952761176F00E2A7C4 /* AudioTrainerSupport.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AudioTrainerSupport.h; sourceTree = "<group>"; };
+		0D2179962761176F00E2A7C4 /* AudioTrainerSupport.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = AudioTrainerSupport.docc; sourceTree = "<group>"; };
+		0D21799C2761176F00E2A7C4 /* AudioTrainerSupportTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AudioTrainerSupportTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0D2179A12761176F00E2A7C4 /* AudioTrainerSupportTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AudioTrainerSupportTests.m; sourceTree = "<group>"; };
+		0D2179D527611A2000E2A7C4 /* ATRecording.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATRecording.h; sourceTree = "<group>"; };
+		0D2179D627611A2000E2A7C4 /* ATRecordingSection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATRecordingSection.m; sourceTree = "<group>"; };
+		0D2179D727611A2000E2A7C4 /* ATRecordingSection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATRecordingSection.h; sourceTree = "<group>"; };
+		0D2179D827611A2000E2A7C4 /* ATRecording.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATRecording.m; sourceTree = "<group>"; };
+		0D2179DD27611A3900E2A7C4 /* AVAudioPCMBuffer+Data.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AVAudioPCMBuffer+Data.m"; sourceTree = "<group>"; };
+		0D2179DE27611A3900E2A7C4 /* AVAudioPCMBuffer+Data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AVAudioPCMBuffer+Data.h"; sourceTree = "<group>"; };
+		0D2179E727611AE600E2A7C4 /* ATWindowElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATWindowElement.m; sourceTree = "<group>"; };
+		0D2179E827611AE600E2A7C4 /* ATElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATElement.m; sourceTree = "<group>"; };
+		0D2179E927611AE600E2A7C4 /* ATApplicationElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATApplicationElement.m; sourceTree = "<group>"; };
+		0D2179EA27611AE600E2A7C4 /* ATElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATElement.h; sourceTree = "<group>"; };
+		0D2179EB27611AE600E2A7C4 /* ATWindowElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATWindowElement.h; sourceTree = "<group>"; };
+		0D2179EC27611AE600E2A7C4 /* ATElement_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATElement_Private.h; sourceTree = "<group>"; };
+		0D2179ED27611AE700E2A7C4 /* ATApplicationElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATApplicationElement.h; sourceTree = "<group>"; };
+		0D2179F627611AF500E2A7C4 /* ATAccessibilityPermission.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATAccessibilityPermission.m; sourceTree = "<group>"; };
+		0D2179F727611AF500E2A7C4 /* ATAccessibilityPermission.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATAccessibilityPermission.h; sourceTree = "<group>"; };
+		0D2179FB27611B0500E2A7C4 /* ATCachedElementTree.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCachedElementTree.m; sourceTree = "<group>"; };
+		0D2179FC27611B0500E2A7C4 /* ATCachedElementTreeNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCachedElementTreeNode.m; sourceTree = "<group>"; };
+		0D2179FD27611B0500E2A7C4 /* ATCachedElementTreeDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATCachedElementTreeDelegate.h; sourceTree = "<group>"; };
+		0D2179FE27611B0500E2A7C4 /* ATCachedElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCachedElement.m; sourceTree = "<group>"; };
+		0D2179FF27611B0500E2A7C4 /* ATCachedElementTreeNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATCachedElementTreeNode.h; sourceTree = "<group>"; };
+		0D217A0027611B0500E2A7C4 /* ATCachedElementTree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATCachedElementTree.h; sourceTree = "<group>"; };
+		0D217A0127611B0500E2A7C4 /* ATCachedElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATCachedElement.h; sourceTree = "<group>"; };
+		0D217A0A27611B1400E2A7C4 /* ATApplicationScraper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATApplicationScraper.m; sourceTree = "<group>"; };
+		0D217A0B27611B1400E2A7C4 /* NSError+ApplicationScraper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+ApplicationScraper.m"; sourceTree = "<group>"; };
+		0D217A0C27611B1400E2A7C4 /* ATApplicationEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATApplicationEvent.m; sourceTree = "<group>"; };
+		0D217A0D27611B1400E2A7C4 /* ATApplicationScraper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATApplicationScraper.h; sourceTree = "<group>"; };
+		0D217A0E27611B1400E2A7C4 /* ATApplicationTimeline.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATApplicationTimeline.m; sourceTree = "<group>"; };
+		0D217A0F27611B1400E2A7C4 /* ATApplicationEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATApplicationEvent.h; sourceTree = "<group>"; };
+		0D217A1027611B1500E2A7C4 /* ATApplicationTimeline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATApplicationTimeline.h; sourceTree = "<group>"; };
+		0D217A1127611B1500E2A7C4 /* ATApplicationScraperDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATApplicationScraperDelegate.h; sourceTree = "<group>"; };
+		0D217A1227611B1500E2A7C4 /* NSError+ApplicationScraper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+ApplicationScraper.h"; sourceTree = "<group>"; };
+		0D217A1C27611B2B00E2A7C4 /* ATTreeNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATTreeNode.h; sourceTree = "<group>"; };
+		0D217A1E27611B4400E2A7C4 /* ATPriorityOperationQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATPriorityOperationQueue.h; sourceTree = "<group>"; };
+		0D217A1F27611B4400E2A7C4 /* ATPriorityOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATPriorityOperation.h; sourceTree = "<group>"; };
+		0D217A2027611B4400E2A7C4 /* ATPriorityOperationDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATPriorityOperationDelegate.h; sourceTree = "<group>"; };
+		0D217A2127611B4400E2A7C4 /* ATPriorityOperationQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATPriorityOperationQueue.m; sourceTree = "<group>"; };
+		0D217A2227611B4400E2A7C4 /* ATPriorityOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATPriorityOperation.m; sourceTree = "<group>"; };
+		0D217A2827611B5500E2A7C4 /* ATApplicationUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATApplicationUtilities.h; sourceTree = "<group>"; };
+		0D217A2927611B5500E2A7C4 /* ATApplicationUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATApplicationUtilities.m; sourceTree = "<group>"; };
+		0D217A2D27611BA300E2A7C4 /* ATSoundAnalyzer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATSoundAnalyzer.h; sourceTree = "<group>"; };
+		0D217A2E27611BA300E2A7C4 /* ATSpeechRecording.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATSpeechRecording.h; sourceTree = "<group>"; };
+		0D217A2F27611BA300E2A7C4 /* ATSoundAnalyzer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATSoundAnalyzer.m; sourceTree = "<group>"; };
+		0D217A3027611BA300E2A7C4 /* ATSpeechBreak.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATSpeechBreak.h; sourceTree = "<group>"; };
+		0D217A3127611BA300E2A7C4 /* ATAudioRecorderDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATAudioRecorderDelegate.h; sourceTree = "<group>"; };
+		0D217A3227611BA400E2A7C4 /* ATAudioRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATAudioRecorder.h; sourceTree = "<group>"; };
+		0D217A3327611BA400E2A7C4 /* ATAudioRecorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATAudioRecorder.m; sourceTree = "<group>"; };
+		0D217A3427611BA400E2A7C4 /* ATAudioThresholdRecognizerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATAudioThresholdRecognizerDelegate.h; sourceTree = "<group>"; };
+		0D217A3527611BA400E2A7C4 /* ATSpeechRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATSpeechRecognizer.h; sourceTree = "<group>"; };
+		0D217A3627611BA400E2A7C4 /* ATAudioThresholdRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATAudioThresholdRecognizer.m; sourceTree = "<group>"; };
+		0D217A3727611BA400E2A7C4 /* ATSpeechBreak.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATSpeechBreak.m; sourceTree = "<group>"; };
+		0D217A3827611BA400E2A7C4 /* ATAudioThresholdRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATAudioThresholdRecognizer.h; sourceTree = "<group>"; };
+		0D217A3927611BA400E2A7C4 /* ATSpeechRecognitionResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATSpeechRecognitionResult.m; sourceTree = "<group>"; };
+		0D217A3A27611BA400E2A7C4 /* ATSpeechRecognitionResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATSpeechRecognitionResult.h; sourceTree = "<group>"; };
+		0D217A3B27611BA400E2A7C4 /* ATSpeechRecognizerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATSpeechRecognizerDelegate.h; sourceTree = "<group>"; };
+		0D217A3C27611BA400E2A7C4 /* ATSpeechRecording.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATSpeechRecording.m; sourceTree = "<group>"; };
+		0D217A3D27611BA400E2A7C4 /* ATSoundAnalyzerObserver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATSoundAnalyzerObserver.m; sourceTree = "<group>"; };
+		0D217A3E27611BA400E2A7C4 /* ATSpeechRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATSpeechRecognizer.m; sourceTree = "<group>"; };
+		0D217A3F27611BA400E2A7C4 /* ATSoundAnalyzerObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATSoundAnalyzerObserver.h; sourceTree = "<group>"; };
+		0D217A5327611BB600E2A7C4 /* AVAudioPCMBuffer+Append.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AVAudioPCMBuffer+Append.m"; sourceTree = "<group>"; };
+		0D217A5427611BB600E2A7C4 /* AVAudioPCMBuffer+Append.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AVAudioPCMBuffer+Append.h"; sourceTree = "<group>"; };
+		0D217A5827611BEB00E2A7C4 /* BaseSound.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = BaseSound.mlmodel; path = ../../../../../Downloads/BaseSound.mlmodel; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		0D21798F2761176F00E2A7C4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0D2179992761176F00E2A7C4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0D21799D2761176F00E2A7C4 /* AudioTrainerSupport.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0D2179882761176F00E2A7C4 = {
+			isa = PBXGroup;
+			children = (
+				0D2179CA2761199800E2A7C4 /* Source */,
+				0D2179942761176F00E2A7C4 /* Resources */,
+				0D2179A02761176F00E2A7C4 /* Tests */,
+				0D2179932761176F00E2A7C4 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		0D2179932761176F00E2A7C4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0D2179922761176F00E2A7C4 /* AudioTrainerSupport.framework */,
+				0D21799C2761176F00E2A7C4 /* AudioTrainerSupportTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		0D2179942761176F00E2A7C4 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				0D217A5827611BEB00E2A7C4 /* BaseSound.mlmodel */,
+				0D2179962761176F00E2A7C4 /* AudioTrainerSupport.docc */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		0D2179A02761176F00E2A7C4 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				0D2179A12761176F00E2A7C4 /* AudioTrainerSupportTests.m */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		0D2179CA2761199800E2A7C4 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				0D217A2C27611B7C00E2A7C4 /* Audio */,
+				0D2179E527611AD600E2A7C4 /* Accessibility */,
+				0D2179CB276119D800E2A7C4 /* Recording */,
+				0D2179CC276119E700E2A7C4 /* Utilities */,
+				0D2179952761176F00E2A7C4 /* AudioTrainerSupport.h */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		0D2179CB276119D800E2A7C4 /* Recording */ = {
+			isa = PBXGroup;
+			children = (
+				0D2179D527611A2000E2A7C4 /* ATRecording.h */,
+				0D2179D827611A2000E2A7C4 /* ATRecording.m */,
+				0D2179D727611A2000E2A7C4 /* ATRecordingSection.h */,
+				0D2179D627611A2000E2A7C4 /* ATRecordingSection.m */,
+			);
+			path = Recording;
+			sourceTree = "<group>";
+		};
+		0D2179CC276119E700E2A7C4 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				0D217A5427611BB600E2A7C4 /* AVAudioPCMBuffer+Append.h */,
+				0D217A5327611BB600E2A7C4 /* AVAudioPCMBuffer+Append.m */,
+				0D217A2827611B5500E2A7C4 /* ATApplicationUtilities.h */,
+				0D217A2927611B5500E2A7C4 /* ATApplicationUtilities.m */,
+				0D217A1F27611B4400E2A7C4 /* ATPriorityOperation.h */,
+				0D217A2227611B4400E2A7C4 /* ATPriorityOperation.m */,
+				0D217A2027611B4400E2A7C4 /* ATPriorityOperationDelegate.h */,
+				0D217A1E27611B4400E2A7C4 /* ATPriorityOperationQueue.h */,
+				0D217A2127611B4400E2A7C4 /* ATPriorityOperationQueue.m */,
+				0D217A1C27611B2B00E2A7C4 /* ATTreeNode.h */,
+				0D2179DE27611A3900E2A7C4 /* AVAudioPCMBuffer+Data.h */,
+				0D2179DD27611A3900E2A7C4 /* AVAudioPCMBuffer+Data.m */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		0D2179E527611AD600E2A7C4 /* Accessibility */ = {
+			isa = PBXGroup;
+			children = (
+				0D217A0927611B0900E2A7C4 /* Scraper */,
+				0D2179E627611ADE00E2A7C4 /* Elements */,
+				0D2179FA27611AFA00E2A7C4 /* Cache */,
+				0D2179F527611AED00E2A7C4 /* Utilities */,
+			);
+			path = Accessibility;
+			sourceTree = "<group>";
+		};
+		0D2179E627611ADE00E2A7C4 /* Elements */ = {
+			isa = PBXGroup;
+			children = (
+				0D2179ED27611AE700E2A7C4 /* ATApplicationElement.h */,
+				0D2179E927611AE600E2A7C4 /* ATApplicationElement.m */,
+				0D2179EC27611AE600E2A7C4 /* ATElement_Private.h */,
+				0D2179EA27611AE600E2A7C4 /* ATElement.h */,
+				0D2179E827611AE600E2A7C4 /* ATElement.m */,
+				0D2179EB27611AE600E2A7C4 /* ATWindowElement.h */,
+				0D2179E727611AE600E2A7C4 /* ATWindowElement.m */,
+			);
+			path = Elements;
+			sourceTree = "<group>";
+		};
+		0D2179F527611AED00E2A7C4 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				0D2179F727611AF500E2A7C4 /* ATAccessibilityPermission.h */,
+				0D2179F627611AF500E2A7C4 /* ATAccessibilityPermission.m */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		0D2179FA27611AFA00E2A7C4 /* Cache */ = {
+			isa = PBXGroup;
+			children = (
+				0D217A0127611B0500E2A7C4 /* ATCachedElement.h */,
+				0D2179FE27611B0500E2A7C4 /* ATCachedElement.m */,
+				0D217A0027611B0500E2A7C4 /* ATCachedElementTree.h */,
+				0D2179FB27611B0500E2A7C4 /* ATCachedElementTree.m */,
+				0D2179FD27611B0500E2A7C4 /* ATCachedElementTreeDelegate.h */,
+				0D2179FF27611B0500E2A7C4 /* ATCachedElementTreeNode.h */,
+				0D2179FC27611B0500E2A7C4 /* ATCachedElementTreeNode.m */,
+			);
+			path = Cache;
+			sourceTree = "<group>";
+		};
+		0D217A0927611B0900E2A7C4 /* Scraper */ = {
+			isa = PBXGroup;
+			children = (
+				0D217A0F27611B1400E2A7C4 /* ATApplicationEvent.h */,
+				0D217A0C27611B1400E2A7C4 /* ATApplicationEvent.m */,
+				0D217A0D27611B1400E2A7C4 /* ATApplicationScraper.h */,
+				0D217A0A27611B1400E2A7C4 /* ATApplicationScraper.m */,
+				0D217A1127611B1500E2A7C4 /* ATApplicationScraperDelegate.h */,
+				0D217A1027611B1500E2A7C4 /* ATApplicationTimeline.h */,
+				0D217A0E27611B1400E2A7C4 /* ATApplicationTimeline.m */,
+				0D217A1227611B1500E2A7C4 /* NSError+ApplicationScraper.h */,
+				0D217A0B27611B1400E2A7C4 /* NSError+ApplicationScraper.m */,
+			);
+			path = Scraper;
+			sourceTree = "<group>";
+		};
+		0D217A2C27611B7C00E2A7C4 /* Audio */ = {
+			isa = PBXGroup;
+			children = (
+				0D217A3227611BA400E2A7C4 /* ATAudioRecorder.h */,
+				0D217A3327611BA400E2A7C4 /* ATAudioRecorder.m */,
+				0D217A3127611BA300E2A7C4 /* ATAudioRecorderDelegate.h */,
+				0D217A3827611BA400E2A7C4 /* ATAudioThresholdRecognizer.h */,
+				0D217A3627611BA400E2A7C4 /* ATAudioThresholdRecognizer.m */,
+				0D217A3427611BA400E2A7C4 /* ATAudioThresholdRecognizerDelegate.h */,
+				0D217A2D27611BA300E2A7C4 /* ATSoundAnalyzer.h */,
+				0D217A2F27611BA300E2A7C4 /* ATSoundAnalyzer.m */,
+				0D217A3F27611BA400E2A7C4 /* ATSoundAnalyzerObserver.h */,
+				0D217A3D27611BA400E2A7C4 /* ATSoundAnalyzerObserver.m */,
+				0D217A3027611BA300E2A7C4 /* ATSpeechBreak.h */,
+				0D217A3727611BA400E2A7C4 /* ATSpeechBreak.m */,
+				0D217A3A27611BA400E2A7C4 /* ATSpeechRecognitionResult.h */,
+				0D217A3927611BA400E2A7C4 /* ATSpeechRecognitionResult.m */,
+				0D217A3527611BA400E2A7C4 /* ATSpeechRecognizer.h */,
+				0D217A3E27611BA400E2A7C4 /* ATSpeechRecognizer.m */,
+				0D217A3B27611BA400E2A7C4 /* ATSpeechRecognizerDelegate.h */,
+				0D217A2E27611BA300E2A7C4 /* ATSpeechRecording.h */,
+				0D217A3C27611BA400E2A7C4 /* ATSpeechRecording.m */,
+			);
+			path = Audio;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		0D21798D2761176F00E2A7C4 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0D2179A32761176F00E2A7C4 /* AudioTrainerSupport.h in Headers */,
+				0D2179D927611A2000E2A7C4 /* ATRecording.h in Headers */,
+				0D217A1627611B1500E2A7C4 /* ATApplicationScraper.h in Headers */,
+				0D217A1B27611B1500E2A7C4 /* NSError+ApplicationScraper.h in Headers */,
+				0D217A1D27611B2B00E2A7C4 /* ATTreeNode.h in Headers */,
+				0D217A4527611BA400E2A7C4 /* ATAudioRecorder.h in Headers */,
+				0D2179F127611AE700E2A7C4 /* ATElement.h in Headers */,
+				0D217A2327611B4400E2A7C4 /* ATPriorityOperationQueue.h in Headers */,
+				0D217A0827611B0500E2A7C4 /* ATCachedElement.h in Headers */,
+				0D217A2427611B4400E2A7C4 /* ATPriorityOperation.h in Headers */,
+				0D2179F327611AE700E2A7C4 /* ATElement_Private.h in Headers */,
+				0D2179F227611AE700E2A7C4 /* ATWindowElement.h in Headers */,
+				0D217A2527611B4400E2A7C4 /* ATPriorityOperationDelegate.h in Headers */,
+				0D217A4027611BA400E2A7C4 /* ATSoundAnalyzer.h in Headers */,
+				0D217A4827611BA400E2A7C4 /* ATSpeechRecognizer.h in Headers */,
+				0D2179E027611A3900E2A7C4 /* AVAudioPCMBuffer+Data.h in Headers */,
+				0D2179DB27611A2000E2A7C4 /* ATRecordingSection.h in Headers */,
+				0D217A1827611B1500E2A7C4 /* ATApplicationEvent.h in Headers */,
+				0D217A1A27611B1500E2A7C4 /* ATApplicationScraperDelegate.h in Headers */,
+				0D217A4427611BA400E2A7C4 /* ATAudioRecorderDelegate.h in Headers */,
+				0D2179F427611AE700E2A7C4 /* ATApplicationElement.h in Headers */,
+				0D217A2A27611B5500E2A7C4 /* ATApplicationUtilities.h in Headers */,
+				0D217A0627611B0500E2A7C4 /* ATCachedElementTreeNode.h in Headers */,
+				0D217A4B27611BA400E2A7C4 /* ATAudioThresholdRecognizer.h in Headers */,
+				0D2179F927611AF500E2A7C4 /* ATAccessibilityPermission.h in Headers */,
+				0D217A1927611B1500E2A7C4 /* ATApplicationTimeline.h in Headers */,
+				0D217A0727611B0500E2A7C4 /* ATCachedElementTree.h in Headers */,
+				0D217A4327611BA400E2A7C4 /* ATSpeechBreak.h in Headers */,
+				0D217A4727611BA400E2A7C4 /* ATAudioThresholdRecognizerDelegate.h in Headers */,
+				0D217A0427611B0500E2A7C4 /* ATCachedElementTreeDelegate.h in Headers */,
+				0D217A4D27611BA400E2A7C4 /* ATSpeechRecognitionResult.h in Headers */,
+				0D217A5627611BB600E2A7C4 /* AVAudioPCMBuffer+Append.h in Headers */,
+				0D217A5227611BA400E2A7C4 /* ATSoundAnalyzerObserver.h in Headers */,
+				0D217A4E27611BA400E2A7C4 /* ATSpeechRecognizerDelegate.h in Headers */,
+				0D217A4127611BA400E2A7C4 /* ATSpeechRecording.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		0D2179912761176F00E2A7C4 /* AudioTrainerSupport */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0D2179A62761176F00E2A7C4 /* Build configuration list for PBXNativeTarget "AudioTrainerSupport" */;
+			buildPhases = (
+				0D21798D2761176F00E2A7C4 /* Headers */,
+				0D21798E2761176F00E2A7C4 /* Sources */,
+				0D21798F2761176F00E2A7C4 /* Frameworks */,
+				0D2179902761176F00E2A7C4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AudioTrainerSupport;
+			productName = AudioTrainerSupport;
+			productReference = 0D2179922761176F00E2A7C4 /* AudioTrainerSupport.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		0D21799B2761176F00E2A7C4 /* AudioTrainerSupportTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0D2179A92761176F00E2A7C4 /* Build configuration list for PBXNativeTarget "AudioTrainerSupportTests" */;
+			buildPhases = (
+				0D2179982761176F00E2A7C4 /* Sources */,
+				0D2179992761176F00E2A7C4 /* Frameworks */,
+				0D21799A2761176F00E2A7C4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				0D21799F2761176F00E2A7C4 /* PBXTargetDependency */,
+			);
+			name = AudioTrainerSupportTests;
+			productName = AudioTrainerSupportTests;
+			productReference = 0D21799C2761176F00E2A7C4 /* AudioTrainerSupportTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		0D2179892761176F00E2A7C4 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastUpgradeCheck = 1310;
+				TargetAttributes = {
+					0D2179912761176F00E2A7C4 = {
+						CreatedOnToolsVersion = 13.1;
+					};
+					0D21799B2761176F00E2A7C4 = {
+						CreatedOnToolsVersion = 13.1;
+					};
+				};
+			};
+			buildConfigurationList = 0D21798C2761176F00E2A7C4 /* Build configuration list for PBXProject "AudioTrainerSupport" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 0D2179882761176F00E2A7C4;
+			productRefGroup = 0D2179932761176F00E2A7C4 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				0D2179912761176F00E2A7C4 /* AudioTrainerSupport */,
+				0D21799B2761176F00E2A7C4 /* AudioTrainerSupportTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		0D2179902761176F00E2A7C4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0D21799A2761176F00E2A7C4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		0D21798E2761176F00E2A7C4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0D2179DA27611A2000E2A7C4 /* ATRecordingSection.m in Sources */,
+				0D217A5927611BEB00E2A7C4 /* BaseSound.mlmodel in Sources */,
+				0D217A4927611BA400E2A7C4 /* ATAudioThresholdRecognizer.m in Sources */,
+				0D217A5527611BB600E2A7C4 /* AVAudioPCMBuffer+Append.m in Sources */,
+				0D2179DC27611A2000E2A7C4 /* ATRecording.m in Sources */,
+				0D217A2627611B4400E2A7C4 /* ATPriorityOperationQueue.m in Sources */,
+				0D2179DF27611A3900E2A7C4 /* AVAudioPCMBuffer+Data.m in Sources */,
+				0D217A4227611BA400E2A7C4 /* ATSoundAnalyzer.m in Sources */,
+				0D2179EF27611AE700E2A7C4 /* ATElement.m in Sources */,
+				0D217A0227611B0500E2A7C4 /* ATCachedElementTree.m in Sources */,
+				0D217A4F27611BA400E2A7C4 /* ATSpeechRecording.m in Sources */,
+				0D2179F827611AF500E2A7C4 /* ATAccessibilityPermission.m in Sources */,
+				0D2179F027611AE700E2A7C4 /* ATApplicationElement.m in Sources */,
+				0D2179EE27611AE700E2A7C4 /* ATWindowElement.m in Sources */,
+				0D2179972761176F00E2A7C4 /* AudioTrainerSupport.docc in Sources */,
+				0D217A2B27611B5500E2A7C4 /* ATApplicationUtilities.m in Sources */,
+				0D217A0527611B0500E2A7C4 /* ATCachedElement.m in Sources */,
+				0D217A1527611B1500E2A7C4 /* ATApplicationEvent.m in Sources */,
+				0D217A1727611B1500E2A7C4 /* ATApplicationTimeline.m in Sources */,
+				0D217A4A27611BA400E2A7C4 /* ATSpeechBreak.m in Sources */,
+				0D217A1327611B1500E2A7C4 /* ATApplicationScraper.m in Sources */,
+				0D217A0327611B0500E2A7C4 /* ATCachedElementTreeNode.m in Sources */,
+				0D217A4627611BA400E2A7C4 /* ATAudioRecorder.m in Sources */,
+				0D217A5027611BA400E2A7C4 /* ATSoundAnalyzerObserver.m in Sources */,
+				0D217A5127611BA400E2A7C4 /* ATSpeechRecognizer.m in Sources */,
+				0D217A4C27611BA400E2A7C4 /* ATSpeechRecognitionResult.m in Sources */,
+				0D217A2727611B4400E2A7C4 /* ATPriorityOperation.m in Sources */,
+				0D217A1427611B1500E2A7C4 /* NSError+ApplicationScraper.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0D2179982761176F00E2A7C4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0D2179A22761176F00E2A7C4 /* AudioTrainerSupportTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		0D21799F2761176F00E2A7C4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0D2179912761176F00E2A7C4 /* AudioTrainerSupport */;
+			targetProxy = 0D21799E2761176F00E2A7C4 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		0D2179A42761176F00E2A7C4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		0D2179A52761176F00E2A7C4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		0D2179A72761176F00E2A7C4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.uci.ics.accessibility.AudioTrainerSupport;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+			};
+			name = Debug;
+		};
+		0D2179A82761176F00E2A7C4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.uci.ics.accessibility.AudioTrainerSupport;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+			};
+			name = Release;
+		};
+		0D2179AA2761176F00E2A7C4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.uci.ics.accessibility.AudioTrainerSupportTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+			};
+			name = Debug;
+		};
+		0D2179AB2761176F00E2A7C4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.uci.ics.accessibility.AudioTrainerSupportTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		0D21798C2761176F00E2A7C4 /* Build configuration list for PBXProject "AudioTrainerSupport" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0D2179A42761176F00E2A7C4 /* Debug */,
+				0D2179A52761176F00E2A7C4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0D2179A62761176F00E2A7C4 /* Build configuration list for PBXNativeTarget "AudioTrainerSupport" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0D2179A72761176F00E2A7C4 /* Debug */,
+				0D2179A82761176F00E2A7C4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0D2179A92761176F00E2A7C4 /* Build configuration list for PBXNativeTarget "AudioTrainerSupportTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0D2179AA2761176F00E2A7C4 /* Debug */,
+				0D2179AB2761176F00E2A7C4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 0D2179892761176F00E2A7C4 /* Project object */;
+}
