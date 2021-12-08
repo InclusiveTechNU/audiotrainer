@@ -23,6 +23,10 @@ NS_ASSUME_NONNULL_BEGIN
                             voiceover:(ATSpeechRecording *)recording;
 
 - (void)exportRecordingWithName:(NSString *)name window:(NSWindow *)window;
+- (void)exportRecordingToPath:(NSURL *)url;
+- (void)replaceAudioBuffer:(AVAudioPCMBuffer *)audioBuffer;
+- (void)updateSectionsWithBreakpoints:(NSArray<NSArray<NSNumber *> *> *)breakpoints;
+- (void)updateSectionsBreakpointsWithBreakpoints:(NSArray<NSArray<NSNumber *> *> *)breakpoints;
 
 @end
 

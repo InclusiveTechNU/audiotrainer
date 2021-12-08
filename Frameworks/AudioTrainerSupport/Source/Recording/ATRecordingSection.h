@@ -20,6 +20,9 @@ NS_ASSUME_NONNULL_BEGIN
                        resumeTime:(double)resumeTime
                            events:(NSArray<ATApplicationEvent *> *)events;
 
+- (void)updatePauseTime:(double)pauseTime;
+- (void)updateResumeTime:(double)resumeTime;
+
 @end
 
 NS_ASSUME_NONNULL_END

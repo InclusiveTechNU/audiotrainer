@@ -46,4 +46,14 @@
     return self;
 }
 
+- (void)updatePauseTime:(double)pauseTime
+{
+    _pauseTime = pauseTime;
+}
+
+- (void)updateResumeTime:(double)resumeTime
+{
+    _resumeTime = resumeTime;
+}
+
 @end

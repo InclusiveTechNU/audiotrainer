@@ -99,6 +99,64 @@
     }];
 }
 
+- (void)exportRecordingToPath:(NSURL *)url
+{
+    NSData *recordingData = self.data;
+    [recordingData writeToURL:url atomically:NO];
+}
+
+- (void)replaceAudioBuffer:(AVAudioPCMBuffer *)audioBuffer
+{
+    _audioBuffer = audioBuffer;
+}
+
+- (void)updateSectionsWithBreakpoints:(NSArray<NSArray<NSNumber *> *> *)breakpoints
+{
+    // TODO: This can be better optimized
+    NSMutableArray<ATApplicationEvent *> *events = [[NSMutableArray alloc] init];
+    for (ATRecordingSection *section in self.sections)
+    {
+        [events addObjectsFromArray:section.events];
+    }
+    
+    NSMutableArray *sections = [[NSMutableArray alloc] init];
+    NSTimeInterval lastBreakpoint = 0.0;
+    // TODO: Make this so it only goes through the events array once instead of
+    // repeatedly searching over and over
+    for (NSArray *breakpointSection in breakpoints)
+    {
+        NSMutableArray *sectionEvents = [[NSMutableArray alloc] init];
+        NSTimeInterval pauseTime = ((NSNumber *)[breakpointSection objectAtIndex:0]).doubleValue;
+        NSTimeInterval resumeTime = ((NSNumber *)[breakpointSection objectAtIndex:1]).doubleValue;
+        for (ATApplicationEvent *event in events)
+        {
+            if (event.time > lastBreakpoint && event.time <= resumeTime)
+            {
+                [sectionEvents addObject:event];
+            }
+        }
+        ATRecordingSection *section = [[ATRecordingSection alloc] initWithPauseTime:pauseTime
+                                                                         resumeTime:resumeTime
+                                                                             events:sectionEvents];
+        [sections addObject:section];
+        lastBreakpoint = resumeTime;
+    }
+    _sections = sections;
+}
+
+- (void)updateSectionsBreakpointsWithBreakpoints:(NSArray<NSArray<NSNumber *> *> *)breakpoints
+{
+    for (NSUInteger i = 0; i < self.sections.count; i++)
+    {
+        ATRecordingSection *section = [self.sections objectAtIndex:i];
+        NSArray *breakpointSection = [breakpoints objectAtIndex:i];
+        NSTimeInterval pauseTime = ((NSNumber *)[breakpointSection objectAtIndex:0]).doubleValue;
+        NSTimeInterval resumeTime = ((NSNumber *)[breakpointSection objectAtIndex:1]).doubleValue;
+        [section updatePauseTime:pauseTime];
+        [section updateResumeTime:resumeTime];
+    }
+}
+
 - (void)encodeWithCoder:(nonnull NSCoder *)coder {
     [coder encodeObject:self.sections forKey:@"sections"];
     [coder encodeObject:self.audioBuffer.data forKey:@"audioBuffer"];
