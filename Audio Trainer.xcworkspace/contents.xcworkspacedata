@@ -19,6 +19,9 @@
       location = "container:"
       name = "Scripts">
       <FileRef
+         location = "group:Scripts/TutorialExplorer/TutorialExplorer.xcodeproj">
+      </FileRef>
+      <FileRef
          location = "group:Scripts/TutorialTransfer/TutorialTransfer.xcodeproj">
       </FileRef>
    </Group>

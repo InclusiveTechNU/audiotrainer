@@ -71,7 +71,7 @@
 		0D217A5227611BA400E2A7C4 /* ATSoundAnalyzerObserver.h in Headers */ = {isa = PBXBuildFile; fileRef = 0D217A3F27611BA400E2A7C4 /* ATSoundAnalyzerObserver.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0D217A5527611BB600E2A7C4 /* AVAudioPCMBuffer+Append.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D217A5327611BB600E2A7C4 /* AVAudioPCMBuffer+Append.m */; };
 		0D217A5627611BB600E2A7C4 /* AVAudioPCMBuffer+Append.h in Headers */ = {isa = PBXBuildFile; fileRef = 0D217A5427611BB600E2A7C4 /* AVAudioPCMBuffer+Append.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		0D217A5927611BEB00E2A7C4 /* BaseSound.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 0D217A5827611BEB00E2A7C4 /* BaseSound.mlmodel */; };
+		0DB5E4F127613DCD00D2D770 /* BaseSound.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 0DB5E4F027613DCD00D2D770 /* BaseSound.mlmodel */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -150,7 +150,7 @@
 		0D217A3F27611BA400E2A7C4 /* ATSoundAnalyzerObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATSoundAnalyzerObserver.h; sourceTree = "<group>"; };
 		0D217A5327611BB600E2A7C4 /* AVAudioPCMBuffer+Append.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AVAudioPCMBuffer+Append.m"; sourceTree = "<group>"; };
 		0D217A5427611BB600E2A7C4 /* AVAudioPCMBuffer+Append.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AVAudioPCMBuffer+Append.h"; sourceTree = "<group>"; };
-		0D217A5827611BEB00E2A7C4 /* BaseSound.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = BaseSound.mlmodel; path = ../../../../../Downloads/BaseSound.mlmodel; sourceTree = "<group>"; };
+		0DB5E4F027613DCD00D2D770 /* BaseSound.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = BaseSound.mlmodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -194,7 +194,7 @@
 		0D2179942761176F00E2A7C4 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				0D217A5827611BEB00E2A7C4 /* BaseSound.mlmodel */,
+				0DB5E4F027613DCD00D2D770 /* BaseSound.mlmodel */,
 				0D2179962761176F00E2A7C4 /* AudioTrainerSupport.docc */,
 			);
 			path = Resources;
@@ -483,7 +483,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0D2179DA27611A2000E2A7C4 /* ATRecordingSection.m in Sources */,
-				0D217A5927611BEB00E2A7C4 /* BaseSound.mlmodel in Sources */,
+				0DB5E4F127613DCD00D2D770 /* BaseSound.mlmodel in Sources */,
 				0D217A4927611BA400E2A7C4 /* ATAudioThresholdRecognizer.m in Sources */,
 				0D217A5527611BB600E2A7C4 /* AVAudioPCMBuffer+Append.m in Sources */,
 				0D2179DC27611A2000E2A7C4 /* ATRecording.m in Sources */,
